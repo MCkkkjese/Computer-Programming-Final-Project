@@ -20,6 +20,6 @@ int main() {
     double n = (double)i;
     cout << n << " " << typeid(n).name() << '\n';
 
-    return 0;
     system("Pause");
+    return 0;
 }
