@@ -4,11 +4,11 @@ using namespace std;
 int main() {
     char a=65, b=97;
     printf("a = \"%c\", b = \"%c\"\n", a, b);
-    printf("ascii code : a = \"%d\", b = \"%d\"\n", static_cast<int>(a), static_cast<int>(b));
+    printf("ASCII code : a = \"%d\", b = \"%d\"\n", static_cast<int>(a), static_cast<int>(b));
 
     bitset<8> bin_a(a); 
     bitset<8> bin_b(b);
-    cout << bin_a << '\n' << bin_b << "\n\n";  // printf()不支援以二進位輸出
+    cout << "bin a = " << bin_a << '\n' << "bin b = " << bin_b << "\n\n";  // printf()不支援以二進位輸出
 
     cout << "Dec a&b = " << static_cast<int>(a&b) << '\n';
     cout << "Dec a|b = " << static_cast<int>(a|b) << '\n';
