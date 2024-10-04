@@ -3,4 +3,4 @@
 
 ---
 #### Using Big5 as default encoding format
-### Authored By [Liyue-Wei](https://github.com/Liyue-Wei) and [Wayne³¯«Â¤¤](https://github.com/MCkkkjese) and [yuuuu30]() on Github
+### Authored By [Liyue-Wei](https://github.com/Liyue-Wei) and [MCkkkjese](https://github.com/MCkkkjese) and [yuuuu30]() on Github
