@@ -3,7 +3,7 @@
 using namespace std;
 int main() {
     char a=65, b=97;
-    printf("a = \"%c\", b = \"%c\"\n", a, b);
+    printf("a = \"%c\", b = \"%c\"\n\n", a, b);
     printf("ASCII code : a = \"%d\", b = \"%d\"\n", static_cast<int>(a), static_cast<int>(b));
 
     bitset<8> bin_a(a); 
