@@ -16,17 +16,7 @@ int main() {
     cout << "max double = " << numeric_limits<double>::max() << "\n";
     cout << "min double = " << numeric_limits<double>::min() << "\n\n";
     cout << "max long double = " << numeric_limits<long double>::max() << "\n";
-    cout << "min long double = " << numeric_limits<long double>::min() << "\n\n";
-
-    float x;
-    double y;
-    long double z;
-    cout.setf(ios::fixed);
-    x=y=z = 1/3.0;  
-    cout << "float, double, long double accuracy\n";
-    cout << setprecision(32) << "x= " << x << "\n";
-    cout << setprecision(32) << "y= " << y << "\n";
-    cout << setprecision(32) << "z= " << z << "\n";
+    cout << "min long double = " << numeric_limits<long double>::min() << "\n";
 
     system("Pause");
     return 0;
