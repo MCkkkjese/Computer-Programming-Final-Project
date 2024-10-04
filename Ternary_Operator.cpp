@@ -7,7 +7,7 @@ when A == False --> C
 
 #include <iostream>
 using namespace std;
-int main(){
+int main() {
     int i = 16;
     int n;
     cin >> n;
