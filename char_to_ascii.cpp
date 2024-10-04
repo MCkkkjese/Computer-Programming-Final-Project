@@ -2,7 +2,7 @@
 using namespace std;
 int main() {
     char c;
-    cout << "input a char "; cin >> c;
+    cout << "input a char : "; cin >> c;
 
     cout << "Dec ASCII Code : " << static_cast<int>(c) << '\n';
     cout << "Hex ASCII Code : "<< hex << static_cast<int>(c) << '\n';
