@@ -3,8 +3,6 @@
 
 content
 
-#### *Developing for the Future | Innovating for the Impossibility*
-
 ## CH1. title
 content
 
