@@ -3,16 +3,16 @@
 
 content
 
-## CH1. title
+## CH1. Introducing C++ and OOPL
 content
 
-## CH2. title
+## CH2. Operational expression
 content
 
-## CH3. title
+## CH3. Basic I/O operation and fstream
 content
 
-## CH4. Basic I/O operation and fstream
+## CH4. title
 content
 
 ---
