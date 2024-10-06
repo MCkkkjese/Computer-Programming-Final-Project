@@ -24,6 +24,6 @@ int main() {
     cout << "c= " << c << '\n';
     cout << '\n';
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

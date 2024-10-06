@@ -12,6 +12,6 @@ int main() {
     cout << setprecision(32) << "y= " << y << "\n";
     cout << setprecision(32) << "z= " << z << "\n";
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

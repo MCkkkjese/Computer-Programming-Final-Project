@@ -30,6 +30,6 @@ int main(){
     cout << "max unsigned long long int = " << numeric_limits<unsigned long long>::max() << "\n";
     cout << "min unsigned long long int = " << numeric_limits<unsigned long long>::min() << "\n\n";
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

@@ -19,6 +19,6 @@ int main() {
         cout << "sizeof(string) = " << sizeof(input) << " bytes" << endl;
     }
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

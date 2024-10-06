@@ -8,6 +8,6 @@ int main() {
         cout << two_s_complement << '\n';
     }
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

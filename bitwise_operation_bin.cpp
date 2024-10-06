@@ -22,6 +22,6 @@ int main() {
     cout << "Bin a|b = " << bin_a_or_b << '\n';
     cout << "Bin a^b = " << bin_a_xor_b << '\n';
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

@@ -12,4 +12,4 @@ print("hex a&b = {}".format(hex(a&b).lstrip("0x")))
 print("hex a|b = {}".format(hex(a|b).lstrip("0x")))
 print("hex a^b = {}".format(hex(a^b).lstrip("0x")))
 
-os.system("Pause")
+os.system("PAUSE")

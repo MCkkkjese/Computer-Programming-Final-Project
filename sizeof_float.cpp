@@ -18,6 +18,6 @@ int main() {
     cout << "max long double = " << numeric_limits<long double>::max() << "\n";
     cout << "min long double = " << numeric_limits<long double>::min() << "\n";
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

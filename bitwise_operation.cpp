@@ -23,6 +23,6 @@ int main() {
     cout << hex << "hex a|b = " << static_cast<int>(a|b) << "\n";  
     cout << hex << "hex a^b = " << static_cast<int>(a^b) << "\n";  
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

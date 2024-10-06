@@ -7,6 +7,6 @@ int main() {
     cin >> dec_num;
     cout << hex << dec_num << '\n';
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

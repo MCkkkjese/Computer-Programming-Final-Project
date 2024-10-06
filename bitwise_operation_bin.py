@@ -17,4 +17,4 @@ print("Bin a&b = {}".format(a_and_b))
 print("Bin a|b = {}".format(a_or_b))
 print("Bin a^b = {}".format(a_xor_b))
 
-os.system("Pause")
+os.system("PAUSE")

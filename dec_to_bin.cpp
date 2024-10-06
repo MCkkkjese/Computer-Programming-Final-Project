@@ -27,6 +27,6 @@ int main() {
         cout << bin_num << '\n';
     }
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

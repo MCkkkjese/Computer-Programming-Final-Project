@@ -13,6 +13,6 @@ int main() {
     cin >> n;
     (i==n) ? cout << "True" : cout << "False";
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

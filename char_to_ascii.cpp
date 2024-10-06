@@ -12,6 +12,6 @@ int main() {
     cout << static_cast<int>(c) << '\n';  // int()和static_cast<int>()作用基本相同
     cout << int(c) << '\n';
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

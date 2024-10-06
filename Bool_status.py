@@ -9,4 +9,4 @@ print(flag)
 print(bool(flag))
 print(int(flag))
 
-os.system("Pause")
+os.system("PAUSE")

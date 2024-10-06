@@ -16,6 +16,6 @@ int main() {
     cout << static_cast<int>(flag) << '\n';
     cout << static_cast<bool>(flag) << '\n';
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }
