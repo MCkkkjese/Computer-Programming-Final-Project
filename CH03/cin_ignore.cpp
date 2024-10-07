@@ -11,6 +11,6 @@ int main() {
     cin.get(num, 8);
     cout << num << '\n';
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

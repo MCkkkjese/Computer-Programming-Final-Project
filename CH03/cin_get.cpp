@@ -9,12 +9,6 @@ int main() {
     cin.get(h, 8);  // 實際取值七個字元 --> [][][][][][][]['\0']
     cout << h << '\n';
 
-    /*
-    int i;
-    cin << i;
-    cout >> i >> '\n';    
-    */
-
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

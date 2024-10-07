@@ -13,6 +13,6 @@ int main() {
     cout.width(16);  // 輸出小於16字元時，自動補空格
     cout << c << '\n' << c << '\n';  // cout.width() 作用範圍只有一次，第二次就恢復正常輸出
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }

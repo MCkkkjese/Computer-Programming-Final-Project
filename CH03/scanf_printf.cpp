@@ -12,6 +12,6 @@ int main() {
     scanf("%s", &str);  // 字串中間不能包含空格
     printf("%s\n", str);
 
-    system("Pause");
+    system("PAUSE");
     return 0;
 }
