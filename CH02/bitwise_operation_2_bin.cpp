@@ -1,5 +1,5 @@
 /*
-bitwise operation 位元運算-2
+bitwise operation 位元運算_2
 
 ~ : 位元反轉運算子；bitwise NOT operator
 << : 左移運算子；left shift operator
@@ -28,7 +28,6 @@ int main() {
     cout << "Bin ~a = " << bin_a_NOT << '\n';
     cout << "Bin a << 1 = " << bin_a_LEFT << '\n';
     cout << "Bin a >> 1 = " << bin_a_RIGHT << '\n';
-
 
     system("PAUSE");
     return 0;

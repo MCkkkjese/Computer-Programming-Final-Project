@@ -1,3 +1,4 @@
+# coding=Big5
 import os
 
 a=65
