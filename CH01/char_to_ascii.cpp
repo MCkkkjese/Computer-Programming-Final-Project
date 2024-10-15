@@ -9,7 +9,7 @@ int main() {
 
     cout.setf(ios::hex, ios::basefield);
     cout.setf(ios::showbase);
-    cout << static_cast<int>(c) << '\n';  // int()和static_cast<int>()作用基本相同
+    cout << static_cast<int>(c) << '\n';  // int()�Mstatic_cast<int>()�@�ΰ򥻬ۦP
     cout << int(c) << '\n';
 
     system("PAUSE");
