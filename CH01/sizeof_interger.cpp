@@ -14,7 +14,7 @@ int main(){
     cout << "sizeof(long long) = " << sizeof(t) << "\n";
     cout << "sizeof(unsigned int) = " << sizeof(x) << "\n";
     cout << "sizeof(unsigned long) = " << sizeof(y) << "\n";
-    cout << "sizeof(unsigned long long) = " << sizeof(z) << "\n";
+    cout << "sizeof(unsigned long long) = " << sizeof(z) << "\n\n";
 
     cout << "max int = " << numeric_limits<int>::max() << "\n";
     cout << "min int = " << numeric_limits<int>::min() << "\n\n";
