@@ -21,3 +21,18 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+sizeof(float) = 4
+sizeof(double) = 8
+sizeof(long double) = 16
+max float = 3.40282e+38
+min float = 1.17549e-38
+
+max double = 1.79769e+308
+min double = 2.22507e-308
+
+max long double = 1.18973e+4932
+min long double = 3.3621e-4932
+請按任意鍵繼續 . . . 
+*/

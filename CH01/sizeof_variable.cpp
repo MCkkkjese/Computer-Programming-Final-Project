@@ -22,3 +22,15 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+輸入char或string: A
+sizeof(char) = 1 bytes
+請按任意鍵繼續 . . . 
+*/
+
+/*
+輸入char或string: Apple
+sizeof(string) = 32 bytes
+請按任意鍵繼續 . . .
+*/

@@ -23,3 +23,16 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+Input int, float, double, char, string
+2 4.0 8.0 16.0 A Apple
+2 i
+4 f
+8 d
+16.0 A128_c
+A NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+convert int i to double n
+2 d
+請按任意鍵繼續 . . . 
+*/

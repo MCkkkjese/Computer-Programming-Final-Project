@@ -33,3 +33,32 @@ int main(){
     system("PAUSE");
     return 0;
 }
+
+/*
+sizeof(int) = 4
+sizeof(long) = 4
+sizeof(long long) = 8
+sizeof(unsigned int) = 4
+sizeof(unsigned long) = 4
+sizeof(unsigned long long) = 8
+
+max int = 2147483647
+min int = -2147483648
+
+max long int = 2147483647
+min long int = -2147483648
+
+max long long int = 9223372036854775807
+min long long int = -9223372036854775808
+
+max unsigned int = 4294967295
+min unsigned int = 0
+
+max unsigned long int = 4294967295
+min unsignedlong int = 0
+
+max unsigned long long int = 18446744073709551615
+min unsigned long long int = 0
+
+請按任意鍵繼續 . . .
+*/

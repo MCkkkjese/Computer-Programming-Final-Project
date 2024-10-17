@@ -15,3 +15,12 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+input a char : A
+Dec ASCII Code : 65
+Hex ASCII Code : 41
+0x41
+0x41
+請按任意鍵繼續 . . . 
+*/
