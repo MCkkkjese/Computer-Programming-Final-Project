@@ -1,3 +1,7 @@
+/*
+Dec to Bin --> bitset<length>(variable)
+*/
+
 #include <iostream>
 #include <bitset>
 #include <cmath>
