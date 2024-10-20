@@ -21,3 +21,13 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+ABCDE abcde
+ABCDE abcde
+ABCDE abcde
+ABCDE abcde
+ABCDE abcde
+ABCDE abcde
+請按任意鍵繼續 . . .
+*/

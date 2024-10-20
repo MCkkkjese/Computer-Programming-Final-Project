@@ -13,3 +13,10 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+輸入 : abcdefg123456789
+abcdefg123456789
+abcdefg
+請按任意鍵繼續 . . .
+*/

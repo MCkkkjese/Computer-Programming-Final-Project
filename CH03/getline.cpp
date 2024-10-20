@@ -20,3 +20,13 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+getline測試 --> 輸入 : ABCDE abcde
+ABCDE abcde
+ABCDE abcde
+cin測試 --> 輸入 : ABCDE abcde
+ABCDE abcde
+ABCDE
+請按任意鍵繼續 . . . 
+*/

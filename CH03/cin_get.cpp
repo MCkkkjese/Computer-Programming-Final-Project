@@ -12,3 +12,10 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+A
+BCDEFGH
+請按任意鍵繼續 . . . 
+*/

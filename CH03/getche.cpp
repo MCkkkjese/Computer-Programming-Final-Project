@@ -12,3 +12,9 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+A
+A
+請按任意鍵繼續 . . .
+*/
