@@ -12,6 +12,7 @@ inFile.close(); --> Ãö³¬ÀÉ®×
 */
 
 #include <iostream>
+#include <string>
 #include <fstream>
 using namespace std;
 int main() {

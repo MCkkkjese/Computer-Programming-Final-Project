@@ -6,7 +6,7 @@ ofstream outFile("file_name", ios::app); --> 在現有檔案上添加內容
 */
 
 #include <iostream>
-#include <cstdio>
+#include <string>
 #include <fstream>
 using namespace std;
 int main() {

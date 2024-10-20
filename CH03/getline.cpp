@@ -5,6 +5,7 @@ Using getline with string, instead of char[size]
 */
 
 #include <iostream>
+#include <string>
 using namespace std;
 int main() {
     string s;

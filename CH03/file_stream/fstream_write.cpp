@@ -13,7 +13,7 @@ outFile.close(); --> Ãö³¬ÀÉ®×
 */
 
 #include <iostream>
-#include <cstdio>
+#include <string>
 #include <fstream>
 using namespace std;
 int main() {
