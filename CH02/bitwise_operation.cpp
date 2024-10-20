@@ -26,3 +26,18 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+Dec a = 65
+Dec b = 97
+Dec a&b = 65
+Dec a|b = 97
+Dec a^b = 32
+
+hex a = 41
+hex b = 61
+hex a&b = 41
+hex a|b = 61
+hex a^b = 20
+請按任意鍵繼續 . . . 
+*/

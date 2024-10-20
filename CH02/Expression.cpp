@@ -27,3 +27,18 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+1 2 3
+i= 1 flag_1= 0
+n= 3 flag_2= 0
+t= 6 flag_3= 0
+
+a= 4
+b= 4
+
+a= 10
+c= 6
+
+請按任意鍵繼續 . . . 
+*/

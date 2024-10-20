@@ -19,3 +19,19 @@ print("Bin a << 1 = {}".format(a_LEFT))
 print("Bin a >> 1 = {}".format(a_RIGHT))
 
 os.system("PAUSE")
+
+'''
+a = "A"
+
+ASCII code : a = "65"
+bin a = 1000001
+
+Dec ~a = -66
+Dec a << 1 = 130
+Dec a >> 1 = 32
+
+Bin ~a = -0b1000010
+Bin a << 1 = 10000010
+Bin a >> 1 = 100000
+請按任意鍵繼續 . . . 
+'''

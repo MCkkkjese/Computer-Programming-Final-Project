@@ -33,3 +33,20 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+a = "A", b = "a"
+
+ASCII code : a = "65", b = "97"
+bin a = 01000001
+bin b = 01100001
+
+Dec a&b = 65
+Dec a|b = 97
+Dec a^b = 32
+
+Bin a&b = 01000001
+Bin a|b = 01100001
+Bin a^b = 00100000
+請按任意鍵繼續 . . . 
+*/

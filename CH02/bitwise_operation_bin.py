@@ -18,3 +18,20 @@ print("Bin a|b = {}".format(a_or_b))
 print("Bin a^b = {}".format(a_xor_b))
 
 os.system("PAUSE")
+
+'''
+a = "A", b = "a"
+
+ASCII code : a = "65", b = "97"
+bin a = 1000001
+bin b = 1100001
+
+Dec a&b = 65
+Dec a|b = 97
+Dec a^b = 32
+
+Bin a&b = 1000001
+Bin a|b = 1100001
+Bin a^b = 100000
+請按任意鍵繼續 . . . 
+'''

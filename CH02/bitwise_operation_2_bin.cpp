@@ -32,3 +32,19 @@ int main() {
     system("PAUSE");
     return 0;
 }
+
+/*
+a = "A"
+
+ASCII code : a = "65"
+bin a = 01000001
+
+Dec ~a = -66
+Dec a << 1 = 130
+Dec a >> 1 = 32
+
+Bin ~a = 10111110
+Bin a << 1 = 10000010
+Bin a >> 1 = 00100000
+請按任意鍵繼續 . . .
+*/
