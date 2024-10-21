@@ -1,3 +1,4 @@
+# coding=Big5
 import os
 
 c = input("input a char : ")
