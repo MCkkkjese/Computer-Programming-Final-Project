@@ -20,7 +20,7 @@ content
 ## eTutor example
 content
 
-## Final Project - **NTTU ISMS Online Judge System**
+## Final Project - NTTU ISMS Online Judge System
 content
 
 ---
