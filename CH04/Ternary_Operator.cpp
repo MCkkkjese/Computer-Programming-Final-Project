@@ -11,8 +11,20 @@ int main() {
     int i = 16;
     int n;
     cin >> n;
-    (i==n) ? cout << "True" : cout << "False";
+    (i==n) ? cout << "True\n" : cout << "False\n";
 
     system("PAUSE");
     return 0;
 }
+
+/*
+16
+True
+請按任意鍵繼續 . . . 
+*/
+
+/*
+64
+False
+請按任意鍵繼續 . . . 
+*/
