@@ -7,7 +7,7 @@
 using namespace std;
 int main() {
     long double e=1.0, f=1.0;
-    int i = 1;
+    int i=1;
 
     while (1/f > 1e-128) {
         f*=i;
