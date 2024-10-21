@@ -8,10 +8,13 @@ using namespace std;
 int main() {
     long double f=1.0;
     int i;
-    cin >> i;
-
-    for(int n=1; n<=i; n++) {
-        f*=n;
-        cout << n << "! = " << fixed << setprecision(0) << f << '\n';
+    while (cin >> i) {
+        for(int n=1; n<=i; n++) {
+            f*=n;
+            cout << n << "! = " << fixed << setprecision(0) << f << '\n';
+        }
     }
+
+    system("PAUSE");
+    return 0;
 }
