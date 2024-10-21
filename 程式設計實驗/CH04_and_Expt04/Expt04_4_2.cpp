@@ -3,6 +3,7 @@
 */
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 int main() {
     long double f=1.0;
@@ -11,6 +12,6 @@ int main() {
 
     for(int n=1; n<=i; n++) {
         f*=n;
-        cout << n << "! = " << fixed << f << '\n';
+        cout << n << "! = " << fixed << setprecision(0) << f << '\n';
     }
 }
