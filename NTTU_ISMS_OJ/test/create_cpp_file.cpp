@@ -4,10 +4,10 @@
 using namespace std;
 int main() {
     string str, filename, index;
-    cout << "Input file name : ";
+    cout << "Input Filename (withou Filename extension): ";
     getline(cin, str);
     filename = (str + ".cpp");
-    cout << "file name = " << filename << endl;
+    cout << "File name = " << filename << endl;
 
     ofstream outFile(filename, ios::out);
     if(!outFile) {cout << "file open error" << '\n';} 
