@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     string str, filename, index;
-    cout << "Input Filename (withou Filename extension): ";
+    cout << "Input Filename (without Filename extension): ";
     getline(cin, str);
     filename = (str + ".cpp");
     cout << "File name = " << filename << endl;
