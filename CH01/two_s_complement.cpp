@@ -5,7 +5,7 @@ int main() {
     for(int i=-16; i<=16; i++) {
         bitset<8> two_s_complement(i);
         printf("%3d = ", i);
-        cout << two_s_complement << '\n';
+        cout << hex << two_s_complement << '\n';
     }
 
     system("PAUSE");
@@ -46,5 +46,5 @@ int main() {
  14 = 00001110
  15 = 00001111
  16 = 00010000
-請按任意鍵繼續 . . . 
+請按任意鍵繼續 . . .
 */

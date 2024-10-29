@@ -49,6 +49,6 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp", 
-        "files.encoding": "big5"
+        "files.encoding": "Big5"
     }
 }
