@@ -10,7 +10,7 @@ int main() {
     cout << "File name = " << filename << endl;
 
     ofstream outFile(filename, ios::out);
-    if(!outFile) {cout << "file open error" << '\n';} 
+    if (!outFile) {cout << "file open error" << '\n';} 
 
     else {
         cout << "Input sorce code :\n";
