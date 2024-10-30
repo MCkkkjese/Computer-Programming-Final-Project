@@ -4,6 +4,7 @@ while(start==False):
     try:
         import ttkbootstrap as ttk
         import pyautogui
+        from PIL import Image, ImageTk
         start = True
 
     except:
@@ -13,7 +14,7 @@ while(start==False):
 
 import tkinter as tk
 from tkinter import INSERT, messagebox
-from PIL import Image, ImageTk
+
 from Extension_modules import file_directory
 import os
 import threading
@@ -56,7 +57,7 @@ class GUI_interface:
     set_interval(time_set, 1)
 
     win_style = ttk.Style()
-    win_style.configure('Outline.TButton', font=("·L³n¥¿¶ÂÅé", 14))
+    win_style.configure('Outline.TButton', font=("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 14))
 
     pic_bg_path = file_directory.path_function("Extension_modules/back_ground.png")
     pic_bg = Image.open(pic_bg_path)
@@ -66,18 +67,18 @@ class GUI_interface:
     ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=1845, y=15)
     ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
     ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=1585, y=15)
-    tk.Label(win, textvariable=time_now, font=("·L³n¥¿¶ÂÅé", 16)).place(x=1705, y=65)
-    ttk.Label(win, text=("Version " + ver), font=("·L³n¥¿¶ÂÅé", 10)).place(x=1835, y=120)
+    tk.Label(win, textvariable=time_now, font=("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 16)).place(x=1705, y=65)
+    ttk.Label(win, text=("Version " + ver), font=("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 10)).place(x=1835, y=120)
 
     pic_demo_path = file_directory.path_function("Extension_modules/DEMO.png")
     pic_demo = Image.open(pic_demo_path)
     pic_2 = ImageTk.PhotoImage(pic_demo)
     tk.Label(win, image=pic_2).place(x=10, y=145)
 
-    code_input = tk.Text(win, font=("·L³n¥¿¶ÂÅé", 16))
+    code_input = tk.Text(win, font=("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 16))
     code_input.place(x=970, y=145, width=940, height=600)
     ttk.Button(win, text=" Submit ", style="Outline.TButton").place(x=970, y=755, width=940, height=45)
-    status_output = tk.Text(win, font=("·L³n¥¿¶ÂÅé", 14))
+    status_output = tk.Text(win, font=("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 14))
     status_output.place(x=970, y=810, width=940, height=210)
 
 win.mainloop()
