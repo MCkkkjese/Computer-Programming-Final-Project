@@ -1,5 +1,5 @@
 import os
-from Extension_module import file_directory
+from Extension_modules import file_directory
 
 filename = str(input("Input Filename (without Filename extension): ") + ".cpp")
 print("File name = " + filename)
