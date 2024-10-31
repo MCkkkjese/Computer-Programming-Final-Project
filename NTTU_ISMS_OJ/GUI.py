@@ -31,9 +31,6 @@ win.iconbitmap(ico_path)
 
 if(rcp.resolution() != (1920, 1080)):
     messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常") 
-
-if(rcp.magnification() != 1.0):
-    messagebox.showwarning("視窗縮放警告", "縮放比例非 1.0，內容顯示或將出現異常") 
     
 def set_interval(func, sec):
     def func_wrapper():
@@ -63,7 +60,7 @@ class GUI_interface:
     set_interval(time_set, 1)
 
     win_style = ttk.Style()
-    win_style.configure('Outline.TButton', font=("嚙盤嚙緯嚙踝蕭嚙踝蕭嚙踝蕭", 14))
+    win_style.configure('Outline.TButton', font=("微軟正黑體", 14))
 
     pic_bg_path = file_directory.path_function("Extension_modules/back_ground.png")
     pic_bg = Image.open(pic_bg_path)
@@ -73,18 +70,18 @@ class GUI_interface:
     ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=1845, y=15)
     ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
     ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=1585, y=15)
-    tk.Label(win, textvariable=time_now, font=("嚙盤嚙緯嚙踝蕭嚙踝蕭嚙踝蕭", 16)).place(x=1705, y=65)
-    ttk.Label(win, text=("Version " + ver), font=("嚙盤嚙緯嚙踝蕭嚙踝蕭嚙踝蕭", 10)).place(x=1835, y=120)
+    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 16)).place(x=1705, y=65)
+    ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
 
     pic_demo_path = file_directory.path_function("Extension_modules/DEMO.png")
     pic_demo = Image.open(pic_demo_path)
     pic_2 = ImageTk.PhotoImage(pic_demo)
     tk.Label(win, image=pic_2).place(x=10, y=145)
 
-    code_input = tk.Text(win, font=("嚙盤嚙緯嚙踝蕭嚙踝蕭嚙踝蕭", 16))
+    code_input = tk.Text(win, font=("微軟正黑體", 16))
     code_input.place(x=970, y=145, width=940, height=600)
     ttk.Button(win, text=" Submit ", style="Outline.TButton").place(x=970, y=755, width=940, height=45)
-    status_output = tk.Text(win, font=("嚙盤嚙緯嚙踝蕭嚙踝蕭嚙踝蕭", 14))
+    status_output = tk.Text(win, font=("微軟正黑體", 14))
     status_output.place(x=970, y=810, width=940, height=210)
 
 win.mainloop()
