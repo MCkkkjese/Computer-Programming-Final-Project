@@ -14,8 +14,8 @@ while(start==False):
 
 import tkinter as tk
 from tkinter import INSERT, messagebox
-
 from Extension_modules import file_directory
+from Extension_modules import resolution_checking_process as rcp
 import os
 import threading
 import time
@@ -29,6 +29,12 @@ win.title("NTTU ISMS::OJ")
 ico_path = file_directory.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
 
+if(rcp.resolution() != (1920, 1080)):
+    messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常") 
+
+if(rcp.magnification() != 1.0):
+    messagebox.showwarning("視窗縮放警告", "縮放比例非 1.0，內容顯示或將出現異常") 
+    
 def set_interval(func, sec):
     def func_wrapper():
         set_interval(func, sec)
