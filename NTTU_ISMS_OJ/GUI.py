@@ -105,7 +105,7 @@ class GUI_interface:
     # code_input.config(yscrollcommand=scrollbar.set)
     code_input.place(x=970, y=145, width=940, height=600)
     ttk.Button(win, text=" Submit ", style="Outline.TButton").place(x=970, y=755, width=940, height=45)
-    status_output = tk.Text(win, font=("微軟正黑體", 14))
+    status_output = tk.Text(win, font=("微軟正黑體", 12))
     status_output.place(x=970, y=810, width=940, height=210)
 
 win.mainloop()
