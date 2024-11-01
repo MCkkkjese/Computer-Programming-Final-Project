@@ -29,9 +29,11 @@ win.title("NTTU ISMS::OJ")
 ico_path = file_directory.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
 
-global ent_1, ent_2, ent_1_g, ent_2_g
-ent_1 = tk.StringVar()
-ent_2 = tk.StringVar()
+# global ent_1, ent_2, ent_1_g, ent_2_g
+# ent_1 = tk.StringVar()
+# ent_2 = tk.StringVar()
+
+global username
 
 if(rcp.resolution() != (1920, 1080)):
     messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常") 
@@ -59,11 +61,28 @@ def win_minimize():
 def time_set():
     time_now.set("Time : " + str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())))
 
+# def user_data():
+#     from Extension_modules import create_user_data as cud
+#     username = cud.set_username(ico_path)
+#     user.set(username)
+
 def user_data():
-    from Extension_modules import create_user_data as cud
-    username = cud.set_username(ico_path)
-    user.set(username)
-    # print(username)
+    '''
+    user_data() 介面無法正常導出變數，後續更新補上
+    '''
+
+    filename = (file_directory.path_function("Extension_modules/user_data.txt"))
+    outFile = open(filename, 'w')
+    outFile.write("User name : \nStudent ID : ")
+    outFile.flush()
+    outFile.close()
+
+    win_minimize()
+    os.system(filename)
+
+    inFile = open(filename, 'r')
+    inFile.read()
+    print(inFile)
 
 class GUI_interface:
     global time_now, user
