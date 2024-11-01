@@ -2,7 +2,7 @@ def function():
     ent_1_g = str(ent_1.get())
     ent_2_g = str(ent_2.get())
     username = ent_1_g + ent_2_g
-    print(username)
+    print("Error") if username=='' else print(username) 
     return username
 
 import tkinter as tk
