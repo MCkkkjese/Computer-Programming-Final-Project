@@ -1,4 +1,4 @@
-#coding=Big5
+#coding=UTF-8
 start = False
 while(start==False):
     try:
@@ -14,7 +14,7 @@ while(start==False):
 
 import tkinter as tk
 from tkinter import INSERT, messagebox
-from Extension_modules import file_directory
+from Extension_modules import file_directory as fd
 from Extension_modules import resolution_checking_process as rcp
 import os
 import threading
@@ -26,17 +26,16 @@ win = ttk.Window(themename="cerculean")
 win.geometry(screensize)
 win.overrideredirect(True)
 win.title("NTTU ISMS::OJ")
-ico_path = file_directory.path_function("Extension_modules/NTTU_LOGO.ico")
+ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
 
-# global ent_1, ent_2, ent_1_g, ent_2_g
-# ent_1 = tk.StringVar()
-# ent_2 = tk.StringVar()
-
-global username
+global time_now, username
+time_now = tk.StringVar()
+username = tk.StringVar()
+username.set("User unknow")
 
 if(rcp.resolution() != (1920, 1080)):
-    messagebox.showwarning("¸ÑªR«×Äµ§i", "¸ÑªR«×«D 1920 x 1080¡A¤º®eÅã¥Ü©Î±N¥X²{²§±`") 
+    messagebox.showwarning("è§£æåº¦è­¦å‘Š", "è§£æåº¦é 1920 x 1080ï¼Œå…§å®¹é¡¯ç¤ºæˆ–å°‡å‡ºç¾ç•°å¸¸") 
 
 def set_interval(func, sec):
     def func_wrapper():
@@ -54,50 +53,39 @@ def win_maximize():
     win.overrideredirect(True)
 
 def win_minimize():
-    messagebox.showwarning("ª`·N", "­Y­nÃö³¬µøµ¡¡A½Ğ¨Ï¥Î \"Exit\" «ö¶s¨ÓÃö³¬µøµ¡\n½Ğ¤Å¨Ï¥Îµøµ¡¥k¤W¨¤ \"X\"") 
+    messagebox.showwarning("æ³¨æ„", "è‹¥è¦é—œé–‰è¦–çª—ï¼Œè«‹ä½¿ç”¨ \"Exit\" æŒ‰éˆ•ä¾†é—œé–‰è¦–çª—\nè«‹å‹¿ä½¿ç”¨è¦–çª—å³ä¸Šè§’ \"X\"") 
     win.overrideredirect(False)
     pyautogui.hotkey("win", "d")
 
 def time_set():
     time_now.set("Time : " + str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())))
 
-# def user_data():
-#     from Extension_modules import create_user_data as cud
-#     username = cud.set_username(ico_path)
-#     user.set(username)
+def clear():
+    status_output.delete('1.0', 'end')
 
-def user_data():
-    '''
-    user_data() ¤¶­±µLªk¥¿±`¾É¥XÅÜ¼Æ¡A«áÄò§ó·s¸É¤W
-    '''
+# def submit():
+#     user = username.get()
+#     clear()
+#     status_output.insert(INSERT, user)
 
-    filename = (file_directory.path_function("Extension_modules/user_data.txt"))
-    outFile = open(filename, 'w')
-    outFile.write("User name : \nStudent ID : ")
-    outFile.flush()
-    outFile.close()
-
-    win_minimize()
-    os.system(filename)
-
-    inFile = open(filename, 'r')
-    inFile.read()
-    print(inFile)
+def submit():
+    from Extension_modules import create_cpp_file as ccf
+    index = code_input.get('1.0', 'end')
+    ccf.write_source_code(index)
+    clear()
+    status_output.insert(INSERT, "submit success")
 
 class GUI_interface:
-    global time_now, user
-    time_now = tk.StringVar()
+    global question, code_input, status_output
     set_interval(time_set, 1)
-    user = tk.StringVar()
-    user.set("User unknow")
 
     win_style = ttk.Style()
-    win_style.configure('Outline.TButton', font=("·L³n¥¿¶ÂÅé", 14))
+    win_style.configure('Outline.TButton', font=("å¾®è»Ÿæ­£é»‘é«”", 14))
 
     # scrollbar = tk.Scrollbar(win)
     # scrollbar.pack(side="right", fill="y")
 
-    pic_bg_path = file_directory.path_function("Extension_modules/back_ground.png")
+    pic_bg_path = fd.path_function("Extension_modules/back_ground.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
 
@@ -105,26 +93,27 @@ class GUI_interface:
     ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=1845, y=15)
     ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
     ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=1585, y=15)
-    tk.Label(win, textvariable=time_now, font=("·L³n¥¿¶ÂÅé", 16)).place(x=1640, y=65)
-    ttk.Label(win, text=("Version " + ver), font=("·L³n¥¿¶ÂÅé", 10)).place(x=1835, y=120)
+    tk.Label(win, textvariable=time_now, font=("å¾®è»Ÿæ­£é»‘é«”", 16)).place(x=1640, y=65)
+    ttk.Label(win, text=("Version " + ver), font=("å¾®è»Ÿæ­£é»‘é«”", 10)).place(x=1835, y=120)
 
     ttk.Button(win, text=" Question Database ", style="Outline.TButton").place(x=10, y=145, width=200, height=45)
     ttk.Button(win, text=" Commit History ", style="Outline.TButton").place(x=220, y=145, width=200, height=45)
-    ttk.Button(win, textvariable=user, style="Outline.TButton", command=user_data).place(x=430, y=145, width=200, height=45)
+    # ttk.Button(win, textvariable=user, style="Outline.TButton", command=user_data).place(x=430, y=145, width=200, height=45)
+    ttk.Entry(win, font=("å¾®è»Ÿæ­£é»‘é«”", 14), textvariable=username).place(x=430, y=145, width=520, height=45)
 
-    question = tk.Text(win, font=("·L³n¥¿¶ÂÅé", 14))
+    question = tk.Text(win, font=("å¾®è»Ÿæ­£é»‘é«”", 16))
     question.place(x=10, y=205, width=940, height=815)
     # pic_demo_path = file_directory.path_function("Extension_modules/DEMO.png")
     # pic_demo = Image.open(pic_demo_path)
     # pic_2 = ImageTk.PhotoImage(pic_demo)
     # tk.Label(win, image=pic_2).place(x=10, y=200)
 
-    code_input = tk.Text(win, font=("·L³n¥¿¶ÂÅé", 14))
+    code_input = tk.Text(win, font=("å¾®è»Ÿæ­£é»‘é«”", 14))
     # scrollbar.config(command=code_input.yview)
     # code_input.config(yscrollcommand=scrollbar.set)
     code_input.place(x=970, y=145, width=940, height=600)
-    ttk.Button(win, text=" Submit ", style="Outline.TButton").place(x=970, y=755, width=940, height=45)
-    status_output = tk.Text(win, font=("·L³n¥¿¶ÂÅé", 12))
+    ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=940, height=45)
+    status_output = tk.Text(win, font=("å¾®è»Ÿæ­£é»‘é«”", 12))
     status_output.place(x=970, y=810, width=940, height=210)
 
 win.mainloop()
