@@ -79,7 +79,7 @@ def submit():
         status_output.insert(INSERT, "submit success")
 
     if(user == "Student ID unknow"):
-        messagebox.showerror("使用者未知", "請輸入使用者資訊")
+        messagebox.showerror("使用者未知", "請輸入學生證號碼")
         pass
 
     else:
