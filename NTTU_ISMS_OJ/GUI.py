@@ -76,7 +76,7 @@ def submit():
     def func(index, user):    
         ccf.write_source_code(index, user)
         clear()
-        status_output.insert(INSERT, "submit success")
+        status_output.insert(INSERT, "{} - submit success".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")
