@@ -71,9 +71,19 @@ def clear():
 def submit():
     from Extension_modules import create_cpp_file as ccf
     index = code_input.get('1.0', 'end')
-    ccf.write_source_code(index)
-    clear()
-    status_output.insert(INSERT, "submit success")
+    user = username.get()
+
+    def func(index, user):    
+        ccf.write_source_code(index, user)
+        clear()
+        status_output.insert(INSERT, "submit success")
+
+    if(user == "User unknow"):
+        messagebox.showerror("使用者未知", "請輸入使用者資訊")
+        pass
+
+    else:
+        func(index, user)
 
 class GUI_interface:
     global question, code_input, status_output
