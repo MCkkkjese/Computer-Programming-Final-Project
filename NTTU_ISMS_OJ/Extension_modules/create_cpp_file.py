@@ -20,7 +20,7 @@ def write_source_code(index, user):
         outFile.close()
 
     except:
-        os.system("mkdir \Source_code")
+        os.mkdir("/Source_code")
         outFile = open(filename_2, 'w')
         outFile.write(index)
         outFile.flush()
