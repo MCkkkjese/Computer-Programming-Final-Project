@@ -32,7 +32,7 @@ win.iconbitmap(ico_path)
 global time_now, username
 time_now = tk.StringVar()
 username = tk.StringVar()
-username.set("User unknow")
+username.set("Student ID unknow")
 
 if(rcp.resolution() != (1920, 1080)):
     messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常") 
@@ -78,7 +78,7 @@ def submit():
         clear()
         status_output.insert(INSERT, "submit success")
 
-    if(user == "User unknow"):
+    if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入使用者資訊")
         pass
 

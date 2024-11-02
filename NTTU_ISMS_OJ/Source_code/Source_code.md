@@ -1,2 +1,2 @@
 # source code folder
-## filename formate = source_code__MM_DD_YYYY__user.cpp
+## filename formate = source_code__MM_DD_YYYY_HH_MM_SS__user.cpp
