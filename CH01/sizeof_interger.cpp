@@ -9,12 +9,12 @@ int main(){
     unsigned long y;
     unsigned long long z; 
 
-    cout << "sizeof(int) = " << sizeof(i) << "\n";
-    cout << "sizeof(long) = " << sizeof(n) << "\n";
-    cout << "sizeof(long long) = " << sizeof(t) << "\n";
-    cout << "sizeof(unsigned int) = " << sizeof(x) << "\n";
-    cout << "sizeof(unsigned long) = " << sizeof(y) << "\n";
-    cout << "sizeof(unsigned long long) = " << sizeof(z) << "\n\n";
+    cout << "sizeof(int) = " << sizeof(i) << " bytes" << "\n";
+    cout << "sizeof(long) = " << sizeof(n) << " bytes" << "\n";
+    cout << "sizeof(long long) = " << sizeof(t) << " bytes" << "\n";
+    cout << "sizeof(unsigned int) = " << sizeof(x) << " bytes" << "\n";
+    cout << "sizeof(unsigned long) = " << sizeof(y) << " bytes" << "\n";
+    cout << "sizeof(unsigned long long) = " << sizeof(z) << " bytes" << "\n\n";
 
     cout << "max int = " << numeric_limits<int>::max() << "\n";
     cout << "min int = " << numeric_limits<int>::min() << "\n\n";
@@ -35,12 +35,12 @@ int main(){
 }
 
 /*
-sizeof(int) = 4
-sizeof(long) = 4
-sizeof(long long) = 8
-sizeof(unsigned int) = 4
-sizeof(unsigned long) = 4
-sizeof(unsigned long long) = 8
+sizeof(int) = 4 bytes
+sizeof(long) = 4 bytes
+sizeof(long long) = 8 bytes
+sizeof(unsigned int) = 4 bytes
+sizeof(unsigned long) = 4 bytes
+sizeof(unsigned long long) = 8 bytes
 
 max int = 2147483647
 min int = -2147483648
