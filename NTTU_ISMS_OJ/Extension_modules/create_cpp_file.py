@@ -20,9 +20,10 @@ def write_source_code(index, user):
     outFile.flush()
     outFile.close()
 
-    open_file_path = "{}Source_code\{}".format(dir_path, filename.replace(".cpp", ""))
     file_path = "cd {}Source_code && g++ {} -o {}".format(dir_path, filename, filename.rstrip(".cpp"))
     # print(file_path)
     os.system(file_path)
+
+    open_file_path = "{}Source_code\{}".format(dir_path, filename.replace(".cpp", ""))
     # print(open_file_path)
     os.system(open_file_path)
