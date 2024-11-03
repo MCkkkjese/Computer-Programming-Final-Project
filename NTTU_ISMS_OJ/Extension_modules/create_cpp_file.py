@@ -11,9 +11,7 @@ def write_source_code(index, user):
         import file_directory
 
     dir_path = str(os.path.dirname(__file__))
-    print(dir_path)
     dir_path = re.sub("Extension_modules", '', dir_path)
-    print(dir_path)
     time_now = str(time.strftime("_%m_%d_%Y_%H_%M_%S_", time.localtime()))
     filename = str("source_code_{}_{}.cpp".format(time_now, user))
     filename_2 = file_directory.path_function("/Source_code/{}".format(filename))
@@ -22,6 +20,9 @@ def write_source_code(index, user):
     outFile.flush()
     outFile.close()
 
-    file_path = ("cd " + dir_path + "Source_code && " + "g++ " + filename + " -o " + filename.rstrip(".cpp"))
-    print(file_path)
+    open_file_path = "{}Source_code\{}".format(dir_path, filename.replace(".cpp", ""))
+    file_path = "cd {}Source_code && g++ {} -o {}".format(dir_path, filename, filename.rstrip(".cpp"))
+    # print(file_path)
     os.system(file_path)
+    # print(open_file_path)
+    os.system(open_file_path)
