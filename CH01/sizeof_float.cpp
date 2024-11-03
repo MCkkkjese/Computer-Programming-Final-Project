@@ -7,9 +7,9 @@ int main() {
     double i_2;
     long double n;
 
-    cout << "sizeof(float) = " << sizeof(i) << "\n";
-    cout << "sizeof(double) = " << sizeof(i_2) << "\n";
-    cout << "sizeof(long double) = " << sizeof(n) << "\n";
+    cout << "sizeof(float) = " << sizeof(i) << " bytes" << "\n";
+    cout << "sizeof(double) = " << sizeof(i_2) << " bytes" << "\n";
+    cout << "sizeof(long double) = " << sizeof(n) << " bytes" << "\n";
 
     cout << "max float = " << numeric_limits<float>::max() << "\n";
     cout << "min float = " << numeric_limits<float>::min() << "\n\n";
@@ -23,9 +23,9 @@ int main() {
 }
 
 /*
-sizeof(float) = 4
-sizeof(double) = 8
-sizeof(long double) = 16
+sizeof(float) = 4 bytes
+sizeof(double) = 8 bytes
+sizeof(long double) = 16 bytes
 max float = 3.40282e+38
 min float = 1.17549e-38
 
@@ -34,5 +34,5 @@ min double = 2.22507e-308
 
 max long double = 1.18973e+4932
 min long double = 3.3621e-4932
-½Ð«ö¥ô·NÁäÄ~Äò . . . 
+è«‹æŒ‰ä»»æ„éµç¹¼çºŒ . . . 
 */
