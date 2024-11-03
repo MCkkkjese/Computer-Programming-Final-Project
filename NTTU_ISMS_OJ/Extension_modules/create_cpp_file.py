@@ -26,4 +26,4 @@ def write_source_code(index, user):
 
     open_file_path = "{}Source_code\{}".format(dir_path, filename.replace(".cpp", ""))
     # print(open_file_path)
-    os.system(open_file_path)
+    # os.system(open_file_path)
