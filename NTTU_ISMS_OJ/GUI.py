@@ -83,6 +83,7 @@ def submit():
         pass
 
     else:
+        # index = index.replace("main()", "function()")
         func(index, user)
 
 def Commit_History():
