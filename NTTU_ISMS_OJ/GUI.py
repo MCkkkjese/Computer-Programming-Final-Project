@@ -85,6 +85,9 @@ def submit():
     else:
         func(index, user)
 
+def Commit_History():
+    os.popen("C:\\Users\\eric2\\Desktop\\Computer-Programming-Final-Project\\NTTU_ISMS_OJ\\Source_code")
+
 class GUI_interface:
     global question, code_input, status_output
     set_interval(time_set, 1)
@@ -107,7 +110,7 @@ class GUI_interface:
     ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
 
     ttk.Button(win, text=" Question Database ", style="Outline.TButton").place(x=10, y=145, width=200, height=45)
-    ttk.Button(win, text=" Commit History ", style="Outline.TButton").place(x=220, y=145, width=200, height=45)
+    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=220, y=145, width=200, height=45)
     # ttk.Button(win, textvariable=user, style="Outline.TButton", command=user_data).place(x=430, y=145, width=200, height=45)
     ttk.Entry(win, font=("微軟正黑體", 14), textvariable=username).place(x=430, y=145, width=520, height=45)
 
