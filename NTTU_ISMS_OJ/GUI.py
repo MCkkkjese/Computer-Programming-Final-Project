@@ -86,6 +86,8 @@ def submit():
         func(index, user)
 
 def Commit_History():
+    clear()
+    status_output.insert(INSERT, "Opening Commit History Folder")
     os.popen("C:\\Users\\eric2\\Desktop\\Computer-Programming-Final-Project\\NTTU_ISMS_OJ\\Source_code")
 
 class GUI_interface:
