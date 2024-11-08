@@ -36,3 +36,20 @@ def write_source_code(index, user):
     open_file_path = "{}Source_code\{}".format(dir_path, filename.replace(".cpp", ""))
     # print(open_file_path)
     # os.system(open_file_path)
+
+def write_temp_code(index):
+    try:
+        from Extension_modules import file_directory as fd
+
+    except:
+        import file_directory as fd
+
+    index = index.replace("main()", "func()")
+    dir_path = str(os.path.dirname(__file__))
+    filename = str("temp_code.cpp")
+    filename_2 = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename))
+    outFile = open(filename_2, 'w')
+    outFile.write(index)
+    outFile.flush()
+    outFile.close()
+    

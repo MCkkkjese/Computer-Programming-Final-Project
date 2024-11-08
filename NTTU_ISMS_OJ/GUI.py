@@ -83,6 +83,7 @@ def submit():
 
     def func(index, user):    
         ccf.write_source_code(index, user)
+        ccf.write_temp_code(index)
         clear()
         status_output.insert(INSERT, "{} - submit success\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
@@ -96,7 +97,10 @@ def submit():
 
 def Commit_History():
     clear()
-    status_output.insert(INSERT, "Opening Commit History\n")
+    status_output.insert(INSERT, "Opening Commit History\n\n")
+    inFile = open(Commit_History_path_2, 'r')
+    index = inFile.read()
+    status_output.insert(INSERT, index)
 
 class GUI_interface:
     global question, code_input, status_output
