@@ -87,6 +87,14 @@ def submit():
         clear()
         status_output.insert(INSERT, "{} - submit success\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
+        filename = str("Judge.cpp")
+        file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
+        os.system(file_path)
+
+        open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
+        # print(open_file_path)
+        os.system(open_file_path)
+
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")
         pass
