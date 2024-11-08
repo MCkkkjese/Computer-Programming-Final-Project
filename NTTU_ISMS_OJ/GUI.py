@@ -34,6 +34,14 @@ time_now = tk.StringVar()
 username = tk.StringVar()
 username.set("Student ID unknow")
 
+date_today = str(time.strftime("%Y_%m_%d", time.localtime()))
+Commit_History_path = str("Commit_History_{}.dat".format(date_today))
+Commit_History_path_2 = fd.path_function("/Source_code/{}".format(Commit_History_path))
+outFile = open(Commit_History_path_2, 'w')
+outFile.write("Commit History - {}\n".format(time.strftime("%Y_%m_%d", time.localtime())))
+outFile.flush()
+outFile.close()
+
 if(rcp.resolution() != (1920, 1080)):
     messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常") 
 
@@ -76,7 +84,7 @@ def submit():
     def func(index, user):    
         ccf.write_source_code(index, user)
         clear()
-        status_output.insert(INSERT, "{} - submit success".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        status_output.insert(INSERT, "{} - submit success\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")
@@ -88,8 +96,7 @@ def submit():
 
 def Commit_History():
     clear()
-    status_output.insert(INSERT, "Opening Commit History Folder")
-    os.popen("C:\\Users\\eric2\\Desktop\\Computer-Programming-Final-Project\\NTTU_ISMS_OJ\\Source_code")
+    status_output.insert(INSERT, "Opening Commit History\n")
 
 class GUI_interface:
     global question, code_input, status_output
