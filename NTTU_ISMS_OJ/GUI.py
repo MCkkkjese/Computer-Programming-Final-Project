@@ -25,7 +25,7 @@ screensize = ("1920x1080")
 win = ttk.Window(themename="cerculean")
 win.geometry(screensize)
 win.overrideredirect(True)
-win.title("NTTU ISMS::OJ")
+win.title("NTTU ISMS::OJ - Version {}".format(ver))
 ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
 
