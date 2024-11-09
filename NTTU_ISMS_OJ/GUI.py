@@ -16,6 +16,7 @@ import tkinter as tk
 from tkinter import INSERT, messagebox
 from Extension_modules import file_directory as fd
 from Extension_modules import resolution_checking_process as rcp
+from Extension_modules import create_cpp_file as ccf
 import os
 import threading
 import time
@@ -55,6 +56,8 @@ def set_interval(func, sec):
     return timer_set
 
 def win_close():
+    index = "#include <iostream>\nusing namespace std;\nint func() {\n    cout << \"Hello NTTU ISMS::OJ\" << endl;\n\n    return 0;\n}"
+    ccf.write_temp_code(index)
     os._exit(False)
 
 def win_maximize():
@@ -77,7 +80,6 @@ def clear():
 #     status_output.insert(INSERT, user)
 
 def submit():
-    from Extension_modules import create_cpp_file as ccf
     index = code_input.get('1.0', 'end')
     user = username.get()
 
