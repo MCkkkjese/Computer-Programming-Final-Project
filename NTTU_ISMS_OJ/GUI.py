@@ -120,7 +120,7 @@ class GUI_interface:
     # scrollbar = tk.Scrollbar(win)
     # scrollbar.pack(side="right", fill="y")
 
-    pic_bg_path = fd.path_function("Extension_modules/back_ground.png")
+    pic_bg_path = fd.path_function("Extension_modules/background.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
 
