@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int func() {
-	cout << "Hello NTTU ISMS::OJ" << endl;
+    cout << "Hello NTTU ISMS::OJ" << endl;
 
-	return 0;
+    return 0;
 }
