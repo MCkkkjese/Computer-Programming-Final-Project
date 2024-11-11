@@ -1,7 +1,8 @@
 #include <iostream>
-using namespace std;
 int func() {
-    cout << "Hello NTTU ISMS::OJ" << endl;
+	int i;
+	std::cin >> i;
+	std::cout << i;
 
-    return 0;
+	return 0;
 }

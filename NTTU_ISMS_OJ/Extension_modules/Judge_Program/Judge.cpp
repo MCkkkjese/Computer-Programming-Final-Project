@@ -1,11 +1,20 @@
 #include <iostream>
-#include <ctime>
+#include <fstream>
 #include "temp_code.cpp"
 using namespace std;
 int main() {
-    const clock_t start_time = clock();
-    cout << start_time << endl;
-    func();
-    float end_time = clock() - start_time;
-    cout << end_time << '\n';
+    int start_time, end_time, run_time;
+    start_time = clock();
+
+    int i = 0, test_value[] = {0};
+    do {
+        func();  
+        i++;      
+    } while (test_value[i]!=0);
+
+    end_time = clock();
+    run_time = end_time - start_time;
+    cout << run_time << '\n';
+
+    return 0;
 }
