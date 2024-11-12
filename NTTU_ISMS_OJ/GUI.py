@@ -86,9 +86,9 @@ def submit():
 
     def func(index, user):    
         ccf.write_temp_code(index)
-        clear()
-        status_output.insert(INSERT, "{} - submit success\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         ccf.write_source_code(index, user)
+        clear()
+        status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
         filename = str("Judge.cpp")
         file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
