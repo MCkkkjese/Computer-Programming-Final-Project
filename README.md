@@ -17,6 +17,9 @@ content
 ## CH05. Loop
 content
 
+## CH06. Functions and Recursion
+content
+
 ## eTutor example
 content
 
