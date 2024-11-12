@@ -101,11 +101,18 @@ def submit():
         # value = subprocess.check_call(open_file_path)
         # print(value)
 
+        judge = subprocess.Popen(open_file_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8",universal_newlines=True)
+        stdout = judge.communicate("Admin")
+        # print(stdout)
+        status_output.insert(INSERT, stdout)
+
+        '''
         value = subprocess.getstatusoutput(open_file_path)
         # value = str(value).split('\n')
         # print(type(value))
         print(value[1])
-        status_output.insert(INSERT, value[1])
+        status_output.insert(INSERT, value[1])        
+        '''
 
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")

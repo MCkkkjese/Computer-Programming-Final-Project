@@ -16,7 +16,7 @@ int main() {
 
     end_time = clock();
     run_time = end_time - start_time;
-    cout << static_cast<int>(run_time) << " ms" << '\n';
+    // cout << static_cast<int>(run_time) << " ms" << '\n';
     
     // ofstream outFile("run_time.dat", ios::out);
     // if (!outFile) {cout << "file open error" << '\n';}
