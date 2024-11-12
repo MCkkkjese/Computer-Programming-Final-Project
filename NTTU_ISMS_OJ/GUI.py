@@ -18,6 +18,7 @@ from Extension_modules import file_directory as fd
 from Extension_modules import resolution_checking_process as rcp
 from Extension_modules import create_cpp_file as ccf
 import os
+import subprocess
 import threading
 import time
 
@@ -84,10 +85,10 @@ def submit():
     user = username.get()
 
     def func(index, user):    
-        ccf.write_source_code(index, user)
         ccf.write_temp_code(index)
         clear()
         status_output.insert(INSERT, "{} - submit success\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        ccf.write_source_code(index, user)
 
         filename = str("Judge.cpp")
         file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
@@ -95,7 +96,16 @@ def submit():
 
         open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
         # print(open_file_path)
-        os.system(open_file_path)
+        # os.system(open_file_path)
+
+        # value = subprocess.check_call(open_file_path)
+        # print(value)
+
+        value = subprocess.getstatusoutput(open_file_path)
+        # value = str(value).split('\n')
+        # print(type(value))
+        print(value[1])
+        status_output.insert(INSERT, value[1])
 
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")

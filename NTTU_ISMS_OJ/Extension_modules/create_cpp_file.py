@@ -1,6 +1,7 @@
 #coding=UTF-8
 import time
 import os
+import subprocess
 import re
 
 def write_source_code(index, user):
@@ -32,6 +33,11 @@ def write_source_code(index, user):
     file_path = "cd {}Source_code && g++ {} -o {}".format(dir_path, filename, filename.rstrip(".cpp"))
     # print(file_path)
     os.system(file_path)
+    # subprocess.run(file_path)
+    # flag = subprocess.check_call(file_path)
+
+    # print(flag)
+    # return flag
 
     open_file_path = "{}Source_code/{}".format(dir_path, filename.replace(".cpp", ""))
     # print(open_file_path)

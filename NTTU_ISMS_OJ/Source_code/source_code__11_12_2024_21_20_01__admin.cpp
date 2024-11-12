@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-int func() {
-    int i = 500;
+int main() {
+    int i = 100;
     do {
         cout << "Hello NTTU ISMS::OJ" << endl;
         i--;
