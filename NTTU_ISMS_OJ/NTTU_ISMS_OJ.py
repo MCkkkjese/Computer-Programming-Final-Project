@@ -61,7 +61,12 @@ def win_close():
     ccf.write_temp_code(index)
     filename = str("Judge.cpp")
     open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}.exe".format(filename.rstrip(".cpp")))
-    os.remove(open_file_path)
+    try:
+        os.remove(open_file_path)
+
+    except:
+        pass
+    
     os._exit(False)
 
 def win_maximize():
