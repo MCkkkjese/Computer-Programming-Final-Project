@@ -80,6 +80,11 @@ def clear():
 #     clear()
 #     status_output.insert(INSERT, user)
 
+def ofp():
+    filename = str("Judge.cpp")
+    file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
+    os.system(file_path)
+
 def judge(QN, path):
     value_QSC = []
     value_source = []
@@ -121,9 +126,10 @@ def judge(QN, path):
     outFile.flush()
     outFile.close()
     # print(index)
-    QSC_filename = str("Judge.cpp")
-    QSC_file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), QSC_filename, QSC_filename.rstrip(".cpp"))
-    os.system(QSC_file_path)
+    # QSC_filename = str("Judge.cpp")
+    # QSC_file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), QSC_filename, QSC_filename.rstrip(".cpp"))
+    # os.system(QSC_file_path)
+    ofp()
     open_file_path_2 = fd.path_function("/Extension_modules/Judge_Program/{}".format(QSC_filename.rstrip(".cpp")))
 
     for i in range(0, len(Test_data)):
@@ -153,9 +159,10 @@ def submit():
         ccf.write_temp_code(index)
         ccf.write_source_code(index, user)
 
-        filename = str("Judge.cpp")
-        file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
-        os.system(file_path)
+        # filename = str("Judge.cpp")
+        # file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
+        # os.system(file_path)
+        ofp()
 
         open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
         # print(open_file_path)
