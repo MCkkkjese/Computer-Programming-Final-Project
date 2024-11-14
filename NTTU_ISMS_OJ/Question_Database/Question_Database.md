@@ -6,4 +6,6 @@
 3. quiz = qui
 4. competition = cpt
 
-## Question Picture + QSC + Test Data
+## Question Picture filename formate = QP_type_question number.png
+
+## Test Data = TD_type_question number.dat

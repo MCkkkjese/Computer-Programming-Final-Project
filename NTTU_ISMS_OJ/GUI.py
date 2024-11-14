@@ -80,6 +80,71 @@ def clear():
 #     clear()
 #     status_output.insert(INSERT, user)
 
+def judge(QN, path):
+    value_QSC = []
+    value_source = []
+    TD_path = fd.path_function("Question_Database/default/TD_def_{}.dat".format(QN))
+    QSC_path = fd.path_function("Question_Database/default/TD_def_{}.cpp".format(QN))
+
+    inFile = open(TD_path, 'r')
+    Test_data = list(inFile.readlines())
+    # for i in range(0, len(Test_data)):
+    #     print(Test_data[i])
+    #     Test_data[i] = str(Test_data[i]).replace('\\n', ' ')
+    #     print(Test_data[i] + "replaced")
+
+    for i in range(0, len(Test_data)):
+        # n = 0
+        # def time_lim(n, i):
+        #     n+=i
+        #     if(n>1):
+        #         process.kill()
+
+        # timer = threading.Timer(1, time_lim(n, 1))
+        process = subprocess.Popen(path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True) 
+        # timer.start()
+        # print(Test_data[i])
+        value = process.communicate(Test_data[i])
+        value_source.append(value)
+        # print(value)
+        # status_output.insert(INSERT, value)
+        process.kill()
+        # status_output.insert(INSERT, '\n')
+
+    inFile_2 = open(QSC_path, 'r')
+    QSC = inFile_2.read()
+    index = QSC.replace("main()", "func()")
+    QSC_filename = str("temp_code.cpp")
+    QSC_filename_2 = fd.path_function("/Extension_modules/Judge_Program/{}".format(QSC_filename))
+    outFile = open(QSC_filename_2, 'w')
+    outFile.write(index)
+    outFile.flush()
+    outFile.close()
+    # print(index)
+    QSC_filename = str("Judge.cpp")
+    QSC_file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), QSC_filename, QSC_filename.rstrip(".cpp"))
+    os.system(QSC_file_path)
+    open_file_path_2 = fd.path_function("/Extension_modules/Judge_Program/{}".format(QSC_filename.rstrip(".cpp")))
+
+    for i in range(0, len(Test_data)):
+        process_2 = subprocess.Popen(open_file_path_2, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True) 
+        # print(Test_data[i])
+        value = process_2.communicate(Test_data[i])
+        value_QSC.append(value)
+        # print(value)
+        # status_output.insert(INSERT, value)
+        process_2.kill()
+        # status_output.insert(INSERT, '\n')
+
+    print(list(value_source))
+    print(list(value_QSC))
+
+    if(value_source == value_QSC):
+        status_output.insert(INSERT, "{} - Accepted\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+    
+    else:
+        status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+
 def submit():
     index = code_input.get('1.0', 'end')
     user = username.get()
@@ -87,8 +152,6 @@ def submit():
     def func(index, user):    
         ccf.write_temp_code(index)
         ccf.write_source_code(index, user)
-        clear()
-        status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
         filename = str("Judge.cpp")
         file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
@@ -101,12 +164,14 @@ def submit():
         # value = subprocess.check_call(open_file_path)
         # print(value)
 
-        judge = subprocess.Popen(open_file_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
-        value = judge.communicate("Admin")
+        # judge = subprocess.Popen(open_file_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
+        # value = judge.communicate("Admin")
         # stdout = str(stdout).split('\\n')
-        print(value)
-        print(type(value))
-        status_output.insert(INSERT, value)
+        # print(value)
+        # print(type(value))
+        # status_output.insert(INSERT, value)
+
+        judge("A001", open_file_path)
 
         '''
         value = subprocess.getstatusoutput(open_file_path)
@@ -122,6 +187,8 @@ def submit():
 
     else:
         # index = index.replace("main()", "function()")
+        clear()
+        status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         func(index, user)
 
 def Commit_History():
@@ -159,10 +226,10 @@ class GUI_interface:
 
     question = tk.Text(win, font=("微軟正黑體", 16))
     question.place(x=10, y=205, width=940, height=815)
-    # pic_demo_path = file_directory.path_function("Extension_modules/DEMO.png")
-    # pic_demo = Image.open(pic_demo_path)
-    # pic_2 = ImageTk.PhotoImage(pic_demo)
-    # tk.Label(win, image=pic_2).place(x=10, y=200)
+    pic_demo_path = fd.path_function("Extension_modules/DEMO.png")
+    pic_demo = Image.open(pic_demo_path)
+    pic_2 = ImageTk.PhotoImage(pic_demo)
+    tk.Label(win, image=pic_2).place(x=15, y=210)
 
     code_input = tk.Text(win, font=("微軟正黑體", 14))
     # scrollbar.config(command=code_input.yview)

@@ -3,7 +3,7 @@ using namespace std;
 int main() {
     string str;
     cin >> str;
-    int i = 10;
+    int i = 2;
     do {
         cout << "Hello NTTU ISMS::OJ" << endl;
         i--;

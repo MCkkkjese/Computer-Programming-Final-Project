@@ -13,7 +13,7 @@ outFile.write("{}\n".format(index))
 outFile.flush()
 
 outFile = open(filename, 'a')
-while (index != '}'):
+while (index != EOFError):
     index = str(input())
     outFile.write("{}\n".format(index))
     outFile.flush()
