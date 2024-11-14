@@ -126,7 +126,7 @@ def judge(QN, path):
     outFile.flush()
     outFile.close()
     # print(index)
-    # QSC_filename = str("Judge.cpp")
+    QSC_filename = str("Judge.cpp")
     # QSC_file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), QSC_filename, QSC_filename.rstrip(".cpp"))
     # os.system(QSC_file_path)
     ofp()
@@ -159,7 +159,7 @@ def submit():
         ccf.write_temp_code(index)
         ccf.write_source_code(index, user)
 
-        # filename = str("Judge.cpp")
+        filename = str("Judge.cpp")
         # file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
         # os.system(file_path)
         ofp()
