@@ -59,6 +59,9 @@ def set_interval(func, sec):
 def win_close():
     index = "#include <iostream>\nusing namespace std;\nint func() {\n    cout << \"Hello NTTU ISMS::OJ\" << endl;\n\n    return 0;\n}"
     ccf.write_temp_code(index)
+    filename = str("Judge.cpp")
+    open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}.exe".format(filename.rstrip(".cpp")))
+    os.remove(open_file_path)
     os._exit(False)
 
 def win_maximize():
