@@ -5,6 +5,7 @@ import subprocess
 import re
 
 def write_source_code(index, user):
+    # print("WSC")
     try:
         from Extension_modules import file_directory as fd
 
@@ -16,7 +17,8 @@ def write_source_code(index, user):
     commit_time = str(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
     time_now = str(time.strftime("_%m_%d_%Y_%H_%M_%S_", time.localtime()))
     filename = str("source_code_{}_{}.cpp".format(time_now, user))
-    filename_2 = fd.path_function("/Source_code/{}".format(filename))
+    filename_2 = fd.path_function("Source_code/{}".format(filename))
+    # print(filename_2)
     outFile = open(filename_2, 'w')
     outFile.write(index)
     outFile.flush()
@@ -33,9 +35,14 @@ def write_source_code(index, user):
     file_path = "cd {}Source_code && g++ {} -o {}".format(dir_path, filename, filename.rstrip(".cpp"))
     # print(file_path)
     os.system(file_path)
+    flag = os.path.isfile("{}.exe".format(filename_2.rstrip(".cpp")))
+    # print(flag)
+    return flag
+    
     # subprocess.run(file_path)
     # flag = subprocess.check_call(file_path)
-
+    # flag = subprocess.check_output(file_path)
+    # print(flag)
     # print(flag)
     # return flag
 
@@ -44,6 +51,7 @@ def write_source_code(index, user):
     # os.system(open_file_path)
 
 def write_temp_code(index):
+    # print("WTC")
     try:
         from Extension_modules import file_directory as fd
 

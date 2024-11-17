@@ -56,9 +56,7 @@ def set_interval(func, sec):
     timer_set.start()
     return timer_set
 
-def win_close():
-    index = "#include <iostream>\nusing namespace std;\nint func() {\n    cout << \"Hello NTTU ISMS::OJ\" << endl;\n\n    return 0;\n}"
-    ccf.write_temp_code(index)
+def remove_file():
     filename = str("Judge.cpp")
     open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}.exe".format(filename.rstrip(".cpp")))
     try:
@@ -66,7 +64,11 @@ def win_close():
 
     except:
         pass
-    
+
+def win_close():
+    index = "#include <iostream>\nusing namespace std;\nint func() {\n    cout << \"Hello NTTU ISMS::OJ\" << endl;\n\n    return 0;\n}"
+    ccf.write_temp_code(index)
+    remove_file()    
     os._exit(False)
 
 def win_maximize():
@@ -149,15 +151,19 @@ def judge(QN, path):
         # status_output.insert(INSERT, value)
         process_2.kill()
         # status_output.insert(INSERT, '\n')
-
+    
     print(list(value_source))
     print(list(value_QSC))
+    remove_file()
+    value_source.clear()
+    value_QSC.clear()
 
     if(value_source == value_QSC):
         status_output.insert(INSERT, "{} - Accepted\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
     
     else:
         status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        messagebox.showerror("WA", "Wrong Answer")
 
 def submit():
     index = code_input.get('1.0', 'end')
@@ -165,28 +171,34 @@ def submit():
 
     def func(index, user):    
         ccf.write_temp_code(index)
-        ccf.write_source_code(index, user)
+        flag = ccf.write_source_code(index, user)
+        # print(flag)
 
-        filename = str("Judge.cpp")
-        # file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
-        # os.system(file_path)
-        ofp()
+        if(flag == True):
+            filename = str("Judge.cpp")
+            # file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
+            # os.system(file_path)
+            ofp()
 
-        open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
-        # print(open_file_path)
-        # os.system(open_file_path)
+            open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
+            # print(open_file_path)
+            # os.system(open_file_path)
 
-        # value = subprocess.check_call(open_file_path)
-        # print(value)
+            # value = subprocess.check_call(open_file_path)
+            # print(value)
 
-        # judge = subprocess.Popen(open_file_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
-        # value = judge.communicate("Admin")
-        # stdout = str(stdout).split('\\n')
-        # print(value)
-        # print(type(value))
-        # status_output.insert(INSERT, value)
+            # judge = subprocess.Popen(open_file_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
+            # value = judge.communicate("Admin")
+            # stdout = str(stdout).split('\\n')
+            # print(value)
+            # print(type(value))
+            # status_output.insert(INSERT, value)
 
-        judge("A001", open_file_path)
+            judge("A001", open_file_path)
+
+        else:
+            status_output.insert(INSERT, "{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+            messagebox.showerror("CE", "Compile Error")
 
         '''
         value = subprocess.getstatusoutput(open_file_path)
