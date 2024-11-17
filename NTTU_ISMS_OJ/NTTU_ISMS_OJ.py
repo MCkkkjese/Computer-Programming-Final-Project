@@ -98,6 +98,7 @@ def ofp():
 def judge(QN, path):
     value_QSC = []
     value_source = []
+    run_time = 0
     TD_path = fd.path_function("Question_Database/default/TD_def_{}.dat".format(QN))
     QSC_path = fd.path_function("Question_Database/default/TD_def_{}.cpp".format(QN))
 
@@ -116,16 +117,21 @@ def judge(QN, path):
         #         process.kill()
 
         # timer = threading.Timer(1, time_lim(n, 1))
+        time_start = time.time()
         process = subprocess.Popen(path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True) 
         # timer.start()
         # print(Test_data[i])
         value = process.communicate(Test_data[i])
+        time_end = time.time()
+        run_time += (time_end - time_start)
+        # print(run_time)
         value_source.append(value)
         # print(value)
         # status_output.insert(INSERT, value)
         process.kill()
         # status_output.insert(INSERT, '\n')
 
+    run_time /= len(Test_data)
     inFile_2 = open(QSC_path, 'r')
     QSC = inFile_2.read()
     index = QSC.replace("main()", "func()")
@@ -152,6 +158,7 @@ def judge(QN, path):
         process_2.kill()
         # status_output.insert(INSERT, '\n')
     
+    print(run_time)
     print(list(value_source))
     print(list(value_QSC))
     remove_file()
@@ -159,7 +166,8 @@ def judge(QN, path):
     value_QSC.clear()
 
     if(value_source == value_QSC):
-        status_output.insert(INSERT, "{} - Accepted\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        status_output.insert(INSERT, "{} - Accepted\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
     
     else:
         status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
