@@ -10,7 +10,7 @@ while(start==False):
     except:
         print("ERROR : Essential modules not found")
         from Extension_modules import install
-        install.program()   
+        install.main()   
 
 import tkinter as tk
 from tkinter import INSERT, messagebox
