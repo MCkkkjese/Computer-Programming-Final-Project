@@ -23,6 +23,21 @@ import threading
 import time
 
 ver = str("Beta")
+# class GUI_bootup:
+#     screensize_boot = ("640x360")
+#     win_boot = ttk.Window(themename="cerculean")
+#     win_boot.geometry("{}+{}+{}".format(screensize_boot, int((1920/2)-320), int((1080/2)-180)))
+#     win_boot.overrideredirect(True)
+#     win_boot.title("NTTU ISMS::OJ")
+#     pic_bg_path = fd.path_function("Extension_modules/bootup.png")
+#     pic_bg = Image.open(pic_bg_path)
+#     pic = ImageTk.PhotoImage(pic_bg)
+#     tk.Label(win_boot, image=pic).place(x=0, y=0)
+# 
+#     win_boot.destroy()
+#     time.sleep(1)
+#     win_boot.mainloop()
+
 screensize = ("1920x1080")
 win = ttk.Window(themename="cerculean")
 win.geometry(screensize)
@@ -162,8 +177,6 @@ def judge(QN, path):
     print(list(value_source))
     print(list(value_QSC))
     remove_file()
-    value_source.clear()
-    value_QSC.clear()
 
     if(value_source == value_QSC):
         status_output.insert(INSERT, "{} - Accepted\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
@@ -172,6 +185,9 @@ def judge(QN, path):
     else:
         status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         messagebox.showerror("WA", "Wrong Answer")
+
+    value_source.clear()
+    value_QSC.clear()
 
 def submit():
     index = code_input.get('1.0', 'end')
