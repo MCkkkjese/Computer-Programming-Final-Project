@@ -7,7 +7,7 @@ while(start==False):
         from PIL import Image, ImageTk
         start = True
 
-    except:
+    except ImportError:
         print("ERROR : Essential modules not found")
         from Extension_modules import install
         install.main()   
@@ -35,11 +35,11 @@ pic_bg = Image.open(pic_bg_path)
 pic = ImageTk.PhotoImage(pic_bg)
 tk.Label(win_boot, image=pic).place(x=0, y=0)
 
-# def destroy():
-#     time.sleep(1)
-#     win_boot.destroy()
-# 
-# t = threading.Thread(target=destroy())
-# t.start()
+def destroy():
+    time.sleep(1)
+    win_boot.destroy()
+    
 
+t = threading.Thread(target=destroy())
+t.start()
 win_boot.mainloop()

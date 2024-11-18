@@ -7,7 +7,7 @@ while(start==False):
         from PIL import Image, ImageTk
         start = True
 
-    except:
+    except ImportError:
         print("ERROR : Essential modules not found")
         from Extension_modules import install
         install.main()   
