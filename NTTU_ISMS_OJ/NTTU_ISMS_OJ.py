@@ -43,9 +43,10 @@ class bootup_GUI:
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win_boot, image=pic).place(x=0, y=0)
+    tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 5)).place(x=5, y=340)
 
     def destroy():
-        time.sleep(1.5)
+        time.sleep(1)
         win_boot.quit()
         win.deiconify()
 
