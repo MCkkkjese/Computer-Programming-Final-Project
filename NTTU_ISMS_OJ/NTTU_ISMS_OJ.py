@@ -23,28 +23,38 @@ import threading
 import time
 
 ver = str("Beta")
-# class GUI_bootup:
-#     screensize_boot = ("640x360")
-#     win_boot = ttk.Window(themename="cerculean")
-#     win_boot.geometry("{}+{}+{}".format(screensize_boot, int((1920/2)-320), int((1080/2)-180)))
-#     win_boot.overrideredirect(True)
-#     win_boot.title("NTTU ISMS::OJ")
-#     pic_bg_path = fd.path_function("Extension_modules/bootup.png")
-#     pic_bg = Image.open(pic_bg_path)
-#     pic = ImageTk.PhotoImage(pic_bg)
-#     tk.Label(win_boot, image=pic).place(x=0, y=0)
-# 
-#     win_boot.destroy()
-#     time.sleep(1)
-#     win_boot.mainloop()
-
 screensize = ("1920x1080")
 win = ttk.Window(themename="cerculean")
 win.geometry(screensize)
-win.overrideredirect(True)
+# win.overrideredirect(True)
 win.title("NTTU ISMS::OJ - Version {}".format(ver))
 ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
+win.withdraw()
+
+class bootup:
+    global win_boot
+    screensize_boot = ("640x360")
+    win_boot = tk.Toplevel()
+    win_boot.geometry("{}+{}+{}".format(screensize_boot, 640, 360))
+    win_boot.overrideredirect(True)
+    win_boot.title("NTTU ISMS::OJ")
+    pic_bg_path = "C:/Users/eric2/Desktop/Computer-Programming-Final-Project/NTTU_ISMS_OJ/Extension_modules/bootup.png"
+    pic_bg = Image.open(pic_bg_path)
+    pic = ImageTk.PhotoImage(pic_bg)
+    tk.Label(win_boot, image=pic).place(x=0, y=0)
+
+    def destroy():
+        time.sleep(1.5)
+        win_boot.quit()
+        win.deiconify()
+
+    t = threading.Thread(target=destroy)
+    t.start()
+    win_boot.mainloop()
+
+def update_win(): 
+    win.update_idletasks()
 
 global time_now, username
 time_now = tk.StringVar()
@@ -250,6 +260,8 @@ def Commit_History():
     status_output.insert(INSERT, index)
 
 class GUI_interface:
+    print("GUI_interface")
+    update_win()
     global question, code_input, status_output
     set_interval(time_set, 1)
 
