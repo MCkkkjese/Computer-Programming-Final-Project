@@ -32,7 +32,7 @@ ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
 win.withdraw()
 
-class bootup:
+class bootup_GUI:
     global win_boot
     screensize_boot = ("640x360")
     win_boot = tk.Toplevel()
@@ -48,7 +48,6 @@ class bootup:
         time.sleep(1.5)
         win_boot.quit()
         win.deiconify()
-        del win_boot
 
     t = threading.Thread(target=destroy)
     t.start()
