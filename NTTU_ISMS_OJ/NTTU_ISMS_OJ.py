@@ -39,7 +39,7 @@ class bootup:
     win_boot.geometry("{}+{}+{}".format(screensize_boot, 640, 360))
     win_boot.overrideredirect(True)
     win_boot.title("NTTU ISMS::OJ")
-    pic_bg_path = "C:/Users/eric2/Desktop/Computer-Programming-Final-Project/NTTU_ISMS_OJ/Extension_modules/bootup.png"
+    pic_bg_path = fd.path_function("Extension_modules/bootup.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win_boot, image=pic).place(x=0, y=0)
@@ -48,13 +48,14 @@ class bootup:
         time.sleep(1.5)
         win_boot.quit()
         win.deiconify()
+        del win_boot
 
     t = threading.Thread(target=destroy)
     t.start()
     win_boot.mainloop()
 
-def update_win(): 
-    win.update_idletasks()
+# def update_win(): 
+#     win.update_idletasks()
 
 global time_now, username
 time_now = tk.StringVar()
@@ -260,8 +261,8 @@ def Commit_History():
     status_output.insert(INSERT, index)
 
 class GUI_interface:
-    print("GUI_interface")
-    update_win()
+    # print("GUI_interface")
+    # update_win()
     global question, code_input, status_output
     set_interval(time_set, 1)
 
