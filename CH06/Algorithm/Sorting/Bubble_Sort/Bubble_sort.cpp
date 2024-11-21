@@ -12,6 +12,7 @@ void sort(int arr[], int y) {
 int main() {
     int arr[10] = {1, 3, 45, 23, 54, 12, 65, 34, 665, 33};
     sort(arr, 10);
+    cout << endl;
 
     system("PAUSE");
     return 0;
