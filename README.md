@@ -17,8 +17,13 @@ content
 ## CH05. Loop
 content
 
-## CH06. Functions and Recursion
-content
+## CH06. Functions, Recursion and Evaluation strategy
+Call By Value
+
+Call By Reference
+
+Call By Address (**Pointer**)
+
 
 ## eTutor example
 content
