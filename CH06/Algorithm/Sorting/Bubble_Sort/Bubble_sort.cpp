@@ -1,4 +1,4 @@
-// Bubble Sort - The last element finish sortting first. 
+// Bubble Sort - The last element finish sorting first. 
 
 #include <iostream>
 using namespace std;

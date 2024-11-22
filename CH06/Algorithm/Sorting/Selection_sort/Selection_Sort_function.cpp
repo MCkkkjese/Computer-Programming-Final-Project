@@ -1,4 +1,4 @@
-// Selection Sort - The first element finish sortting first. 
+// Selection Sort - The first element finish sorting first. 
 
 
 #include <iostream>
