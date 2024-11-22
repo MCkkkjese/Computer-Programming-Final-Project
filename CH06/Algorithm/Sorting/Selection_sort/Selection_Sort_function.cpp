@@ -1,24 +1,27 @@
+// Selection Sort - The first element finish sortting first. 
+
+
 #include <iostream>
 using namespace std;
-void swap(int &x, int &y) {  // Call By Reference
-    int temp = x;
-    x = y;
-    y = temp;
+void swap(int *ptr_i, int *ptr_n) {  // Call By Address
+    int temp = *ptr_i;
+    *ptr_i = *ptr_n;
+    *ptr_n = temp;
 }
 
-void sort(int arr[], int y) {
-    for (int i=0; i<y; i++) {
-        for (int n=i+1; n<y; n++) {
-            if (arr[i]>arr[n]) {swap(arr[i], arr[n]);}
+void sort(int arr[], int l) {
+    for (int i=0; i<l; i++) {
+        for (int n=i+1; n<l; n++) {
+            if (arr[i] > arr[n]) {swap(&arr[i], &arr[n]);}
         }
-        cout << arr[i] << " ";
+        cout << arr[i] << ' ';
     }    
+    cout << endl;    
 }
 
 int main() {
-    int arr[10] = {1, 3, 45, 23, 54, 12, 65, 34, 665, 33};
-    sort(arr, 10);
-    cout << endl;
+    int l = 10, arr[10] = {54, 23, 46, 56, 45, 12, 98, 38, 84, 93};
+    sort(arr, l);
 
     system("PAUSE");
     return 0;

@@ -1,18 +1,23 @@
+// Bubble Sort - The last element finish sortting first. 
+
 #include <iostream>
 using namespace std;
-void sort(int arr[], int y) {
-    for (int i=0; i<y; i++) {
-        for (int n=i+1; n<y; n++) {
-            if (arr[i]>arr[n]) {swap(arr[i], arr[n]);}
+void sort(int arr[], int l) {
+    for (int i=0; i<l; i++) {
+        for (int n=0; n<l-1; n++) {
+            if (arr[n] > arr[n+1]) {swap(arr[n], arr[n+1]);}
         }
-        cout << arr[i] << " ";
-    }    
+    }
+
+    for (int i=0; i<l; i++) {
+        cout << arr[i] << ' ';
+    }
+    cout << endl;
 }
 
 int main() {
-    int arr[10] = {1, 3, 45, 23, 54, 12, 65, 34, 665, 33};
-    sort(arr, 10);
-    cout << endl;
+    int l = 10, arr[10] = {54, 23, 46, 56, 45, 12, 98, 38, 84, 93};
+    sort(arr, l);
 
     system("PAUSE");
     return 0;
