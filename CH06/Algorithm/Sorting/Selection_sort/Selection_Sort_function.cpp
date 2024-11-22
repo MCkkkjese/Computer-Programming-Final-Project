@@ -1,6 +1,5 @@
 // Selection Sort - The first element finish sorting first. 
 
-
 #include <iostream>
 using namespace std;
 void swap(int *ptr_i, int *ptr_n) {  // Call By Address
