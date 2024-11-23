@@ -2,9 +2,15 @@
 
 #include <iostream>
 using namespace std;
+void swap(int &i, int &n) {
+    int temp = i;
+    i = n;
+    n = temp;
+}
+
 void sort(int arr[], int l) {
-    for (int i=0; i<l; i++) {
-        for (int n=0; n<l-1; n++) {
+    for (int i=0; i<l-1; i++) {
+        for (int n=0; n<l-1-i; n++) {
             if (arr[n] > arr[n+1]) {swap(arr[n], arr[n+1]);}
         }
     }
