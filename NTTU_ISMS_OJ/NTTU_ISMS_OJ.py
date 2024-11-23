@@ -116,7 +116,7 @@ def clear():
 #     clear()
 #     status_output.insert(INSERT, user)
 
-def ofp():
+def create_exe():
     filename = str("Judge.cpp")
     file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
     os.system(file_path)
@@ -171,7 +171,7 @@ def judge(QN, path):
     QSC_filename = str("Judge.cpp")
     # QSC_file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), QSC_filename, QSC_filename.rstrip(".cpp"))
     # os.system(QSC_file_path)
-    ofp()
+    create_exe()
     open_file_path_2 = fd.path_function("/Extension_modules/Judge_Program/{}".format(QSC_filename.rstrip(".cpp")))
 
     for i in range(0, len(Test_data)):
@@ -213,7 +213,7 @@ def submit():
             filename = str("Judge.cpp")
             # file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
             # os.system(file_path)
-            ofp()
+            create_exe()
 
             open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
             # print(open_file_path)
