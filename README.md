@@ -29,6 +29,8 @@ Call By Address (**Pointer**)
 content
 
 ## Final Project - NTTU ISMS Online Judge System
+<img src="https://hackmd.io/_uploads/BJ8CXkeXJl.png" width="300px" alt="NIOJ">
+
 content
 
 ---
