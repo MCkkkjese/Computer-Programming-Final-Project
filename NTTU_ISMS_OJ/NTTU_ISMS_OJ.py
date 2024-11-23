@@ -48,6 +48,7 @@ class bootup_GUI:
     def destroy():
         time.sleep(3.5)
         win_boot.quit()
+        win_boot.destroy()
         win.deiconify()
 
     t = threading.Thread(target=destroy)
