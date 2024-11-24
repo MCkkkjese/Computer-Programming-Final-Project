@@ -10,7 +10,7 @@ void upper(string &str) {  // Call By Reference
 
 int main() {
     string str;
-    cin >> str;
+    getline(cin, str);
     upper(str);
     cout << str << endl;
 
