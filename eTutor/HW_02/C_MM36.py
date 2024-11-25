@@ -1,0 +1,5 @@
+i = int(input())
+if(i>=3 and i<=5): print("Spring")
+elif(i>=6 and i<=8): print("Summer")
+elif(i>=9 and i<=11): print("Autumn")
+else: print("Winter")
