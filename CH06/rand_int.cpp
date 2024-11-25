@@ -16,17 +16,17 @@ int main() {
     // std::srand(seed), using std::time(0) as seed
     srand(time(0));
 
-    // from 0 to n, get random int
+    // from 0 to n, get random int  -->  rand()%(n+1)
     cout << "from 0 to n, get random int\nInput n : ";
     times = i;
     int n;
     cin >> n;  
     do {
-        cout << rand()%n << endl;
+        cout << rand()%(n+1) << endl;
         times--;
     } while (times!=0);
 
-    // from t to l, get random int
+    // from t to l, get random int  -->  t + rand()%(l-t+1) 
     cout << "from t to l, get random int\nInput t, l : ";
     times = i;
     int t, l;
@@ -42,7 +42,7 @@ int main() {
     cin >> n;
     int count[n] = {0};
     do {
-        count[rand()%n]++;
+        count[rand()%(n+1)]++;
         times--;
     } while (times!=0);
     for (int i = 0; i < n; i++) {
