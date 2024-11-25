@@ -14,9 +14,11 @@ void sort(int arr[], int l) {
             if (arr[n] > arr[n+1]) {swap(arr[n], arr[n+1]);}
         }
     }
+}
 
+void print(int arr[], int l) {
     for (int i=0; i<l; i++) {
-        cout << arr[i] << ' ';
+        cout << arr[i] << " ";
     }
     cout << endl;
 }
@@ -24,6 +26,7 @@ void sort(int arr[], int l) {
 int main() {
     int l = 10, arr[10] = {54, 23, 46, 56, 45, 12, 98, 38, 84, 93};
     sort(arr, l);
+    print(arr, l);
 
     system("PAUSE");
     return 0;
