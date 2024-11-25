@@ -46,7 +46,7 @@ class bootup_GUI:
     # tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=5, y=335)
 
     def destroy():
-        time.sleep(3.5)
+        time.sleep(2)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
