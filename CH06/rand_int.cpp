@@ -32,9 +32,22 @@ int main() {
     int t, l;
     cin >> t >> l;  
     do {
-        cout << (1+rand()%n) << endl;
+        cout << t + rand()%(l-t+1) << endl;
         times--;
     } while (times!=0);
+
+    // Random int probability statistics
+    cout << "Random int probability statistics\nInput n : ";
+    times = 2e8;
+    cin >> n;
+    int count[n] = {0};
+    do {
+        count[rand()%n]++;
+        times--;
+    } while (times!=0);
+    for (int i = 0; i < n; i++) {
+        cout << i << " : " << count[i]/2e8 << endl;
+    } 
     
     system("PAUSE");
     return 0;
