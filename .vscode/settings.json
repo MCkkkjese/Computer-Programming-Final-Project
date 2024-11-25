@@ -50,5 +50,6 @@
         "streambuf": "cpp",
         "typeinfo": "cpp", 
         "files.encoding": "Big5"
-    }
+    },
+    "dotnet.preferCSharpExtension": true
 }
