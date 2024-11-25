@@ -1,0 +1,52 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\eric2\\Desktop\\BMI_Calculator\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{77BEDF20-8E49-4F27-A52D-A5EBDBFF570D}|BMI_Calculator\\BMI_Calculator.csproj|c:\\users\\eric2\\desktop\\bmi_calculator\\bmi_calculator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77BEDF20-8E49-4F27-A52D-A5EBDBFF570D}|BMI_Calculator\\BMI_Calculator.csproj|solutionrelative:bmi_calculator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77BEDF20-8E49-4F27-A52D-A5EBDBFF570D}|BMI_Calculator\\BMI_Calculator.csproj|C:\\Users\\eric2\\Desktop\\BMI_Calculator\\bmi_calculator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{77BEDF20-8E49-4F27-A52D-A5EBDBFF570D}|BMI_Calculator\\BMI_Calculator.csproj|solutionrelative:bmi_calculator\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\eric2\\Desktop\\BMI_Calculator\\BMI_Calculator\\Form1.cs",
+              "RelativeDocumentMoniker": "BMI_Calculator\\Form1.cs",
+              "ToolTip": "C:\\Users\\eric2\\Desktop\\BMI_Calculator\\BMI_Calculator\\Form1.cs",
+              "RelativeToolTip": "BMI_Calculator\\Form1.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-14T07:34:38.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [\u8A2D\u8A08 - \u4E2D\u6587 (\u7E41\u9AD4\uFF0C\u53F0\u7063)]",
+              "DocumentMoniker": "C:\\Users\\eric2\\Desktop\\BMI_Calculator\\BMI_Calculator\\Form1.cs",
+              "RelativeDocumentMoniker": "BMI_Calculator\\Form1.cs",
+              "ToolTip": "C:\\Users\\eric2\\Desktop\\BMI_Calculator\\BMI_Calculator\\Form1.cs [\u8A2D\u8A08 - \u4E2D\u6587 (\u7E41\u9AD4\uFF0C\u53F0\u7063)]",
+              "RelativeToolTip": "BMI_Calculator\\Form1.cs [\u8A2D\u8A08 - \u4E2D\u6587 (\u7E41\u9AD4\uFF0C\u53F0\u7063)]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T14:44:04.221Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

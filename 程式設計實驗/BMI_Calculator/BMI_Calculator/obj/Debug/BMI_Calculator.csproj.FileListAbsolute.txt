@@ -1,0 +1,16 @@
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\bin\Debug\BMI_Calculator.exe.config
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\bin\Debug\BMI_Calculator.exe
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\bin\Debug\BMI_Calculator.pdb
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.csproj.AssemblyReference.cache
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.Form1.resources
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.Properties.Resources.resources
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.csproj.GenerateResource.cache
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.csproj.CoreCompileInputs.cache
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.exe
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.pdb
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\bin\Debug\hsb\BMI_Calculator.resources.dll
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\bin\Debug\zh-TW\BMI_Calculator.resources.dll
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.Form1.hsb.resources
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\BMI_Calculator.Form1.zh-TW.resources
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\hsb\BMI_Calculator.resources.dll
+C:\Users\eric2\Desktop\BMI_Calculator\BMI_Calculator\obj\Debug\zh-TW\BMI_Calculator.resources.dll
