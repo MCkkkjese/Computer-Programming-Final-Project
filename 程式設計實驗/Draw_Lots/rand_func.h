@@ -16,11 +16,7 @@ int rand_func(int i, int n) {
         } else if (operation == 13) {
             _draw();
         } else {
-            if (operation != 27) {
-                printf("Invalid key pressed, press 'y' key to draw a number, or press 'Esc' to exit.\n");
-            } else {
-                printf("Program terminated.\n");
-            }
+            operation == 27 ? printf("Program terminated.\n") : printf("Invalid key pressed, press 'y' key to draw a number, or press 'Enter' key to draw a number, or press 'Esc' to exit.\n");
         }
     } while (operation != 27);
 
