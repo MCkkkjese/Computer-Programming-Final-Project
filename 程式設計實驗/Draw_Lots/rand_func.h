@@ -33,7 +33,7 @@ int rand_func(int i, int n) {
         } else {
             operation == 27 ? printf("Program terminated.\n") : printf("Invalid key pressed, press 'y' key to draw a number, or press 'Esc' to exit.\n");
         }
-    } while (operation != 27);
+    } while (operation != 27);  // Esc
 
     return 0;
 }
