@@ -1,5 +1,5 @@
 #include <iostream>
-#include "rand_func.c"
+#include "rand_func.h"
 #define 開始 "Input the starting number: "
 #define 結束 "Input the ending number: "
 using namespace std;
