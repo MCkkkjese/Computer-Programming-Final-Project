@@ -12,5 +12,6 @@ int main() {
     cout << "Press \'y\' key to draw a number between " << start << " and " << end << ", or press \'Esc\' to exit. " << endl;
     rand_func(start, end);
 
+    system("PAUSE");
     return 0;
 }
