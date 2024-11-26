@@ -28,6 +28,20 @@ while (index != '}'):
 outFile.close()
 outFile_2.close()
 
+def oF_3():
+    outFile_3 = open("NTTU_ISMS_OJ/Question_Database/default/Question_Number.dat", 'a')
+    outFile_3.write("{}\n".format(Question_number))
+    outFile_3.flush()
+    outFile_3.close()
+
+try:
+    oF_3()
+
+except:
+    outFile_3 = open("NTTU_ISMS_OJ/Question_Database/default/Question_Number.dat", 'w')
+    outFile_3.close()
+    oF_3()
+
 '''
 Question = map(str, input().split(', '))
 # print(list(Question))

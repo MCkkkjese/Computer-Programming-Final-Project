@@ -46,17 +46,15 @@ class bootup_GUI:
     tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=5, y=335)
 
     def destroy():
-        time.sleep(2)
+        time.sleep(0.5)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
+        win.update_idletasks()
 
     t = threading.Thread(target=destroy)
     t.start()
     win_boot.mainloop()
-
-# def update_win(): 
-#     win.update_idletasks()
 
 global time_now, username
 time_now = tk.StringVar()
@@ -110,12 +108,9 @@ def time_set():
     time_now.set("Time : " + str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())))
 
 def clear():
+    status_output.config(state="normal")
     status_output.delete('1.0', 'end')
-
-# def submit():
-#     user = username.get()
-#     clear()
-#     status_output.insert(INSERT, user)
+    status_output.config(state="disabled")
 
 def create_exe():
     filename = str("Judge.cpp")
@@ -131,32 +126,15 @@ def judge(QN, path):
 
     inFile = open(TD_path, 'r')
     Test_data = list(inFile.readlines())
-    # for i in range(0, len(Test_data)):
-    #     print(Test_data[i])
-    #     Test_data[i] = str(Test_data[i]).replace('\\n', ' ')
-    #     print(Test_data[i] + "replaced")
 
     for i in range(0, len(Test_data)):
-        # n = 0
-        # def time_lim(n, i):
-        #     n+=i
-        #     if(n>1):
-        #         process.kill()
-
-        # timer = threading.Timer(1, time_lim(n, 1))
         time_start = time.time()
         process = subprocess.Popen(path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True) 
-        # timer.start()
-        # print(Test_data[i])
         value = process.communicate(Test_data[i])
         time_end = time.time()
         run_time += (time_end - time_start)
-        # print(run_time)
         value_source.append(value)
-        # print(value)
-        # status_output.insert(INSERT, value)
         process.kill()
-        # status_output.insert(INSERT, '\n')
 
     run_time /= len(Test_data)
     inFile_2 = open(QSC_path, 'r')
@@ -168,22 +146,15 @@ def judge(QN, path):
     outFile.write(index)
     outFile.flush()
     outFile.close()
-    # print(index)
     QSC_filename = str("Judge.cpp")
-    # QSC_file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), QSC_filename, QSC_filename.rstrip(".cpp"))
-    # os.system(QSC_file_path)
     create_exe()
     open_file_path_2 = fd.path_function("/Extension_modules/Judge_Program/{}".format(QSC_filename.rstrip(".cpp")))
 
     for i in range(0, len(Test_data)):
         process_2 = subprocess.Popen(open_file_path_2, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True) 
-        # print(Test_data[i])
         value = process_2.communicate(Test_data[i])
         value_QSC.append(value)
-        # print(value)
-        # status_output.insert(INSERT, value)
         process_2.kill()
-        # status_output.insert(INSERT, '\n')
     
     print(run_time)
     print(list(value_source))
@@ -191,11 +162,15 @@ def judge(QN, path):
     remove_file()
 
     if(value_source == value_QSC):
+        status_output.config(state="normal")
         status_output.insert(INSERT, "{} - Accepted\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
+        status_output.config(state="disabled")
     
     else:
+        status_output.config(state="normal")
         status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        status_output.config(state="disabled")
         messagebox.showerror("WA", "Wrong Answer")
 
     value_source.clear()
@@ -208,58 +183,60 @@ def submit():
     def func(index, user):    
         ccf.write_temp_code(index)
         flag = ccf.write_source_code(index, user)
-        # print(flag)
 
         if(flag == True):
             filename = str("Judge.cpp")
-            # file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
-            # os.system(file_path)
             create_exe()
-
             open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
-            # print(open_file_path)
-            # os.system(open_file_path)
-
-            # value = subprocess.check_call(open_file_path)
-            # print(value)
-
-            # judge = subprocess.Popen(open_file_path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
-            # value = judge.communicate("Admin")
-            # stdout = str(stdout).split('\\n')
-            # print(value)
-            # print(type(value))
-            # status_output.insert(INSERT, value)
-
             judge("A001", open_file_path)
 
         else:
+            status_output.config(state="normal")
             status_output.insert(INSERT, "{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+            status_output.config(state="disabled")
             messagebox.showerror("CE", "Compile Error")
-
-        '''
-        value = subprocess.getstatusoutput(open_file_path)
-        # value = str(value).split('\n')
-        # print(type(value))
-        print(value[1])
-        status_output.insert(INSERT, value[1])        
-        '''
 
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")
         pass
 
     else:
-        # index = index.replace("main()", "function()")
         clear()
+        status_output.config(state="normal")
         status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        status_output.config(state="disabled")
         func(index, user)
+
+def question_database():
+    clear()
+    status_output.config(state="normal")
+    status_output.insert(INSERT, "Opening Question Database\n\n")
+    status_output.config(state="disabled")
+    win_QD = ttk.Window(themename="cerculean")
+    win_QD.geometry("360x640")
+    win_QD.title("Question Database")
+    win_QD.iconbitmap(ico_path)
+    win_QD.resizable(False, False)
+
+    options1 = ["Default", "Exercise", "Quiz", "Competition"]
+    options2 = ["選項A", "選項B", "選項C"]
+
+    selected_option1 = tk.StringVar()
+    selected_option2 = tk.StringVar()
+
+    ttk.Combobox(win_QD, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1).pack(pady=30, padx=10, fill="x")
+    ttk.Combobox(win_QD, font=("微軟正黑體", 16), textvariable=selected_option2, values=options2).pack(pady=30, padx=10, fill="x")
+
+    win_QD.mainloop()
 
 def Commit_History():
     clear()
+    status_output.config(state="normal")
     status_output.insert(INSERT, "Opening Commit History\n\n")
     inFile = open(Commit_History_path_2, 'r')
     index = inFile.read()
     status_output.insert(INSERT, index)
+    status_output.config(state="disabled")
 
 class GUI_interface:
     # print("GUI_interface")
@@ -288,7 +265,7 @@ class GUI_interface:
     tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=150)
     ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
 
-    ttk.Button(win, text=" Question Database ", style="Outline.TButton").place(x=335, y=145, width=200, height=45)
+    ttk.Button(win, text=" Question Database ", style="Outline.TButton", command=question_database).place(x=335, y=145, width=200, height=45)
     ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=545, y=145, width=200, height=45)
     # ttk.Button(win, textvariable=user, style="Outline.TButton", command=user_data).place(x=430, y=145, width=200, height=45)
     ttk.Entry(win, font=("微軟正黑體", 14), textvariable=username).place(x=755, y=145, width=195, height=45)
@@ -307,5 +284,6 @@ class GUI_interface:
     ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=940, height=45)
     status_output = tk.Text(win, font=("微軟正黑體", 12))
     status_output.place(x=970, y=810, width=940, height=210)
+    status_output.config(state="disabled")
 
 win.mainloop()
