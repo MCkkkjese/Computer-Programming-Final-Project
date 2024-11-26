@@ -4,6 +4,7 @@
 #define 結束 "Input the ending number: "
 using namespace std;
 int main() {
+    system("color 02");
     int start, end;
     cout << 開始;
     cin >> start;
