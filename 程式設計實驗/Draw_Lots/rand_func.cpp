@@ -16,7 +16,7 @@ int rand_func(int i, int n) {
         } else if (operation == 13) {
             _draw();
         } else {
-            (operation != 27) ? cout << "Invalid key pressed, press \'y\' key to draw a number or press \'Esc\' to exit. \n" : cout << "Program terminated. \n";
+            (operation != 27) ? cout << "Invalid key pressed, press \'y\' key to draw a number, or press \'Esc\' to exit. \n" : cout << "Program terminated. \n";
         }
     } while (operation != 27);
 
