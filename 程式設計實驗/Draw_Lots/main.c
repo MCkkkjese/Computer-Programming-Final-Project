@@ -15,6 +15,7 @@ int main() {
     printf("Press 'y' key to draw a number between %d and %d, or press 'Esc' to exit.\n", start, end);
     rand_func(start, end);
 
+    system("color 07");
     system("PAUSE");
     return 0;
 }
