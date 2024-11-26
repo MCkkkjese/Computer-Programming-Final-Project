@@ -6,7 +6,7 @@
 #define 綠色 "color 02"
 #define 開始 "Input the starting number: "
 #define 結束 "Input the ending number: "
-#define 輸入範圍 "The range is from %d to %d.\n"
+#define 輸出 "Press 'y' key to draw a number between %d and %d, or press 'Esc' to exit.\n"
 
 int main() {
     system(綠色);
@@ -15,7 +15,7 @@ int main() {
     scanf("%d", &start);
     printf(結束);
     scanf("%d", &end);
-    printf(輸入範圍, start, end);
+    printf(輸出, start, end);
     rand_func(start, end);
 
     system(白色);
