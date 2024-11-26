@@ -48,8 +48,10 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp", 
-        "files.encoding": "Big5"
+        "typeinfo": "cpp",
+        "files.encoding": "Big5",
+        "rand_func.h": "c",
+        "time.h": "c"
     },
     "dotnet.preferCSharpExtension": true
 }
