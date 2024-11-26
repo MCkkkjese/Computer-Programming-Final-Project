@@ -6,6 +6,7 @@
 #define 結束 "Input the ending number: "
 
 int main() {
+    system("color 02");
     int start, end;
     printf(開始);
     scanf("%d", &start);
