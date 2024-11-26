@@ -39,6 +39,11 @@ int rand_func(int i, int n) {
 }
 
 void draw(int i, int n) {
+    if (num == n - i + 1) {
+        printf("All numbers have been drawn, press 'Esc' to exit.\n");
+        return;
+    }
+    
     int drawn = i + rand() % (n - i + 1);
     int found = 0;
     for (int j = 0; j < num; j++) {
@@ -51,6 +56,7 @@ void draw(int i, int n) {
         draw(i, n);
     } else {    
         printf("The drawn number is: %d\n", drawn);
+        pass[num++] = drawn;
     }
 }
 
