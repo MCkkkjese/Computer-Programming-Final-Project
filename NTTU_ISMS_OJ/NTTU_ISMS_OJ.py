@@ -42,7 +42,7 @@ class bootup_GUI:
     pic_bg_path = fd.path_function("Extension_modules/bootup.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
-    tk.Label(win_boot, image=pic).place(x=0, y=0)
+    tk.Label(win_boot, image=pic).place(x=-2, y=-2)
     tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=5, y=335)
 
     def destroy():
@@ -326,8 +326,8 @@ class GUI_interface:
     pic_bg_path = fd.path_function("Extension_modules/background.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
+    tk.Label(win, image=pic).place(x=-2, y=-2)
 
-    tk.Label(win, image=pic).place(x=0, y=0)
     # ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=1845, y=15)
     # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
     # ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=1585, y=15)
