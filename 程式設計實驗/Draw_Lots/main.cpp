@@ -1,12 +1,5 @@
 #include <iostream>
 #include "rand_func.h"
-
-#define 白色 "color 07"
-#define 綠色 "color 02"
-#define 開始 "Input the starting number: "
-#define 結束 "Input the ending number: "
-#define 輸出 "Press 'y' key to draw a number between %d and %d, or press 'Esc' to exit.\n"
-
 using namespace std;
 int main() {
     system(綠色);
