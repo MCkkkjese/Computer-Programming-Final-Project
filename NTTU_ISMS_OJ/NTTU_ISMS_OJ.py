@@ -207,28 +207,6 @@ def submit():
         status_output.config(state="disabled")
         func(index, user)
 
-def question_database():
-    clear()
-    status_output.config(state="normal")
-    status_output.insert(INSERT, "Opening Question Database\n\n")
-    status_output.config(state="disabled")
-    win_QD = ttk.Window(themename="cerculean")
-    win_QD.geometry("360x640")
-    win_QD.title("Question Database")
-    win_QD.iconbitmap(ico_path)
-    win_QD.resizable(False, False)
-
-    options1 = ["Default", "Exercise", "Quiz", "Competition"]
-    options2 = ["選項A", "選項B", "選項C"]
-
-    selected_option1 = tk.StringVar()
-    selected_option2 = tk.StringVar()
-
-    ttk.Combobox(win_QD, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1).pack(pady=30, padx=10, fill="x")
-    ttk.Combobox(win_QD, font=("微軟正黑體", 16), textvariable=selected_option2, values=options2).pack(pady=30, padx=10, fill="x")
-
-    win_QD.mainloop()
-
 def Commit_History():
     clear()
     status_output.config(state="normal")
@@ -238,11 +216,106 @@ def Commit_History():
     status_output.insert(INSERT, index)
     status_output.config(state="disabled")
 
+def CBB_1_func():
+    selected_option1 = CBB_1.get()
+
+    def insert_status(index):
+        clear()
+        status_output.config(state="normal")
+        status_output.insert(INSERT, index)
+        status_output.config(state="disabled")
+    
+    if(selected_option1 == "Default"):
+        insert_status("Selected type : Default\n\n")
+        options2 = ["A001", "選項B", "選項C"]
+
+    elif(selected_option1 == "Exercise"):
+        insert_status("Selected type : Exercise\n\n")
+        options2 = ["選項D", "選項E", "選項F"]
+
+    elif(selected_option1 == "Quiz"):
+        insert_status("Selected type : Quiz\n\n")
+        options2 = ["選項G", "選項H", "選項I"]
+
+    elif(selected_option1 == "Competition"):
+        insert_status("Selected type : Competition\n\n")
+        options2 = ["選項J", "選項K", "選項L"]
+
+    CBB_2.config(values=options2)
+
+def CBB_2_func():
+    selected_option2 = CBB_2.get()
+
+    def pic_set(QN):
+        pic_question_path = fd.path_function("Question_Database/default/TD_def_{}.png".format(QN))
+        pic_question = Image.open(pic_question_path)
+        pic_Q = ImageTk.PhotoImage(pic_question)
+        question.image = pic_Q 
+        tk.Label(win, image=pic_Q).place(x=15, y=205)
+        win.update_idletasks()
+
+    if(selected_option2 == "A001"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 A001\n\n")
+        pic_set("A001")
+
+    elif(selected_option2 == "選項B"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 B\n\n")
+
+    elif(selected_option2 == "選項C"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 C\n\n")
+
+    elif(selected_option2 == "選項D"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 D\n\n")
+
+    elif(selected_option2 == "選項E"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 E\n\n")
+
+    elif(selected_option2 == "選項F"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 F\n\n")
+
+    elif(selected_option2 == "選項G"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 G\n\n")
+
+    elif(selected_option2 == "選項H"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 H\n\n")
+
+    elif(selected_option2 == "選項I"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 I\n\n")
+
+    elif(selected_option2 == "選項J"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 J\n\n")
+
+    elif(selected_option2 == "選項K"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 K\n\n")
+
+    elif(selected_option2 == "選項L"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 L\n\n")
+
+    else:
+        pass
+
 class GUI_interface:
     # print("GUI_interface")
     # update_win()
-    global question, code_input, status_output
+    global question, code_input, status_output, select_option1, select_option2, options2, CBB_1, CBB_2
     set_interval(time_set, 1)
+
+    selected_option1 = tk.StringVar(value=" 選擇類別 ")
+    selected_option2 = tk.StringVar(value=" 選擇題目 ")
+    options1 = ["Default", "Exercise", "Quiz", "Competition"]
+    options2 = []
 
     win_style = ttk.Style()
     win_style.configure('Outline.TButton', font=("微軟正黑體", 14))
@@ -262,26 +335,33 @@ class GUI_interface:
     ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
     ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
     ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
-    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=150)
+    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=148)
     ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
 
-    ttk.Button(win, text=" Question Database ", style="Outline.TButton", command=question_database).place(x=335, y=145, width=200, height=45)
-    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=545, y=145, width=200, height=45)
+    # ttk.Button(win, text=" Question Database ", style="Outline.TButton", command=question_database).place(x=335, y=145, width=200, height=45)
+    CBB_1 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1)
+    CBB_1.place(x=335, y=145, width=180)
+    CBB_1.bind("<<ComboboxSelected>>", lambda event: CBB_1_func())
+    CBB_2 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option2, values=options2)
+    CBB_2.place(x=525, y=145, width=180)  
+    CBB_2.bind("<<ComboboxSelected>>", lambda event: CBB_2_func())  
+    # ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=545, y=145, width=200, height=45)
     # ttk.Button(win, textvariable=user, style="Outline.TButton", command=user_data).place(x=430, y=145, width=200, height=45)
-    ttk.Entry(win, font=("微軟正黑體", 14), textvariable=username).place(x=755, y=145, width=195, height=45)
+    ttk.Entry(win, font=("微軟正黑體", 14), textvariable=username).place(x=715, y=145, width=235, height=41)
 
     question = tk.Text(win, font=("微軟正黑體", 16))
     question.place(x=10, y=200, width=940, height=765)
-    pic_demo_path = fd.path_function("Extension_modules/DEMO.png")
-    pic_demo = Image.open(pic_demo_path)
-    pic_2 = ImageTk.PhotoImage(pic_demo)
-    tk.Label(win, image=pic_2).place(x=15, y=205)
+    # pic_demo_path = fd.path_function("Extension_modules/DEMO.png")
+    # pic_demo = Image.open(pic_demo_path)
+    # pic_2 = ImageTk.PhotoImage(pic_demo)
+    # tk.Label(win, image=pic_2).place(x=15, y=205)
 
     code_input = tk.Text(win, font=("微軟正黑體", 14))
     # scrollbar.config(command=code_input.yview)
     # code_input.config(yscrollcommand=scrollbar.set)
     code_input.place(x=970, y=145, width=940, height=600)
-    ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=940, height=45)
+    ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=470, height=45)
+    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=1450, y=755, width=470, height=45)
     status_output = tk.Text(win, font=("微軟正黑體", 12))
     status_output.place(x=970, y=810, width=940, height=210)
     status_output.config(state="disabled")
