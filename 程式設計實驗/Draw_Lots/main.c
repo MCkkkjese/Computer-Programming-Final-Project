@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "rand_func.h"
-
 int main() {
     system(綠色);
     int start, end;
