@@ -135,9 +135,11 @@ def judge(QN, path):
             time_end = time.time()
             run_time += (time_end - time_start)
             value_source.append(value)
+
         except subprocess.TimeoutExpired:
             process.kill()
             value_source.append("Timeout")
+
         finally:
             process.kill()
 
@@ -171,6 +173,12 @@ def judge(QN, path):
         status_output.insert(INSERT, "{} - Accepted\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
         status_output.config(state="disabled")
+
+    elif("Timeout" in value_source):
+        status_output.config(state="normal")
+        status_output.insert(INSERT, "{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        status_output.config(state="disabled")
+        messagebox.showerror("TLE", "Time Limit Exceeded")
     
     else:
         status_output.config(state="normal")
@@ -184,8 +192,9 @@ def judge(QN, path):
 def submit():
     index = code_input.get('1.0', 'end')
     user = username.get()
+    QN = CBB_2.get()
 
-    def func(index, user):    
+    def func(index, user, QN):    
         ccf.write_temp_code(index)
         flag = ccf.write_source_code(index, user)
 
@@ -193,7 +202,7 @@ def submit():
             filename = str("Judge.cpp")
             create_exe()
             open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
-            judge("A001", open_file_path)
+            judge(QN, open_file_path)
 
         else:
             status_output.config(state="normal")
@@ -210,7 +219,7 @@ def submit():
         status_output.config(state="normal")
         status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         status_output.config(state="disabled")
-        func(index, user)
+        func(index, user, QN)
 
 def Commit_History():
     clear()
