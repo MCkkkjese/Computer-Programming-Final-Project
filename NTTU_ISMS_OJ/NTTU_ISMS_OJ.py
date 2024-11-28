@@ -170,9 +170,9 @@ def judge(QN, path, user):
         value_QSC.append(value)
         process_2.kill()
     
-    # print(run_time)
-    # print(list(value_source))
-    # print(list(value_QSC))
+    print(run_time)
+    print(list(value_source))
+    print(list(value_QSC))
     remove_file()
     time_judge = str(time.strftime("%Y_%m_%d %H:%M:%S", time.localtime()))
 
