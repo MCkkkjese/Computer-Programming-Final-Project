@@ -17,6 +17,7 @@ from tkinter import INSERT, messagebox
 from Extension_modules import file_directory as fd
 from Extension_modules import resolution_checking_process as rcp
 from Extension_modules import create_cpp_file as ccf
+from Extension_modules import send_email as se
 import os
 import subprocess
 import threading
@@ -59,7 +60,7 @@ class bootup_GUI:
     t.start()
     win_boot.mainloop()
 
-global time_now, username
+global time_now, username, Commit_History_path_2
 time_now = tk.StringVar()
 username = tk.StringVar()
 username.set("Student ID unknow")
@@ -112,12 +113,18 @@ def clear():
     status_output.delete('1.0', 'end')
     status_output.config(state="disabled")
 
+def insert_status(index):
+    clear()
+    status_output.config(state="normal")
+    status_output.insert(INSERT, index)
+    status_output.config(state="disabled")
+
 def create_exe():
     filename = str("Judge.cpp")
     file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
     os.system(file_path)
 
-def judge(QN, path):
+def judge(QN, path, user):
     value_QSC = []
     value_source = []
     run_time = 0
@@ -163,28 +170,58 @@ def judge(QN, path):
         value_QSC.append(value)
         process_2.kill()
     
-    print(run_time)
-    print(list(value_source))
-    print(list(value_QSC))
+    # print(run_time)
+    # print(list(value_source))
+    # print(list(value_QSC))
     remove_file()
+    time_judge = str(time.strftime("%Y_%m_%d %H:%M:%S", time.localtime()))
 
     if(value_source == value_QSC):
+        # status_output.config(state="normal")
+        # status_output.insert(INSERT, "{} - Accepted\n".format(time_judge))
+        # status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
+        # status_output.config(state="disabled")
+        print("AC")
+        insert_status("{} - Accepted\n".format(time_judge))
         status_output.config(state="normal")
-        status_output.insert(INSERT, "{} - Accepted\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        # insert_status("Execution time = %05f s\n\n" % run_time)
         status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
         status_output.config(state="disabled")
 
+        # se.main(master, slave, "User {}, {} AC".formate(user, QN), content, smtp, tcp, password)
+        print("User {}, {} AC, time AC : {}".format(user, QN, time_judge))
+        outFile = open(Commit_History_path_2, 'a')
+        outFile.write("{} - User {}, {} AC\n\n".format(time_judge, user, QN))
+        outFile.flush()
+        outFile.close() 
+
     elif("Timeout" in value_source):
-        status_output.config(state="normal")
-        status_output.insert(INSERT, "{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-        status_output.config(state="disabled")
+        # status_output.config(state="normal")
+        # status_output.insert(INSERT, "{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        # status_output.config(state="disabled")
+        print("TLE")
+        insert_status("{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+
         messagebox.showerror("TLE", "Time Limit Exceeded")
+        print("User {}, {} TLE, time TLE : {}".format(user, QN, time_judge))
+        outFile = open(Commit_History_path_2, 'a')
+        outFile.write("{} - User {}, {} TLE\n\n".format(time_judge, user, QN))
+        outFile.flush()
+        outFile.close()
     
     else:
-        status_output.config(state="normal")
-        status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-        status_output.config(state="disabled")
+        # status_output.config(state="normal")
+        # status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        # status_output.config(state="disabled")
+        print("WA")
+        insert_status("{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+
         messagebox.showerror("WA", "Wrong Answer")
+        print("User {}, {} WA, time WA : {}".format(user, QN, time_judge))
+        outFile = open(Commit_History_path_2, 'a')
+        outFile.write("{} - User {}, {} WA\n\n".format(time_judge, user, QN))
+        outFile.flush()
+        outFile.close()
 
     value_source.clear()
     value_QSC.clear()
@@ -202,13 +239,18 @@ def submit():
             filename = str("Judge.cpp")
             create_exe()
             open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}".format(filename.rstrip(".cpp")))
-            judge(QN, open_file_path)
+            judge(QN, open_file_path, user)
 
         else:
-            status_output.config(state="normal")
-            status_output.insert(INSERT, "{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-            status_output.config(state="disabled")
+            # status_output.config(state="normal")
+            # status_output.insert(INSERT, "{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+            # status_output.config(state="disabled")
+            insert_status("{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
             messagebox.showerror("CE", "Compile Error")
+            outFile = open(Commit_History_path_2, 'a')
+            outFile.write("{} - User {}, {} CE\n\n".format(str(time.strftime("%Y_%m_%d %H:%M:%S", time.localtime())), user, QN))
+            outFile.flush()
+            outFile.close()
 
     if(user == "Student ID unknow"):
         messagebox.showerror("使用者未知", "請輸入學生證號碼")
@@ -216,9 +258,10 @@ def submit():
 
     else:
         clear()
-        status_output.config(state="normal")
-        status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-        status_output.config(state="disabled")
+        # status_output.config(state="normal")
+        # status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
+        # status_output.config(state="disabled")
+        insert_status("{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         func(index, user, QN)
 
 def Commit_History():
@@ -231,14 +274,7 @@ def Commit_History():
     status_output.config(state="disabled")
 
 def CBB_1_func():
-    selected_option1 = CBB_1.get()
-
-    def insert_status(index):
-        clear()
-        status_output.config(state="normal")
-        status_output.insert(INSERT, index)
-        status_output.config(state="disabled")
-    
+    selected_option1 = CBB_1.get()    
     if(selected_option1 == "Default"):
         insert_status("Selected type : Default\n\n")
         options2 = ["A001", "選項B", "選項C"]
