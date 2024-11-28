@@ -32,6 +32,9 @@ ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
 win.withdraw()
 
+if(rcp.resolution() != (1920, 1080)):
+    messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常")
+
 class bootup_GUI:
     global win_boot
     screensize_boot = ("640x360")
@@ -45,14 +48,14 @@ class bootup_GUI:
     tk.Label(win_boot, image=pic).place(x=-2, y=-2)
     tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=5, y=335)
 
-    def destroy():
+    def close_bootup():
         time.sleep(0.5)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
         win.update_idletasks()
 
-    t = threading.Thread(target=destroy)
+    t = threading.Thread(target=close_bootup)
     t.start()
     win_boot.mainloop()
 
@@ -67,10 +70,7 @@ Commit_History_path_2 = fd.path_function("/Source_code/{}".format(Commit_History
 outFile = open(Commit_History_path_2, 'w')
 outFile.write("Commit History - {}\n".format(time.strftime("%Y_%m_%d", time.localtime())))
 outFile.flush()
-outFile.close()
-
-if(rcp.resolution() != (1920, 1080)):
-    messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常") 
+outFile.close() 
 
 def set_interval(func, sec):
     def func_wrapper():
@@ -129,12 +129,17 @@ def judge(QN, path):
 
     for i in range(0, len(Test_data)):
         time_start = time.time()
-        process = subprocess.Popen(path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True) 
-        value = process.communicate(Test_data[i])
-        time_end = time.time()
-        run_time += (time_end - time_start)
-        value_source.append(value)
-        process.kill()
+        process = subprocess.Popen(path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
+        try:
+            value = process.communicate(Test_data[i], timeout=1)  # 設置超時時間為5秒
+            time_end = time.time()
+            run_time += (time_end - time_start)
+            value_source.append(value)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            value_source.append("Timeout")
+        finally:
+            process.kill()
 
     run_time /= len(Test_data)
     inFile_2 = open(QSC_path, 'r')
