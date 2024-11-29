@@ -234,7 +234,6 @@ def submit():
     def func(index, user, QN):    
         ccf.write_temp_code(index)
         flag = ccf.write_source_code(index, user)
-
         if(flag == True):
             filename = str("Judge.cpp")
             create_exe()
@@ -295,7 +294,6 @@ def CBB_1_func():
 
 def CBB_2_func():
     selected_option2 = CBB_2.get()
-
     def pic_set(QN):
         pic_question_path = fd.path_function("Question_Database/default/TD_def_{}.png".format(QN))
         pic_question = Image.open(pic_question_path)
