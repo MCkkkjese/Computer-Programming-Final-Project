@@ -50,7 +50,7 @@ class bootup_GUI:
     tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=5, y=335)
 
     def close_bootup():
-        time.sleep(0.5)
+        time.sleep(1.5)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
