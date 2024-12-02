@@ -5,6 +5,7 @@ while(start==False):
         import ttkbootstrap as ttk
         import pyautogui
         from PIL import Image, ImageTk
+        # import openai
         start = True
 
     except ImportError:
