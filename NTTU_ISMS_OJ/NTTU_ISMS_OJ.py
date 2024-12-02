@@ -280,22 +280,46 @@ def CBB_1_func():
     selected_option1 = CBB_1.get()    
     if(selected_option1 == "Default"):
         insert_status("Selected type : Default\n\n")
-        options2 = ["A001", "A002", "選項C"]
+        # options2 = ["A001", "A002", "選項C"]
 
     elif(selected_option1 == "Exercise"):
         insert_status("Selected type : Exercise\n\n")
-        options2 = ["選項D", "選項E", "選項F"]
+        # options2 = ["選項D", "選項E", "選項F"]
 
     elif(selected_option1 == "Quiz"):
         insert_status("Selected type : Quiz\n\n")
-        options2 = ["選項G", "選項H", "選項I"]
+        # options2 = ["選項G", "選項H", "選項I"]
 
     elif(selected_option1 == "Competition"):
         insert_status("Selected type : Competition\n\n")
-        options2 = ["選項J", "選項K", "選項L"]
+        # options2 = ["選項J", "選項K", "選項L"]
 
     CBB_2.config(values=options2)
 
+def CBB_2_func():
+    selected_option2 = CBB_2.get()
+    def pic_set(QN):
+        pic_question_path = fd.path_function("Question_Database/default/TD_def_{}.png".format(QN))
+        pic_question = Image.open(pic_question_path)
+        pic_Q = ImageTk.PhotoImage(pic_question)
+        question.image = pic_Q 
+        tk.Label(win, image=pic_Q).place(x=15, y=205)
+        win.update_idletasks()
+
+    if(selected_option2 == "A001"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 A001\n\n")
+        pic_set("A001")
+
+    elif(selected_option2 == "A002"):
+        question.delete('1.0', 'end')
+        question.insert(INSERT, "題目 B\n\n")
+        pic_set("A002")
+
+    else:
+        pass
+
+'''
 def CBB_2_func():
     selected_option2 = CBB_2.get()
     def pic_set(QN):
@@ -358,6 +382,7 @@ def CBB_2_func():
 
     else:
         pass
+'''
 
 class GUI_interface:
     # print("GUI_interface")
