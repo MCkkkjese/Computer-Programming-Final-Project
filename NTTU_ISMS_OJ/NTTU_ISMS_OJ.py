@@ -34,7 +34,10 @@ win.iconbitmap(ico_path)
 win.withdraw()
 
 if(rcp.resolution() != (1920, 1080)):
-    messagebox.showwarning("解析度警告", "解析度非 1920 x 1080，內容顯示或將出現異常")
+    messagebox.showwarning("解析度警告", "解析度非 1920 x 1080 ，內容顯示或將出現異常")
+
+if(rcp.magnification() != 1.0):
+    messagebox.showwarning("縮放比例警告", "縮放比例非 100% ，內容顯示或將出現異常")
 
 class bootup_GUI:
     global win_boot
@@ -138,7 +141,7 @@ def judge(QN, path, user):
         time_start = time.time()
         process = subprocess.Popen(path, stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding="utf-8", universal_newlines=True)
         try:
-            value = process.communicate(Test_data[i], timeout=1)  # 設置超時時間為5秒
+            value = process.communicate(Test_data[i], timeout=1)
             time_end = time.time()
             run_time += (time_end - time_start)
             value_source.append(value)
@@ -185,13 +188,13 @@ def judge(QN, path, user):
         insert_status("{} - Accepted\n".format(time_judge))
         status_output.config(state="normal")
         # insert_status("Execution time = %05f s\n\n" % run_time)
-        status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
+        status_output.insert(INSERT, "Execution time = %0.5f s\n\n" % run_time)
         status_output.config(state="disabled")
 
         # se.main(master, slave, "User {}, {} AC".formate(user, QN), content, smtp, tcp, password)
-        print("User {}, {} AC, time AC : {}".format(user, QN, time_judge))
+        print("User : {}, {} AC, time AC : {}".format(user, QN, time_judge))
         outFile = open(Commit_History_path_2, 'a')
-        outFile.write("{} - User {}, {} AC\n\n".format(time_judge, user, QN))
+        outFile.write("{} - User : {}, {} AC\nExecution time = %0.5f s\n\n".format(time_judge, user, QN) % run_time)
         outFile.flush()
         outFile.close() 
 
@@ -203,9 +206,9 @@ def judge(QN, path, user):
         insert_status("{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
         messagebox.showerror("TLE", "Time Limit Exceeded")
-        print("User {}, {} TLE, time TLE : {}".format(user, QN, time_judge))
+        print("User : {}, {} TLE, time TLE : {}".format(user, QN, time_judge))
         outFile = open(Commit_History_path_2, 'a')
-        outFile.write("{} - User {}, {} TLE\n\n".format(time_judge, user, QN))
+        outFile.write("{} - User : {}, {} TLE\n\n".format(time_judge, user, QN))
         outFile.flush()
         outFile.close()
     
@@ -217,9 +220,9 @@ def judge(QN, path, user):
         insert_status("{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
         messagebox.showerror("WA", "Wrong Answer")
-        print("User {}, {} WA, time WA : {}".format(user, QN, time_judge))
+        print("User : {}, {} WA, time WA : {}".format(user, QN, time_judge))
         outFile = open(Commit_History_path_2, 'a')
-        outFile.write("{} - User {}, {} WA\n\n".format(time_judge, user, QN))
+        outFile.write("{} - User : {}, {} WA\n\n".format(time_judge, user, QN))
         outFile.flush()
         outFile.close()
 
@@ -247,7 +250,7 @@ def submit():
             insert_status("{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
             messagebox.showerror("CE", "Compile Error")
             outFile = open(Commit_History_path_2, 'a')
-            outFile.write("{} - User {}, {} CE\n\n".format(str(time.strftime("%Y_%m_%d %H:%M:%S", time.localtime())), user, QN))
+            outFile.write("{} - User : {}, {} CE\n\n".format(str(time.strftime("%Y_%m_%d %H:%M:%S", time.localtime())), user, QN))
             outFile.flush()
             outFile.close()
 
@@ -276,7 +279,7 @@ def CBB_1_func():
     selected_option1 = CBB_1.get()    
     if(selected_option1 == "Default"):
         insert_status("Selected type : Default\n\n")
-        options2 = ["A001", "選項B", "選項C"]
+        options2 = ["A001", "A002", "選項C"]
 
     elif(selected_option1 == "Exercise"):
         insert_status("Selected type : Exercise\n\n")
@@ -307,9 +310,10 @@ def CBB_2_func():
         question.insert(INSERT, "題目 A001\n\n")
         pic_set("A001")
 
-    elif(selected_option2 == "選項B"):
+    elif(selected_option2 == "A002"):
         question.delete('1.0', 'end')
         question.insert(INSERT, "題目 B\n\n")
+        pic_set("A002")
 
     elif(selected_option2 == "選項C"):
         question.delete('1.0', 'end')
