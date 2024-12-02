@@ -420,3 +420,22 @@ class GUI_interface:
     status_output.config(state="disabled")
 
 win.mainloop()
+
+'''
+def AI_solution():
+    import openai
+
+    openai.api_key = os.getenv("OpenAI_API_Key")
+    def get_response(prompt):
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=prompt,
+            max_tokens=100
+        )
+        return response.choices[0].text
+'''
+
+'''
+def Data_Base():
+    import sqlite3
+'''
