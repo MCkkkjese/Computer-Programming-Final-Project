@@ -102,6 +102,7 @@ def win_close():
     os._exit(False)
 
 def win_maximize():
+    win.geometry("{}+{}+{}".format(screensize, 0, 0))
     win.overrideredirect(True)
 
 def win_minimize():
@@ -259,7 +260,8 @@ def Commit_History():
     status_output.config(state="disabled")
 
 def CBB_1_func():
-    selected_option1 = CBB_1.get()    
+    selected_option1 = CBB_1.get()   
+    CBB_2.config(values=[]) 
     if(selected_option1 == "Default"):
         insert_status("Selected type : Default\n\n")
         QN_path = fd.path_function("Question_Database/default/Question_Number.dat")
