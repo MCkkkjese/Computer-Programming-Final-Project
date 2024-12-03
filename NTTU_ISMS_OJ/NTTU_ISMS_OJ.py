@@ -181,18 +181,12 @@ def judge(QN, path, user):
     time_judge = str(time.strftime("%Y_%m_%d %H:%M:%S", time.localtime()))
 
     if(value_source == value_QSC):
-        # status_output.config(state="normal")
-        # status_output.insert(INSERT, "{} - Accepted\n".format(time_judge))
-        # status_output.insert(INSERT, "Execution time = %05f s\n\n" % run_time)
-        # status_output.config(state="disabled")
         print("AC")
         insert_status("{} - Accepted\n".format(time_judge))
         status_output.config(state="normal")
-        # insert_status("Execution time = %05f s\n\n" % run_time)
         status_output.insert(INSERT, "Execution time = %0.5f s\n\n" % run_time)
         status_output.config(state="disabled")
 
-        # se.main(master, slave, "User {}, {} AC".formate(user, QN), content, smtp, tcp, password)
         print("User : {}, {} AC, time AC : {}".format(user, QN, time_judge))
         outFile = open(Commit_History_path_2, 'a')
         outFile.write("{} - User : {}, {} AC\nExecution time = %0.5f s\n\n".format(time_judge, user, QN) % run_time)
@@ -200,9 +194,6 @@ def judge(QN, path, user):
         outFile.close() 
 
     elif("Timeout" in value_source):
-        # status_output.config(state="normal")
-        # status_output.insert(INSERT, "{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-        # status_output.config(state="disabled")
         print("TLE")
         insert_status("{} - Time Limit Exceeded\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
@@ -214,9 +205,6 @@ def judge(QN, path, user):
         outFile.close()
     
     else:
-        # status_output.config(state="normal")
-        # status_output.insert(INSERT, "{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-        # status_output.config(state="disabled")
         print("WA")
         insert_status("{} - Wrong Answer\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
 
@@ -245,9 +233,6 @@ def submit():
             judge(QN, open_file_path, user)
 
         else:
-            # status_output.config(state="normal")
-            # status_output.insert(INSERT, "{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-            # status_output.config(state="disabled")
             insert_status("{} -  Compile Error\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
             messagebox.showerror("CE", "Compile Error")
             outFile = open(Commit_History_path_2, 'a')
@@ -261,9 +246,6 @@ def submit():
 
     else:
         clear()
-        # status_output.config(state="normal")
-        # status_output.insert(INSERT, "{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
-        # status_output.config(state="disabled")
         insert_status("{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         func(index, user, QN)
 
@@ -280,24 +262,33 @@ def CBB_1_func():
     selected_option1 = CBB_1.get()    
     if(selected_option1 == "Default"):
         insert_status("Selected type : Default\n\n")
-        # options2 = ["A001", "A002", "選項C"]
+        QN_path = fd.path_function("Question_Database/default/Question_Number.dat")
+        inFile = open(QN_path, 'r')
+        options2 = list(inFile.readlines())
 
     elif(selected_option1 == "Exercise"):
         insert_status("Selected type : Exercise\n\n")
-        # options2 = ["選項D", "選項E", "選項F"]
+        QN_path = fd.path_function("Question_Database/exercise/Question_Number.dat")
+        inFile = open(QN_path, 'r')
+        options2 = list(inFile.readlines())
 
     elif(selected_option1 == "Quiz"):
         insert_status("Selected type : Quiz\n\n")
-        # options2 = ["選項G", "選項H", "選項I"]
+        QN_path = fd.path_function("Question_Database/quiz/Question_Number.dat")
+        inFile = open(QN_path, 'r')
+        options2 = list(inFile.readlines())
 
     elif(selected_option1 == "Competition"):
         insert_status("Selected type : Competition\n\n")
-        # options2 = ["選項J", "選項K", "選項L"]
+        QN_path = fd.path_function("Question_Database/competition/Question_Number.dat")
+        inFile = open(QN_path, 'r')
+        options2 = list(inFile.readlines())
 
     CBB_2.config(values=options2)
 
 def CBB_2_func():
     selected_option2 = CBB_2.get()
+    selected_option2 = selected_option2.rstrip("\n")
     def pic_set(QN):
         pic_question_path = fd.path_function("Question_Database/default/TD_def_{}.png".format(QN))
         pic_question = Image.open(pic_question_path)
@@ -306,83 +297,8 @@ def CBB_2_func():
         tk.Label(win, image=pic_Q).place(x=15, y=205)
         win.update_idletasks()
 
-    if(selected_option2 == "A001"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 A001\n\n")
-        pic_set("A001")
-
-    elif(selected_option2 == "A002"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 B\n\n")
-        pic_set("A002")
-
-    else:
-        pass
-
-'''
-def CBB_2_func():
-    selected_option2 = CBB_2.get()
-    def pic_set(QN):
-        pic_question_path = fd.path_function("Question_Database/default/TD_def_{}.png".format(QN))
-        pic_question = Image.open(pic_question_path)
-        pic_Q = ImageTk.PhotoImage(pic_question)
-        question.image = pic_Q 
-        tk.Label(win, image=pic_Q).place(x=15, y=205)
-        win.update_idletasks()
-
-    if(selected_option2 == "A001"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 A001\n\n")
-        pic_set("A001")
-
-    elif(selected_option2 == "A002"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 B\n\n")
-        pic_set("A002")
-
-    elif(selected_option2 == "選項C"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 C\n\n")
-
-    elif(selected_option2 == "選項D"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 D\n\n")
-
-    elif(selected_option2 == "選項E"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 E\n\n")
-
-    elif(selected_option2 == "選項F"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 F\n\n")
-
-    elif(selected_option2 == "選項G"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 G\n\n")
-
-    elif(selected_option2 == "選項H"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 H\n\n")
-
-    elif(selected_option2 == "選項I"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 I\n\n")
-
-    elif(selected_option2 == "選項J"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 J\n\n")
-
-    elif(selected_option2 == "選項K"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 K\n\n")
-
-    elif(selected_option2 == "選項L"):
-        question.delete('1.0', 'end')
-        question.insert(INSERT, "題目 L\n\n")
-
-    else:
-        pass
-'''
+    insert_status("Selected question : {}\n\n".format(selected_option2))
+    pic_set(selected_option2)
 
 class GUI_interface:
     # print("GUI_interface")
