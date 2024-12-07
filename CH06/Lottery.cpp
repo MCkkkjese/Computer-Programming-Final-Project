@@ -6,6 +6,22 @@
 #include <ctime>
 #include <map>
 using namespace std;
+void drawLotteryWinner(map<int, string>& lottery, map<int, string>::iterator& it, int num) {
+    int winner = (rand() % num) + 1;
+    it = lottery.find(winner);
+
+    try {
+        if (it != lottery.end()) {
+            cout << "The winner is: " << it->second << "\nType \'y\' to draw again, or type \'n\' to exit. \n";
+            lottery.erase(it);
+        } else {
+            drawLotteryWinner(lottery, it, num);
+        }
+    } catch (exception& e) {
+        cout << "Error drawing lottery winner" << endl;
+    }
+}
+
 int main() {
     map<int, string> lottery;
     int num = 0;
@@ -29,16 +45,10 @@ int main() {
     do {
         operation = _getch();
         if (operation == 'y') {
-            int winner = (rand() % num) + 1;
-            it = lottery.find(winner);
-            if(it != lottery.end()) {
-                cout << "The winner is: " << it->second << "\nType \'y\' to draw again, or type \'n\' to exit. \n";
-                lottery.erase(it);
-            } else {
-                cout << "The person has been drawn in the lottery. Type \'y\' to draw again, or type \'n\' to exit. \n";
-            }
+            drawLotteryWinner(lottery, it, num); 
         }
     } while (operation != 'n');
 
+    system("PAUSE");
     return 0;
 }
