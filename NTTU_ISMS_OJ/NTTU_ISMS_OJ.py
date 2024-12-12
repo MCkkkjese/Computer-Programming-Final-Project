@@ -358,7 +358,7 @@ class GUI_interface:
     # code_input.config(yscrollcommand=scrollbar.set)
     code_input.place(x=970, y=145, width=940, height=600)
     ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=470, height=45)
-    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=1450, y=755, width=470, height=45)
+    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=1450, y=755, width=460, height=45)
     status_output = tk.Text(win, font=("微軟正黑體", 12))
     status_output.place(x=970, y=810, width=940, height=210)
     status_output.config(state="disabled")
