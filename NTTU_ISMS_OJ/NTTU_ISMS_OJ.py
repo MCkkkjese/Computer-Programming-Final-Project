@@ -223,6 +223,7 @@ def submit():
     index = code_input.get('1.0', 'end')
     user = username.get()
     QN = CBB_2.get()
+    QN = QN.rstrip("\n")
 
     def func(index, user, QN):    
         ccf.write_temp_code(index)
