@@ -24,6 +24,14 @@ Call By Reference
 
 Call By Address (**Pointer**)
 
+## CH07. Array and Vector
+content
+
+## CH08. Pointer and Pointer-based string
+content
+
+## CH09. Classes
+content
 
 ## eTutor example
 content
