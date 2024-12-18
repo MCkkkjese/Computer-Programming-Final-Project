@@ -18,7 +18,7 @@ void drawLotteryWinner(map<int, string>& lottery, map<int, string>::iterator& it
             drawLotteryWinner(lottery, it, num);
         }
     } catch (exception& e) {
-        cout << "Error drawing lottery winner" << endl;
+        cout << "An exception occurred: " << e.what() << endl;
     }
 }
 
