@@ -50,13 +50,20 @@ def main():
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win, image=pic).place(x=-2, y=-2)
 
-    global stc_sym, date_from, date_to, status_output, rest_stock_output
+    global stc_sym, date_from, date_to, status_output, rest_stock_output, PTC, VC, CC, MAC, RSI, BOL
     stc_sym = tk.StringVar()
     date_from = tk.StringVar()
     date_to = tk.StringVar()
+    PTC = tk.BooleanVar()
+    VC = tk.BooleanVar()
+    CC = tk.BooleanVar()
+    MAC = tk.BooleanVar()
+    RSI = tk.BooleanVar()
+    BOL = tk.BooleanVar()
 
     date_from.set("YYYY/MM/DD")
     date_to.set("YYYY/MM/DD")
+    PTC.set(True)
 
     tk.Label(win, text="Symbol", font=("Arial", 20)).place(x=10, y=85)
     tk.Entry(win, font=("Arial", 20), textvariable=stc_sym).place(x=10, y=130, width=430, height=40)
@@ -73,12 +80,12 @@ def main():
     tk.Entry(win, font=("Arial", 20), textvariable=date_to).place(x=960, y=130, width=310, height=40)
 
     tk.Label(win, text="Stock Information Function", font=("Arial", 20)).place(x=640, y=190)
-    PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18)).place(x=640, y=235)
-    VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18)).place(x=640, y=270)
-    CC = tk.Checkbutton(win, text="Candlestick Chart", font=("Arial", 18)).place(x=640, y=305)
-    MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18)).place(x=640, y=340)
-    RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18)).place(x=640, y=375)
-    BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18)).place(x=640, y=410)
+    CB_PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18), variable=PTC).place(x=640, y=235)
+    CB_VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18), variable=VC).place(x=640, y=270)
+    CB_CC = tk.Checkbutton(win, text="Candlestick Chart", font=("Arial", 18), variable=CC).place(x=640, y=305)
+    CB_MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18), variable=MAC).place(x=640, y=340)
+    CB_RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18), variable=RSI).place(x=640, y=375)
+    CB_BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18), variable=BOL).place(x=640, y=410)
     
 
     tk.Label(win, text="Status", font=("Arial", 20)).place(x=10, y=475)
