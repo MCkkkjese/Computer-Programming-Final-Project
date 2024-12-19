@@ -50,7 +50,7 @@ def main():
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win, image=pic).place(x=-2, y=-2)
 
-    global stc_sym, date_from, date_to, status_output, rest_stock_output, PTC, VC, CC, MAC, RSI, BOL
+    global stc_sym, date_from, date_to, status_output, rest_stock_output, PTC, VC, CC, MAC, RSI, BOL, email_func
     stc_sym = tk.StringVar()
     date_from = tk.StringVar()
     date_to = tk.StringVar()
@@ -60,6 +60,7 @@ def main():
     MAC = tk.BooleanVar()
     RSI = tk.BooleanVar()
     BOL = tk.BooleanVar()
+    email_func = tk.BooleanVar()
 
     date_from.set("YYYY/MM/DD")
     date_to.set("YYYY/MM/DD")
@@ -79,14 +80,14 @@ def main():
     tk.Label(win, text="Date To", font=("Arial", 20)).place(x=960, y=85)
     tk.Entry(win, font=("Arial", 20), textvariable=date_to).place(x=960, y=130, width=310, height=40)
 
-    tk.Label(win, text="Stock Information Function", font=("Arial", 20)).place(x=640, y=190)
+    tk.Label(win, text="Functions", font=("Arial", 20)).place(x=640, y=190)
     CB_PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18), variable=PTC).place(x=640, y=235)
     CB_VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18), variable=VC).place(x=640, y=270)
     CB_CC = tk.Checkbutton(win, text="Candlestick Chart", font=("Arial", 18), variable=CC).place(x=640, y=305)
     CB_MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18), variable=MAC).place(x=640, y=340)
     CB_RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18), variable=RSI).place(x=640, y=375)
     CB_BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18), variable=BOL).place(x=640, y=410)
-    
+    CB_email_func = tk.Checkbutton(win, text="Email Notification", font=("Arial", 18), variable=email_func).place(x=640, y=445)
 
     tk.Label(win, text="Status", font=("Arial", 20)).place(x=10, y=475)
     status_output = tk.Text(win, font=("Arial", 20))
