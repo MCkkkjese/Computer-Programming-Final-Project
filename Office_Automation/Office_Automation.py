@@ -72,13 +72,14 @@ def main():
     tk.Label(win, text="Date To", font=("Arial", 20)).place(x=960, y=85)
     tk.Entry(win, font=("Arial", 20), textvariable=date_to).place(x=960, y=130, width=310, height=40)
 
-    tk.Label(win, text="Functions", font=("Arial", 20)).place(x=640, y=190)
+    tk.Label(win, text="Stock Information Function", font=("Arial", 20)).place(x=640, y=190)
     PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18)).place(x=640, y=235)
     VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18)).place(x=640, y=270)
     CC = tk.Checkbutton(win, text="Candlestick Chart", font=("Arial", 18)).place(x=640, y=305)
     MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18)).place(x=640, y=340)
     RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18)).place(x=640, y=375)
     BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18)).place(x=640, y=410)
+    
 
     tk.Label(win, text="Status", font=("Arial", 20)).place(x=10, y=475)
     status_output = tk.Text(win, font=("Arial", 20))
