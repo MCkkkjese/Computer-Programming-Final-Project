@@ -96,6 +96,7 @@ def main():
 
     tk.Button(win, text="Stock List", font=("Arial", 20)).place(x=10, y=635, width=200, height=40)
     tk.Button(win, text="Search - Yahoo Finance", font=("Arial", 20)).place(x=220, y=635, width=400, height=40)
+    tk.Button(win, text="Search - Google Finance", font=("Arial", 20)).place(x=630, y=635, width=400, height=40)
 
     win.mainloop()
 
