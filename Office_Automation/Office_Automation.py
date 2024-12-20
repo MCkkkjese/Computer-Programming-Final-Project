@@ -71,7 +71,7 @@ def apply():
     # print(flag)
     if flag:
         ticker_list.append(symbol)
-        status_output_func("Stock symbol {} has been added to the list.\n".format(symbol))
+        status_output_func("Stock symbol {} has been added to the pre-operation list.\n".format(symbol))
         rect_stock_output_func("\n".join(ticker_list))
 
     else:
@@ -79,6 +79,11 @@ def apply():
         messagebox.showerror("Error", "The stock symbol does not exist in Yahoo Finance.")
 
     stc_sym.set('')
+
+def appl_all():
+    ticker_list = rect_stock
+    status_output_func("{} stock symbles have been added to the pre-operation list.")
+    print(ticker_list)
 
 def stock_list():
     if len(ticker_list) == 0:
