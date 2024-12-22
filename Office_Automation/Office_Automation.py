@@ -28,6 +28,7 @@ while not flag:
 
 from Extension_Modules import file_directory as fd
 from Extension_Modules import get_username as gu
+matplotlib.rc("font", family="Arial")
 print("Application booting up successfully.")
 
 global rect_stock, ticker_list, path_1, path_2, outFile_1, outFile_2
@@ -129,7 +130,9 @@ def application():
 
     for i in range(len(ticker_list)):
         ticker = ticker_list[i]
-        data = yf.download(ticker, start="2020-01-07", end="2024-01-07")
+        date_from_ = date_from_.replace("/", "-")
+        date_to_ = date_to_.replace("/", "-")
+        data = yf.download(ticker, start=date_from_, end=date_to_)
 
         plt.figure(figsize=(14, 7))
         plt.plot(data['Close'], label='Close Price')
@@ -192,12 +195,19 @@ def main():
     tk.Entry(win, font=("Arial", 20), textvariable=date_to).place(x=960, y=130, width=310, height=40)
 
     tk.Label(win, text="Functions", font=("Arial", 20)).place(x=640, y=190)
-    CB_PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18), variable=PTC).place(x=640, y=235)
-    CB_VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18), variable=VC).place(x=640, y=270)
-    CB_K = tk.Checkbutton(win, text="K Line", font=("Arial", 18), variable=K).place(x=640, y=305)
-    CB_MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18), variable=MAC).place(x=640, y=340)
-    CB_RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18), variable=RSI).place(x=640, y=375)
-    CB_BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18), variable=BOL).place(x=640, y=410)
+    # CB_PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18), variable=PTC).place(x=640, y=235)
+    # CB_VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18), variable=VC).place(x=640, y=270)
+    # CB_K = tk.Checkbutton(win, text="K Line", font=("Arial", 18), variable=K).place(x=640, y=305)
+    # CB_MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18), variable=MAC).place(x=640, y=340)
+    # CB_RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18), variable=RSI).place(x=640, y=375)
+    # CB_BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18), variable=BOL).place(x=640, y=410)
+    # CB_email_func = tk.Checkbutton(win, text="Email Notification", font=("Arial", 18), variable=email_func).place(x=640, y=445)
+    CB_PTC = tk.Checkbutton(win, text="價格走勢圖", font=("Arial", 18), variable=PTC).place(x=640, y=235)
+    CB_VC = tk.Checkbutton(win, text="成交量圖表", font=("Arial", 18), variable=VC).place(x=640, y=270)
+    CB_K = tk.Checkbutton(win, text="K線圖", font=("Arial", 18), variable=K).place(x=640, y=305)
+    CB_MAC = tk.Checkbutton(win, text="移動平均線圖", font=("Arial", 18), variable=MAC).place(x=640, y=340)
+    CB_RSI = tk.Checkbutton(win, text="相對強弱指數圖表", font=("Arial", 18), variable=RSI).place(x=640, y=375)
+    CB_BOL = tk.Checkbutton(win, text="布林線圖", font=("Arial", 18), variable=BOL).place(x=640, y=410)
     CB_email_func = tk.Checkbutton(win, text="Email Notification", font=("Arial", 18), variable=email_func).place(x=640, y=445)
 
     tk.Label(win, text="Mail Settings", font=("Arial", 20)).place(x=960, y=190)
