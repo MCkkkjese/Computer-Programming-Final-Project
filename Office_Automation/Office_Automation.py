@@ -1,3 +1,4 @@
+#coding=utf-8
 flag = False
 while not flag:
     try:
@@ -37,6 +38,11 @@ path_1 = fd.path_function("/rect_stock.dat")
 path_2 = fd.path_function("/email_info.dat")
 outFile_1 = open(path_1, "r") if os.path.exists(path_1) else open(path_1, "w")
 outFile_2 = open(path_2, "r") if os.path.exists(path_2) else open(path_2, "w")
+
+rect_stock = outFile_1.readlines()
+for i in range(len(rect_stock)):
+    # print(i)
+    rect_stock[i] = str(rect_stock[i]).rstrip('\n')
 
 def check_ticker_exists(ticker):
     try:
@@ -81,8 +87,10 @@ def apply():
     stc_sym.set('')
 
 def appl_all():
+    global ticker_list
+    # print(rect_stock)
     ticker_list = rect_stock
-    status_output_func("{} stock symbles have been added to the pre-operation list.")
+    status_output_func(f"{len(ticker_list)} stock symbles have been added to the pre-operation list.\n")
     print(ticker_list)
 
 def stock_list():
@@ -101,7 +109,7 @@ def application():
     
     else:
         messagebox.showinfo("Information", "Application is running...")
-        outFile_1 = open(path_1, "a+")
+        outFile_1 = open(path_1, "w")
         outFile_1.write("\n".join(ticker_list))
         outFile_1.close()
         status_output_func("Stock symbols have been saved.\n")
@@ -110,21 +118,28 @@ def application():
     date_to_ = date_to.get()
     PTC_ = PTC.get()
     VC_ = VC.get()
-    CC_ = CC.get()
+    K_ = K.get()
     MAC_ = MAC.get()
     RSI_ = RSI.get()
     BOL_ = BOL.get()
     email_func_ = email_func.get()
     SMTP_ = SMTP.get()
     email_add_ = email_add.get()
-    password_ = password.get()     
+    password_ = password.get()   
+
+    for i in range(len(ticker_list)):
+        ticker = ticker_list[i]
+        data = yf.download(ticker, start="2020-01-07", end="2024-01-07")
+
+        plt.figure(figsize=(14, 7))
+        plt.plot(data['Close'], label='Close Price')
+        plt.title(f'{ticker} 價格走勢圖')
+        plt.xlabel('日期')
+        plt.ylabel('價格')
+        plt.legend()
+        plt.show()
 
 def main():
-    rect_stock = outFile_1.readlines()
-    for i in range(len(rect_stock)):
-        print(i)
-        rect_stock[i] = str(rect_stock[i]).rstrip('\n')
-
     win = ttk.Window(themename="cerculean")
     win.title("Office Automation - Automatic Stock Data Analysis")
     win.geometry("1280x720")
@@ -136,13 +151,13 @@ def main():
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win, image=pic).place(x=-2, y=-2)
 
-    global stc_sym, date_from, date_to, status_output, rect_stock_output, PTC, VC, CC, MAC, RSI, BOL, email_func, SMTP, email_add, password
+    global stc_sym, date_from, date_to, status_output, rect_stock_output, PTC, VC, K, MAC, RSI, BOL, email_func, SMTP, email_add, password
     stc_sym = tk.StringVar()
     date_from = tk.StringVar()
     date_to = tk.StringVar()
     PTC = tk.BooleanVar()
     VC = tk.BooleanVar()
-    CC = tk.BooleanVar()
+    K = tk.BooleanVar()
     MAC = tk.BooleanVar()
     RSI = tk.BooleanVar()
     BOL = tk.BooleanVar()
@@ -166,7 +181,7 @@ def main():
     rect_stock_output = tk.Text(win, font=("Arial", 20))
     rect_stock_output.place(x=10, y=235, width=620, height=175)
     rect_stock_output.config(state="disabled")
-    tk.Button(win, text="Apply All", font=("Arial", 20)).place(x=10, y=420, width=620, height=40)
+    tk.Button(win, text="Apply All", font=("Arial", 20), command=appl_all).place(x=10, y=420, width=620, height=40)
 
     print(rect_stock)
     rect_stock_output_func("\n".join(rect_stock))
@@ -179,7 +194,7 @@ def main():
     tk.Label(win, text="Functions", font=("Arial", 20)).place(x=640, y=190)
     CB_PTC = tk.Checkbutton(win, text="Price Trend Chart", font=("Arial", 18), variable=PTC).place(x=640, y=235)
     CB_VC = tk.Checkbutton(win, text="Volume Chart", font=("Arial", 18), variable=VC).place(x=640, y=270)
-    CB_CC = tk.Checkbutton(win, text="Candlestick Chart", font=("Arial", 18), variable=CC).place(x=640, y=305)
+    CB_K = tk.Checkbutton(win, text="K Line", font=("Arial", 18), variable=K).place(x=640, y=305)
     CB_MAC = tk.Checkbutton(win, text="Moving Average Chart", font=("Arial", 18), variable=MAC).place(x=640, y=340)
     CB_RSI = tk.Checkbutton(win, text="RSI Chart", font=("Arial", 18), variable=RSI).place(x=640, y=375)
     CB_BOL = tk.Checkbutton(win, text="Bollinger Band Chart", font=("Arial", 18), variable=BOL).place(x=640, y=410)
