@@ -12,9 +12,9 @@ while not flag:
         import openpyxl
         import matplotlib
         from matplotlib import pyplot as plt
-        import mplfinance as mpf
         import yfinance as yf
         import time
+        from datetime import datetime
         import selenium
         from selenium import webdriver
         flag = True
@@ -28,7 +28,7 @@ while not flag:
 
 from Extension_Modules import file_directory as fd
 from Extension_Modules import get_username as gu
-matplotlib.rc("font", family="Arial")
+matplotlib.rc("font", family="Microsoft JhengHei")
 print("Application booting up successfully.")
 
 global rect_stock, ticker_list, path_1, path_2, outFile_1, outFile_2
@@ -102,6 +102,71 @@ def stock_list():
     else:
         rect_stock_output_func("\n".join(ticker_list))
 
+def PTC_func(data, ticker):
+    plt.figure(figsize=(16, 9))
+    plt.plot(data['Close'], label='Close Price')
+    plt.title(f'{ticker} - 價格走勢圖')
+    plt.xlabel('日期')
+    plt.ylabel('價格')
+    plt.legend()
+    return plt
+
+def VC_func(data, ticker):
+    plt.figure(figsize=(16, 9))
+    plt.plot(data['Volume'], label='Volume')
+    plt.title(f'{ticker} - 成交量圖表')
+    plt.xlabel('日期')
+    plt.ylabel('成交量')
+    plt.legend()
+    return plt
+
+def K_func(data, ticker):
+    plt.figure(figsize=(16, 9))
+    plt.plot(data['High'], label='High Price')
+    plt.plot(data['Low'], label='Low Price')
+    plt.plot(data['Open'], label='Open Price')
+    plt.plot(data['Close'], label='Close Price')
+    plt.title(f'{ticker} - K線圖')
+    plt.xlabel('日期')
+    plt.ylabel('價格')
+    plt.legend()
+    return plt
+
+def MAC_func(data, ticker, MAC_days):
+    plt.figure(figsize=(16, 9))
+    plt.plot(data['Close'], label='Close Price')
+    plt.plot(data['Close'].rolling(MAC_days).mean(), label='MAC')
+    plt.title(f'{ticker} - 移動平均線圖')
+    plt.xlabel('日期')
+    plt.ylabel('價格')
+    plt.legend()
+    return plt
+
+def caculate_RSI(data, window):
+    delta = data['Close'].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=window).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=window).mean()
+    RS = gain / loss
+    RSI = 100 - (100 / (1 + RS))
+    return RSI
+
+def RSI_func(data, ticker, days):
+    plt.figure(figsize=(16, 9))
+    plt.plot(data['Close'], label='Close Price')
+    plt.plot(caculate_RSI(data, window=days), label=f'RSI - {days} Days')
+    # plt.plot(caculate_RSI(data, window=7), label='RSI - 7 Days')
+    plt.title(f'{ticker} - 相對強弱指數圖表')
+    plt.xlabel('日期')
+    plt.ylabel('價格')
+    plt.legend()
+    return plt
+
+def BOL_func(data, ticker):
+    data['MA20'] = data['Close'].rolling(window=20).mean()
+
+def email_func():
+    pass
+
 def application():
     status_output_func("Application is running...")
     if len(ticker_list) == 0:
@@ -115,6 +180,10 @@ def application():
         outFile_1.close()
         status_output_func("Stock symbols have been saved.\n")
 
+    time_now = time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())
+    # print(time_now)
+    username = gu.main()
+
     date_from_ = date_from.get()
     date_to_ = date_to.get()
     PTC_ = PTC.get()
@@ -126,21 +195,65 @@ def application():
     email_func_ = email_func.get()
     SMTP_ = SMTP.get()
     email_add_ = email_add.get()
-    password_ = password.get()   
+    password_ = password.get()
+
+    date_from_ = list(date_from_.split('/'))
+    date_to_ = list(date_to_.split('/'))
+    try:   
+        MAC_days = datetime(int(date_to_[0]), int(date_to_[1]), int(date_to_[2])) - datetime(int(date_from_[0]), int(date_from_[1]), int(date_from_[2]))
+    
+    except Exception as e:
+        print(f"Error: {e}")
+        status_output_func("Error: Invalid date format.\n")
+        messagebox.showerror("Error", "Invalid date format.\n Please enter the date in the format of YYYY/MM/DD.")
+        return
+    
+    date_from_ = '-'.join(date_from_)
+    date_to_ = '-'.join(date_to_)
+    print(MAC_days)
 
     for i in range(len(ticker_list)):
         ticker = ticker_list[i]
-        date_from_ = date_from_.replace("/", "-")
-        date_to_ = date_to_.replace("/", "-")
+        # date_from_ = date_from_.replace('/', '-')
+        # date_to_ = date_to_.replace('/', '-')
         data = yf.download(ticker, start=date_from_, end=date_to_)
+        path_3 = "C:\\Users\\{}\\Downloads\\{}_{}_Stock_Data.docx".format(username, ticker, time_now)
+        # print(path_3)
+        out_File_3 = open(path_3, "w")
 
-        plt.figure(figsize=(14, 7))
-        plt.plot(data['Close'], label='Close Price')
-        plt.title(f'{ticker} 價格走勢圖')
-        plt.xlabel('日期')
-        plt.ylabel('價格')
-        plt.legend()
-        plt.show()
+        if PTC_:
+            print("Price Trend Chart")
+            PTC_func(data, ticker).show()
+
+        if VC_:
+            print("Volume Chart")
+            VC_func(data, ticker).show()
+
+        if K_:
+            print("K Line")
+            K_func(data, ticker).show()
+        
+        if MAC_:
+            print("Moving Average Chart")
+            MAC_func(data, ticker, MAC_days).show()
+
+        if RSI_:
+            print("RSI Chart")
+            RSI_func(data, ticker, 7).show()
+            RSI_func(data, ticker, 14).show()
+            RSI_func(data, ticker, 21).show()
+            RSI_func(data, ticker, 28).show()
+
+        if BOL_:
+            print("Bollinger Band Chart")
+
+        # plt.figure(figsize=(14, 7))
+        # plt.plot(data['Close'], label='Close Price')
+        # plt.title(f'{ticker} 價格走勢圖')
+        # plt.xlabel('日期')
+        # plt.ylabel('價格')
+        # plt.legend()
+        # plt.show()
 
 def main():
     win = ttk.Window(themename="cerculean")
