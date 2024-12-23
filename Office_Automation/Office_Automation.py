@@ -7,27 +7,29 @@ while not flag:
         from tkinter import messagebox
         import ttkbootstrap as ttk
         from PIL import Image, ImageTk
-        import pandas as pd
-        import numpy as np
-        import openpyxl
+        # import pandas as pd
+        # import numpy as np
+        import docx
+        # import openpyxl
         import matplotlib
         from matplotlib import pyplot as plt
         import yfinance as yf
         import time
-        from datetime import datetime
-        import selenium
+        from datetime import datetime, timedelta
+        # import selenium
         from selenium import webdriver
+        # import pyautogui
         flag = True
 
     except ImportError :
         print("ERROR : Essential components missed. Automatically installing...")
         from Extension_Modules import install
         install.main()
-        # print("Press any key to continue...")
         os.system("PAUSE")
 
 from Extension_Modules import file_directory as fd
 from Extension_Modules import get_username as gu
+from Extension_Modules import send_email as se
 matplotlib.rc("font", family="Microsoft JhengHei")
 print("Application booting up successfully.")
 
@@ -100,27 +102,35 @@ def stock_list():
         status_output_func("No stock symbol has been added.\n")
     
     else:
-        rect_stock_output_func("\n".join(ticker_list))
+        status_output_func("Stock List : \n" + "\n".join(ticker_list))
 
-def PTC_func(data, ticker):
+def PTC_func(data, ticker, doc):
     plt.figure(figsize=(16, 9))
     plt.plot(data['Close'], label='Close Price')
     plt.title(f'{ticker} - 價格走勢圖')
     plt.xlabel('日期')
     plt.ylabel('價格')
     plt.legend()
-    return plt
+    plt.savefig(fd.path_function(f"/{ticker} - Price Trend Chart.png"))
+    
+    doc.add_heading(f'{ticker} - 價格走勢圖', level=1)
+    doc.add_picture((fd.path_function(f"/{ticker} - Price Trend Chart.png")), width=docx.shared.Inches(6), height=docx.shared.Inches(4))
+    os.remove(fd.path_function(f"/{ticker} - Price Trend Chart.png"))
 
-def VC_func(data, ticker):
+def VC_func(data, ticker, doc):
     plt.figure(figsize=(16, 9))
     plt.plot(data['Volume'], label='Volume')
     plt.title(f'{ticker} - 成交量圖表')
     plt.xlabel('日期')
     plt.ylabel('成交量')
     plt.legend()
-    return plt
+    plt.savefig(fd.path_function(f"/{ticker} - Volume Chart.png"))
+    
+    doc.add_heading(f'{ticker} - 成交量圖表', level=1)
+    doc.add_picture((fd.path_function(f"/{ticker} - Volume Chart.png")), width=docx.shared.Inches(6), height=docx.shared.Inches(4))
+    os.remove(fd.path_function(f"/{ticker} - Volume Chart.png"))
 
-def K_func(data, ticker):
+def K_func(data, ticker, doc):
     plt.figure(figsize=(16, 9))
     plt.plot(data['High'], label='High Price')
     plt.plot(data['Low'], label='Low Price')
@@ -130,9 +140,13 @@ def K_func(data, ticker):
     plt.xlabel('日期')
     plt.ylabel('價格')
     plt.legend()
-    return plt
+    plt.savefig(fd.path_function(f"/{ticker} - K Line.png"))
 
-def MAC_func(data, ticker, MAC_days):
+    doc.add_heading(f'{ticker} - K線圖', level=1)
+    doc.add_picture((fd.path_function(f"/{ticker} - K Line.png")), width=docx.shared.Inches(6), height=docx.shared.Inches(4))
+    os.remove(fd.path_function(f"/{ticker} - K Line.png"))
+
+def MAC_func(data, ticker, MAC_days, doc):
     plt.figure(figsize=(16, 9))
     plt.plot(data['Close'], label='Close Price')
     plt.plot(data['Close'].rolling(MAC_days).mean(), label='MAC')
@@ -140,7 +154,11 @@ def MAC_func(data, ticker, MAC_days):
     plt.xlabel('日期')
     plt.ylabel('價格')
     plt.legend()
-    return plt
+    plt.savefig(fd.path_function(f"/{ticker} - Moving Average Chart.png"))
+
+    doc.add_heading(f'{ticker} - 移動平均線圖', level=1)
+    doc.add_picture((fd.path_function(f"/{ticker} - Moving Average Chart.png")), width=docx.shared.Inches(6), height=docx.shared.Inches(4))
+    os.remove(fd.path_function(f"/{ticker} - Moving Average Chart.png"))
 
 def caculate_RSI(data, window):
     delta = data['Close'].diff()
@@ -150,22 +168,64 @@ def caculate_RSI(data, window):
     RSI = 100 - (100 / (1 + RS))
     return RSI
 
-def RSI_func(data, ticker, days):
+def RSI_func(data, ticker, days, doc):
     plt.figure(figsize=(16, 9))
     plt.plot(data['Close'], label='Close Price')
     plt.plot(caculate_RSI(data, window=days), label=f'RSI - {days} Days')
-    # plt.plot(caculate_RSI(data, window=7), label='RSI - 7 Days')
     plt.title(f'{ticker} - 相對強弱指數圖表')
     plt.xlabel('日期')
     plt.ylabel('價格')
     plt.legend()
-    return plt
+    plt.savefig(fd.path_function(f"/{ticker} - RSI Chart - {days} Days.png"))
 
-def BOL_func(data, ticker):
-    data['MA20'] = data['Close'].rolling(window=20).mean()
+    doc.add_heading(f'{ticker} - 相對強弱指數圖表 - {days} Days', level=1)
+    doc.add_picture((fd.path_function(f"/{ticker} - RSI Chart - {days} Days.png")), width=docx.shared.Inches(6), height=docx.shared.Inches(4))
+    os.remove(fd.path_function(f"/{ticker} - RSI Chart - {days} Days.png"))
 
-def email_func():
-    pass
+def BOL_func(data, ticker, doc):
+    data['20_MA'] = data['Close'].rolling(window=20).mean()
+    data['20_STD'] = data['Close'].rolling(window=20).std()
+    data['Upper Band'] = data['20_MA'] + (data['20_STD'] * 2)
+    data['Lower Band'] = data['20_MA'] - (data['20_STD'] * 2)
+
+    plt.figure(figsize=(16, 9))
+    plt.plot(data['Close'], label='Close Price')
+    plt.plot(data['20_MA'], label='20 Days Moving Average')
+    plt.plot(data['Upper Band'], label='Upper Band')
+    plt.plot(data['Lower Band'], label='Lower Band')
+    plt.title(f'{ticker} - 布林線圖')
+    plt.xlabel('日期')
+    plt.ylabel('價格')
+    plt.legend()
+    plt.savefig(fd.path_function(f"/{ticker} - Bollinger Band Chart.png"))
+
+    doc.add_heading(f'{ticker} - 布林線圖', level=1)
+    doc.add_picture((fd.path_function(f"/{ticker} - Bollinger Band Chart.png")), width=docx.shared.Inches(6), height=docx.shared.Inches(4))
+    os.remove(fd.path_function(f"/{ticker} - Bollinger Band Chart.png"))
+
+# def email_func():
+#     pass
+
+def save_to_default():
+    SMTP_ = SMTP.get()
+    SMTP_ = SMTP_.split('/')
+    print(SMTP_)
+    _SMTP_ = SMTP_[0]
+    TCP_ = int(SMTP_[1])
+    email_add_ = email_add.get()
+    password_ = password.get()
+    path = fd.path_function("/email_info.dat")
+    outFile = open(path, "w")
+    outFile.write(f"{_SMTP_}/{TCP_}\n{email_add_}\n{password_}")
+    outFile.close()
+
+def load_default():
+    path = fd.path_function("/email_info.dat")
+    inFile = open(path, "r")
+    email_info = inFile.readlines()
+    SMTP.set(email_info[0].rstrip('\n'))
+    email_add.set(email_info[1].rstrip('\n'))
+    password.set(email_info[2].rstrip('\n'))
 
 def application():
     status_output_func("Application is running...")
@@ -174,7 +234,7 @@ def application():
         status_output_func("No stock symbol has been added.\n")
     
     else:
-        messagebox.showinfo("Information", "Application is running...")
+        messagebox.showinfo("Information", "Application is running...\nPlease wait until the process is completed.")
         outFile_1 = open(path_1, "w")
         outFile_1.write("\n".join(ticker_list))
         outFile_1.close()
@@ -193,9 +253,6 @@ def application():
     RSI_ = RSI.get()
     BOL_ = BOL.get()
     email_func_ = email_func.get()
-    SMTP_ = SMTP.get()
-    email_add_ = email_add.get()
-    password_ = password.get()
 
     date_from_ = list(date_from_.split('/'))
     date_to_ = list(date_to_.split('/'))
@@ -214,38 +271,45 @@ def application():
 
     for i in range(len(ticker_list)):
         ticker = ticker_list[i]
-        # date_from_ = date_from_.replace('/', '-')
-        # date_to_ = date_to_.replace('/', '-')
         data = yf.download(ticker, start=date_from_, end=date_to_)
-        path_3 = "C:\\Users\\{}\\Downloads\\{}_{}_Stock_Data.docx".format(username, ticker, time_now)
-        # print(path_3)
-        out_File_3 = open(path_3, "w")
+        path_3 = "C:\\Users\\{}\\Downloads\\{} - Stock Data {}.docx".format(username, ticker, time_now)
+        path_4 = "C:\\Users\\{}\\Downloads\\{} - Stock Data {}.xlsx".format(username, ticker, time_now)
+        doc = docx.Document()
+        doc.add_heading("Stock Data Analysis Report", 0)
+        doc.add_heading("NTTU - Office Automation Final Project - Stock Data Analysis Software", level=9)
+        doc.add_heading("Powered by Yahoo Finance - Developed by Liyue-Wei on GitHub, copy right reserved.", level=9)
+        doc.add_heading("股票代號: {}".format(ticker), level=1)
+        doc.add_paragraph("紀錄日期: {}".format(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())))
+        doc.add_paragraph("日期區間: {} ~ {}".format(date_from_.replace('-', '/'), date_to_.replace('-', '/')))
 
         if PTC_:
             print("Price Trend Chart")
-            PTC_func(data, ticker).show()
+            PTC_func(data, ticker, doc)
 
         if VC_:
             print("Volume Chart")
-            VC_func(data, ticker).show()
+            VC_func(data, ticker, doc)
 
         if K_:
             print("K Line")
-            K_func(data, ticker).show()
+            K_func(data, ticker, doc)
         
         if MAC_:
             print("Moving Average Chart")
-            MAC_func(data, ticker, MAC_days).show()
+            MAC_func(data, ticker, MAC_days, doc)
 
         if RSI_:
             print("RSI Chart")
-            RSI_func(data, ticker, 7).show()
-            RSI_func(data, ticker, 14).show()
-            RSI_func(data, ticker, 21).show()
-            RSI_func(data, ticker, 28).show()
+            RSI_func(data, ticker, 7, doc)
+            RSI_func(data, ticker, 14, doc)
+            RSI_func(data, ticker, 21, doc)
+            RSI_func(data, ticker, 28, doc)
 
         if BOL_:
             print("Bollinger Band Chart")
+            BOL_func(data, ticker, doc)
+
+        doc.save(path_3)
 
         # plt.figure(figsize=(14, 7))
         # plt.plot(data['Close'], label='Close Price')
@@ -254,6 +318,60 @@ def application():
         # plt.ylabel('價格')
         # plt.legend()
         # plt.show()
+
+        if email_func_:
+            SMTP_ = SMTP.get()
+            SMTP_ = SMTP_.split('/')
+            print(SMTP_)
+            _SMTP_ = SMTP_[0]
+            TCP_ = int(SMTP_[1])
+            email_add_ = email_add.get()
+            password_ = password.get()
+            # email_func(_SMTP_, TCP_, email_add_, password_, path_3)
+            se.main(email_add_, email_add_, "{} - Stock Data Analysis Report".format(ticker), "{} - Stock Data Analysis Report".format(ticker), _SMTP_, TCP_, password_, path_3)
+
+        # time.sleep(1)
+        # status_output_func("Stock data : {} has been saved.\n".format(ticker))
+        # time.sleep(1)
+
+    status_output_func("Application has been completed.\n")
+    flag = messagebox.askquestion("Information", "Application has been completed.\nPlease check the download folder for the stock data analysis report.")
+    if flag == "yes":
+        os.system("start C:\\Users\\{}\\Downloads".format(username))
+
+    else:
+        pass
+
+def Search():
+    global ticker_list
+    status_output_func("Searching...")
+    URL = "https://finance.yahoo.com/"
+    ticker = stc_sym.get()
+    flag = check_ticker_exists(ticker)
+    if flag:
+        driver = webdriver.Chrome()
+        driver.get(URL + "quote/{}".format(ticker))
+
+        opt = webdriver.ChromeOptions()
+        opt.add_experimental_option('detach', True) 
+        opt.add_argument('--start-maximized')
+
+    else:
+        status_output_func("The {} does not exist in Yahoo Finance.\n".format(ticker))
+        messagebox.showerror("Error", "The stock symbol does not exist in Yahoo Finance.")
+
+    # if len(ticker_list) == 0:
+    #     messagebox.showerror("Error", "No stock symbol has been added.")
+    #     status_output_func("No stock symbol has been added.\n")
+
+    # else:
+    #     driver = webdriver.Chrome()
+    #     for i in range(len(ticker_list)):
+    #         ticker = ticker_list[i]
+    #         driver.get(URL + "quote/{}".format(ticker))
+    #         # time.sleep(0.5)
+    #         pyautogui.hotkey("ctrl", "t")        
+    #         # time.sleep(0.5)
 
 def main():
     win = ttk.Window(themename="cerculean")
@@ -282,10 +400,12 @@ def main():
     email_add = tk.StringVar()
     password = tk.StringVar()
 
-    date_from.set("YYYY/MM/DD")
-    date_to.set("YYYY/MM/DD")
+    # date_from.set("YYYY/MM/DD")
+    # date_to.set("YYYY/MM/DD")
+    date_from.set((datetime.now() - timedelta(365)).strftime("%Y/%m/%d"))
+    date_to.set(datetime.now().strftime("%Y/%m/%d"))
     PTC.set(True)
-    SMTP.set("SMTP Server")
+    SMTP.set("SMTP Server/Port")
     email_add.set("Email Address")
     password.set("Password")
 
@@ -327,8 +447,8 @@ def main():
     tk.Entry(win, font=("Arial", 20), textvariable=SMTP).place(x=960, y=235, width=310, height=40)
     tk.Entry(win, font=("Arial", 20), textvariable=email_add).place(x=960, y=285, width=310, height=40)
     tk.Entry(win, font=("Arial", 20), show='*', textvariable=password).place(x=960, y=335, width=310, height=40)
-    tk.Button(win, text="Save to Default", font=("Arial", 20)).place(x=960, y=390, width=310, height=40)
-    tk.Button(win, text="Load Default", font=("Arial", 20)).place(x=960, y=435, width=310, height=40)
+    tk.Button(win, text="Save to Default", font=("Arial", 20), command=save_to_default).place(x=960, y=390, width=310, height=40)
+    tk.Button(win, text="Load Default", font=("Arial", 20), command=load_default).place(x=960, y=435, width=310, height=40)
 
     tk.Label(win, text="Status", font=("Arial", 20)).place(x=10, y=475)
     status_output = tk.Text(win, font=("Arial", 20))
@@ -336,7 +456,7 @@ def main():
     status_output.config(state="disabled")
 
     tk.Button(win, text="Stock List", font=("Arial", 20), command=stock_list).place(x=10, y=635, width=200, height=40)
-    tk.Button(win, text="Search - Yahoo Finance", font=("Arial", 20)).place(x=220, y=635, width=400, height=40)
+    tk.Button(win, text="Search - Yahoo Finance", font=("Arial", 20), command=Search).place(x=220, y=635, width=400, height=40)
     tk.Button(win, text="Run Application", font=("Arial", 20), command=application).place(x=630, y=635, width=640, height=40)
 
     win.mainloop()

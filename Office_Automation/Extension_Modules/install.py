@@ -1,7 +1,7 @@
 import os
 
 def main():  
-    modules = ["ttkbootstrap", "pandas", "numpy", "openpyxl", "matplotlib", "yfinance", "selenium"]
+    modules = ["ttkbootstrap", "pandas", "numpy", "openpyxl", "matplotlib", "yfinance", "selenium", "python-docx", "pyautogui", "selenium"]
     print("preparing to install {}".format(modules))
     for i in range(0, len(modules)):
         os.system("pip install "+modules[i])
