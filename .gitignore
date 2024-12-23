@@ -2,4 +2,4 @@
 *.pyc
 .vscode
 __pycache__
-email_info.dat
+Office_Automation/Extension_Modules/email_info.dat
