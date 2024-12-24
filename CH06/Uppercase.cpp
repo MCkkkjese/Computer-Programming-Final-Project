@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <cstring>
 using namespace std;
 void upper(string &str) {  // Call By Reference
