@@ -324,7 +324,7 @@ class GUI_interface:    # GUI介面
     pic_bg_path = fd.path_function("Extension_modules/background.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
-    tk.Label(win, image=pic).place(x=-2, y=-2)
+    tk.Label(win, image=pic).place(x=-2, y=-2)    # 背景圖片，刪除外框
 
     # ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=1845, y=15)
     # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
