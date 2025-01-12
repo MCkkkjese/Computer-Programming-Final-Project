@@ -1,6 +1,6 @@
 #coding=UTF-8
 start = False
-while(start==False):
+while(start==False):    # 檢查是否有安裝必要模組
     try:
         import ttkbootstrap as ttk
         import pyautogui
@@ -25,15 +25,15 @@ import subprocess
 import threading
 import time
 
-ver = str("Beta")
-screensize = ("1920x1080")
-win = ttk.Window(themename="cerculean")
+ver = str("Beta")    # 版本號
+screensize = ("1920x1080")    # 視窗大小
+win = ttk.Window(themename="cerculean")    # 建立視窗
 win.geometry(screensize)
 win.overrideredirect(True)
 win.title("NTTU ISMS::OJ - Version {}".format(ver))
 ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
 win.iconbitmap(ico_path)
-win.withdraw()
+win.withdraw()    # 隱藏視窗
 
 if(rcp.resolution() != (1920, 1080)):
     messagebox.showwarning("解析度警告", "解析度非 1920 x 1080 ，內容顯示或將出現異常")
@@ -41,7 +41,7 @@ if(rcp.resolution() != (1920, 1080)):
 if(rcp.magnification() != 1.0):
     messagebox.showwarning("縮放比例警告", "縮放比例非 100% ，內容顯示或將出現異常")
 
-class bootup_GUI:
+class bootup_GUI:    # 開機畫面
     global win_boot
     screensize_boot = ("640x360")
     win_boot = tk.Toplevel()
@@ -65,12 +65,12 @@ class bootup_GUI:
     t.start()
     win_boot.mainloop()
 
-global time_now, username, Commit_History_path_2
+global time_now, username, Commit_History_path_2    # 宣告全域變數
 time_now = tk.StringVar()
 username = tk.StringVar()
 username.set("Student ID unknow")
 
-date_today = str(time.strftime("%Y_%m_%d", time.localtime()))
+date_today = str(time.strftime("%Y_%m_%d", time.localtime()))    # 開啟預處理檔案
 Commit_History_path = str("Commit_History_{}.dat".format(date_today))
 Commit_History_path_2 = fd.path_function("/Source_code/{}".format(Commit_History_path))
 outFile = open(Commit_History_path_2, 'w')
@@ -78,7 +78,7 @@ outFile.write("Commit History - {}\n".format(time.strftime("%Y_%m_%d", time.loca
 outFile.flush()
 outFile.close() 
 
-def set_interval(func, sec):
+def set_interval(func, sec):    # watchdog
     def func_wrapper():
         set_interval(func, sec)
         func()
@@ -87,7 +87,7 @@ def set_interval(func, sec):
     timer_set.start()
     return timer_set
 
-def remove_file():
+def remove_file():    # 移除檔案，用以刪除執行後的exe檔案
     filename = str("Judge.cpp")
     open_file_path = fd.path_function("/Extension_modules/Judge_Program/{}.exe".format(filename.rstrip(".cpp")))
     try:
@@ -96,46 +96,46 @@ def remove_file():
     except:
         pass
 
-def win_close():
+def win_close():    # 關閉視窗
     index = "#include <iostream>\nusing namespace std;\nint func() {\n    cout << \"Hello NTTU ISMS::OJ\" << endl;\n\n    return 0;\n}"
     ccf.write_temp_code(index)
     remove_file()    
     os._exit(False)
 
-def win_maximize():
+def win_maximize():    # 最大化視窗
     win.geometry("{}+{}+{}".format(screensize, 0, 0))
     win.overrideredirect(True)
 
-def win_minimize():
+def win_minimize():    # 最小化視窗
     messagebox.showwarning("注意", "若要關閉視窗，請使用 \"Exit\" 按鈕來關閉視窗\n請勿使用視窗右上角 \"X\"") 
     win.overrideredirect(False)
     pyautogui.hotkey("win", "d")
 
-def time_set():
+def time_set():    # 時間設定
     time_now.set("Time : " + str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())))
 
-def clear():
+def clear():    # 清空狀態顯示
     status_output.config(state="normal")
     status_output.delete('1.0', 'end')
     status_output.config(state="disabled")
 
-def insert_status(index):
+def insert_status(index):    # 控制狀態顯示
     clear()
     status_output.config(state="normal")
     status_output.insert(INSERT, index)
     status_output.config(state="disabled")
 
-def create_exe():
+def create_exe():    # 建立exe檔案
     filename = str("Judge.cpp")
     file_path = "cd {} && g++ {} -o {}".format(fd.path_function("/Extension_modules/Judge_Program"), filename, filename.rstrip(".cpp"))
     os.system(file_path)
 
-def judge(QN, path, user):
+def judge(QN, path, user):    # Judge程式
     value_QSC = []
     value_source = []
     run_time = 0
-    TD_path = fd.path_function("Question_Database/default/TD_def_{}.dat".format(QN))
-    QSC_path = fd.path_function("Question_Database/default/TD_def_{}.cpp".format(QN))
+    TD_path = fd.path_function("Question_Database/default/TD_def_{}.dat".format(QN))    # 讀取測資
+    QSC_path = fd.path_function("Question_Database/default/TD_def_{}.cpp".format(QN))    # 讀取題目
 
     inFile = open(TD_path, 'r')
     Test_data = list(inFile.readlines())
@@ -220,7 +220,7 @@ def judge(QN, path, user):
     value_source.clear()
     value_QSC.clear()
 
-def submit():
+def submit():    # 提交程式，按鍵觸發
     index = code_input.get('1.0', 'end')
     user = username.get()
     QN = CBB_2.get()
@@ -252,7 +252,7 @@ def submit():
         insert_status("{} - submit success\n\n".format(str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))))
         func(index, user, QN)
 
-def Commit_History():
+def Commit_History():    # 開啟Commit History，按鍵觸發
     clear()
     status_output.config(state="normal")
     status_output.insert(INSERT, "Opening Commit History\n\n")
@@ -261,7 +261,7 @@ def Commit_History():
     status_output.insert(INSERT, index)
     status_output.config(state="disabled")
 
-def CBB_1_func():
+def CBB_1_func():    # 下拉式選單1
     selected_option1 = CBB_1.get()   
     CBB_2.config(values=[]) 
     if(selected_option1 == "Default"):
@@ -290,7 +290,7 @@ def CBB_1_func():
 
     CBB_2.config(values=options2)
 
-def CBB_2_func():
+def CBB_2_func():    # 下拉式選單2
     selected_option2 = CBB_2.get()
     selected_option2 = selected_option2.rstrip("\n")
     def pic_set(QN):
@@ -304,7 +304,7 @@ def CBB_2_func():
     insert_status("Selected question : {}\n\n".format(selected_option2))
     pic_set(selected_option2)
 
-class GUI_interface:
+class GUI_interface:    # GUI介面
     # print("GUI_interface")
     # update_win()
     global question, code_input, status_output, select_option1, select_option2, options2, CBB_1, CBB_2
