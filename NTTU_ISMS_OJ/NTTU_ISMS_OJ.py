@@ -1,18 +1,4 @@
 #coding=UTF-8
-start = False
-while(start==False):    # 檢查是否有安裝必要模組
-    try:
-        import ttkbootstrap as ttk
-        import pyautogui
-        from PIL import Image, ImageTk
-        # import openai
-        start = True
-
-    except ImportError:
-        print("ERROR : Essential modules not found")
-        from Extension_modules import install
-        install.main()  
-        os.system("PAUSE") 
 
 import tkinter as tk
 from tkinter import INSERT, messagebox
@@ -24,16 +10,42 @@ import os
 import subprocess
 import threading
 import time
+import ttkbootstrap as ttk
 
-ver = str("Beta")    # 版本號
-screensize = ("1920x1080")    # 視窗大小
+start = False
+while(start==False):    # 檢查是否有安裝必要模組
+    try:
+        import ttkbootstrap as ttk
+        import pyautogui
+        from PIL import Image, ImageTk
+        # import openai 尚未實現，敬請期待，我要補commit笑死
+        start = True
+
+    
+    except ImportError as e:
+        print("錯誤：缺少必要模組 →", e)
+        print("提示：請確認是否安裝了所有依賴，或等待自動安裝程序完成。")
+        from Extension_modules import install
+        install.main()
+        os.system("PAUSE")
+
+
+
+
+ver = str("beta.25.08.26")    # 版本號
+# screensize = ("1920x1080")    # 視窗大小
 win = ttk.Window(themename="cerculean")    # 建立視窗
-win.geometry(screensize)
-win.overrideredirect(True)
-win.title("NTTU ISMS::OJ - Version {}".format(ver))
-ico_path = fd.path_function("Extension_modules/NTTU_LOGO.ico")
+
+screen_w = win.winfo_screenwidth()
+screen_h = win.winfo_screenheight()
+win.geometry(f"{screen_w}x{screen_h}")
+win.overrideredirect(False)
+win.title("國立臺北教育大學 eTutor - Version {}".format(ver))
+ico_path = fd.path_function("Extension_modules/NTUE_LOGO.ico")
 win.iconbitmap(ico_path)
 win.withdraw()    # 隱藏視窗
+
+
 
 if(rcp.resolution() != (1920, 1080)):
     messagebox.showwarning("解析度警告", "解析度非 1920 x 1080 ，內容顯示或將出現異常")
@@ -43,19 +55,19 @@ if(rcp.magnification() != 1.0):
 
 class bootup_GUI:    # 開機畫面
     global win_boot
-    screensize_boot = ("640x360")
+    screensize_boot = ("1920x1080")
     win_boot = tk.Toplevel()
-    win_boot.geometry("{}+{}+{}".format(screensize_boot, 640, 360))
-    win_boot.overrideredirect(True)
-    win_boot.title("NTTU ISMS::OJ")
-    pic_bg_path = fd.path_function("Extension_modules/bootup.png")
+    win_boot.geometry("{}+{}+{}".format(screensize_boot, 1920, 1080))
+    win_boot.overrideredirect(False)
+    win_boot.title("國北教eTutor啟動畫面")
+    pic_bg_path = fd.path_function("Extension_modules/open_picture.png")
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win_boot, image=pic).place(x=-2, y=-2)
-    tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=5, y=335)
+    tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1, y=1000)
 
     def close_bootup():
-        time.sleep(1.5)
+        time.sleep(5)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
