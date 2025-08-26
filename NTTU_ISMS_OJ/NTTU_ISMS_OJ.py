@@ -18,7 +18,7 @@ while(start==False):    # 檢查是否有安裝必要模組
         import ttkbootstrap as ttk
         import pyautogui
         from PIL import Image, ImageTk
-        # import openai 尚未實現，敬請期待，我要補commit笑死
+        # import openai 尚未實現，敬請期待
         start = True
 
     
