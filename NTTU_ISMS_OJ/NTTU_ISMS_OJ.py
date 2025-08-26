@@ -57,7 +57,10 @@ class bootup_GUI:    # 開機畫面
     global win_boot
     screensize_boot = ("1920x1080")
     win_boot = tk.Toplevel()
-    win_boot.geometry("{}+{}+{}".format(screensize_boot, 1920, 1080))
+    openPitcherSideX = int(screen_w/6)
+    openPitcherSideY = int(screen_h/6)
+    
+    win_boot.geometry("{}+{}+{}".format(screensize_boot, openPitcherSideX, openPitcherSideY))
     win_boot.overrideredirect(False)
     win_boot.title("國北教eTutor啟動畫面")
     pic_bg_path = fd.path_function("Extension_modules/open_picture.png")
@@ -65,6 +68,7 @@ class bootup_GUI:    # 開機畫面
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win_boot, image=pic).place(x=-2, y=-2)
     tk.Label(win_boot, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1, y=1000)
+    
 
     def close_bootup():
         time.sleep(5)
@@ -77,10 +81,11 @@ class bootup_GUI:    # 開機畫面
     t.start()
     win_boot.mainloop()
 
-global time_now, username, Commit_History_path_2    # 宣告全域變數
+global time_now, username, Commit_History_path_2 , screensize_boot   # 宣告全域變數
 time_now = tk.StringVar()
 username = tk.StringVar()
 username.set("Student ID unknow")
+screensize_boot = ("1920x1080")
 
 date_today = str(time.strftime("%Y_%m_%d", time.localtime()))    # 開啟預處理檔案
 Commit_History_path = str("Commit_History_{}.dat".format(date_today))
@@ -115,7 +120,7 @@ def win_close():    # 關閉視窗
     os._exit(False)
 
 def win_maximize():    # 最大化視窗
-    win.geometry("{}+{}+{}".format(screensize, 0, 0))
+    win.geometry("{}+{}+{}".format(screensize_boot, 1920, 1080))
     win.overrideredirect(True)
 
 def win_minimize():    # 最小化視窗
