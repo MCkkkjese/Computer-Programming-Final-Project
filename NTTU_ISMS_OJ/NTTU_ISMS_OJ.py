@@ -33,12 +33,11 @@ while(start==False):    # 檢查是否有安裝必要模組
 
 
 ver = str("beta.25.08.26")    # 版本號
-# screensize = ("1920x1080")    # 視窗大小
 win = ttk.Window(themename="cerculean")    # 建立視窗
-
 screen_w = win.winfo_screenwidth()
 screen_h = win.winfo_screenheight()
-win.geometry(f"{screen_w}x{screen_h}")
+# win.geometry(f"{screen_w}x{screen_h}")
+win.geometry("1920x1080")
 win.overrideredirect(False)
 win.title("國立臺北教育大學 eTutor - Version {}".format(ver))
 ico_path = fd.path_function("Extension_modules/NTUE_LOGO.ico")
@@ -53,15 +52,14 @@ if(rcp.resolution() != (1920, 1080)):
 if(rcp.magnification() != 1.0):
     messagebox.showwarning("縮放比例警告", "縮放比例非 100% ，內容顯示或將出現異常")
 
-class bootup_GUI:    # 開機畫面
+class open_GUI:    # 開機畫面
     global win_boot
-    screensize_boot = ("1920x1080")
+    default_screensize = ("1920x1080")
     win_boot = tk.Toplevel()
     openPitcherSideX = int(screen_w/6)
     openPitcherSideY = int(screen_h/6)
-    
-    win_boot.geometry("{}+{}+{}".format(screensize_boot, openPitcherSideX, openPitcherSideY))
-    win_boot.overrideredirect(False)
+    win_boot.geometry("{}+{}+{}".format(default_screensize, openPitcherSideX, openPitcherSideY))
+    win_boot.overrideredirect(True)
     win_boot.title("國北教eTutor啟動畫面")
     pic_bg_path = fd.path_function("Extension_modules/open_picture.png")
     pic_bg = Image.open(pic_bg_path)
@@ -71,7 +69,7 @@ class bootup_GUI:    # 開機畫面
     
 
     def close_bootup():
-        time.sleep(5)
+        time.sleep(3)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
@@ -81,11 +79,11 @@ class bootup_GUI:    # 開機畫面
     t.start()
     win_boot.mainloop()
 
-global time_now, username, Commit_History_path_2 , screensize_boot   # 宣告全域變數
+global time_now, username, Commit_History_path_2 , default_screensize  # 宣告全域變數
 time_now = tk.StringVar()
 username = tk.StringVar()
-username.set("Student ID unknow")
-screensize_boot = ("1920x1080")
+username.set("學生未輸入學號")
+default_screensize = ("1920x1080")
 
 date_today = str(time.strftime("%Y_%m_%d", time.localtime()))    # 開啟預處理檔案
 Commit_History_path = str("Commit_History_{}.dat".format(date_today))
@@ -120,8 +118,8 @@ def win_close():    # 關閉視窗
     os._exit(False)
 
 def win_maximize():    # 最大化視窗
-    win.geometry("{}+{}+{}".format(screensize_boot, 1920, 1080))
-    win.overrideredirect(True)
+    win.geometry("{}+{}+{}".format(default_screensize, 1920, 1080))
+    win.overrideredirect(False)
 
 def win_minimize():    # 最小化視窗
     messagebox.showwarning("注意", "若要關閉視窗，請使用 \"Exit\" 按鈕來關閉視窗\n請勿使用視窗右上角 \"X\"") 
@@ -130,6 +128,7 @@ def win_minimize():    # 最小化視窗
 
 def time_set():    # 時間設定
     time_now.set("Time : " + str(time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())))
+
 
 def clear():    # 清空狀態顯示
     status_output.config(state="normal")
@@ -347,11 +346,11 @@ class GUI_interface:    # GUI介面
     # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
     # ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=1585, y=15)
     # tk.Label(win, textvariable=time_now, font=("微軟正黑體", 16)).place(x=1640, y=65)
-    ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
-    ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
-    ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
-    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=148)
-    ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
+    # ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
+    # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
+    # ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
+    # tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=148)
+    # ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
 
     # ttk.Button(win, text=" Question Database ", style="Outline.TButton", command=question_database).place(x=335, y=145, width=200, height=45)
     CBB_1 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1)
