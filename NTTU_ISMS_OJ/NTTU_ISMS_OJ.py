@@ -1,5 +1,3 @@
-#coding=UTF-8
-
 import tkinter as tk
 from tkinter import INSERT, messagebox
 from Extension_modules import file_directory as fd
@@ -18,7 +16,6 @@ while(start==False):    # 檢查是否有安裝必要模組
         import ttkbootstrap as ttk
         import pyautogui
         from PIL import Image, ImageTk
-        # import openai 尚未實現，敬請期待
         start = True
 
     
@@ -381,22 +378,3 @@ class GUI_interface:    # GUI介面
     status_output.config(state="disabled")
 
 win.mainloop()
-
-'''
-def AI_solution():
-    import openai
-
-    openai.api_key = os.getenv("OpenAI_API_Key")
-    def get_response(prompt):
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=100
-        )
-        return response.choices[0].text
-'''
-
-'''
-def Data_Base():
-    import sqlite3
-'''
