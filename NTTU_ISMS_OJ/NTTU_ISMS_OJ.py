@@ -66,7 +66,7 @@ class open_GUI:    # 開機畫面
     
 
     def close_bootup():
-        time.sleep(3)
+        time.sleep(1)
         win_boot.quit()
         win_boot.destroy()
         win.deiconify()
@@ -338,16 +338,11 @@ class GUI_interface:    # GUI介面
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win, image=pic).place(x=-2, y=-2)    # 背景圖片，刪除外框
-
-    # ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=1845, y=15)
-    # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=1715, y=15)
-    # ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=1585, y=15)
-    # tk.Label(win, textvariable=time_now, font=("微軟正黑體", 16)).place(x=1640, y=65)
-    # ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
-    # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
-    # ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
-    # tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=148)
-    # ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
+    ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
+    ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
+    ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
+    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=148)
+    ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
 
     # ttk.Button(win, text=" Question Database ", style="Outline.TButton", command=question_database).place(x=335, y=145, width=200, height=45)
     CBB_1 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1)
