@@ -36,7 +36,7 @@ while(start==False):    # 檢查是否有安裝必要模組
 # default_screensize = ("1920x1080")
 
 ver = str("beta.25.08.26")    # 版本號
-win = ttk.Window(themename="cerculean")    # 建立視窗
+win = ttk.Window(themename = "flatly")       #視窗主題
 screen_w = win.winfo_screenwidth()
 screen_h = win.winfo_screenheight()
 # win.geometry(f"{screen_w}x{screen_h}")
@@ -401,9 +401,9 @@ class GUI_interface:    # GUI介面
     question.place(x=10, y=200, width=940, height=810)   #顯示題目專區
 
     code_input = tk.Text(win, font=("微軟正黑體", 14))
-    code_input.place(x=970, y=145, width=940, height=600)
-    ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=470, height=45)
-    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=1450, y=755, width=460, height=45)
+    code_input.place(x=970, y=125, width=940, height=500)      #程式輸入區
+    ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=635, width=470, height=70)  # 提交按鈕
+    ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=1450, y=635, width=460, height=70)  # 提交紀錄按鈕
     status_output = tk.Text(win, font=("微軟正黑體", 12))
     status_output.place(x=970, y=810, width=940, height=210)
     status_output.config(state="disabled")
