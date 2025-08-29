@@ -344,20 +344,30 @@ class GUI_interface:    # GUI介面
     pic_bg = Image.open(pic_bg_path)
     pic = ImageTk.PhotoImage(pic_bg)
     tk.Label(win, image=pic).place(x=-2, y=-2)    # 背景圖片，刪除外框
-    ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
-    ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
-    ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
+ 
+#################################暫時廢除三元件(因為沒用)
+
+    
+    
+    # ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
+    # ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
+    # ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
+    
+    
+#################################    
+    
+    
     tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=1270, y=20)          # 時間顯示
     ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=20, y=1040)       # 版本號顯示
 
     
     CBB_1 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1)
-    CBB_1.place(x=10, y=125, width=250)
+    CBB_1.place(x=10, y=125, width=250)                                             #選擇程式語言       
     CBB_1.bind("<<ComboboxSelected>>", lambda event: CBB_1_func())
     CBB_2 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option2, values=options2)
-    CBB_2.place(x=280, y=125, width=250)  
+    CBB_2.place(x=280, y=125, width=250)                                            #選擇題目類型
     CBB_2.bind("<<ComboboxSelected>>", lambda event: CBB_2_func())  
-    ttk.Entry(win, font=("微軟正黑體", 16), textvariable=username).place(x=550, y=125, width=270, height=68)   #註解回來
+    ttk.Entry(win, font=("微軟正黑體", 17), textvariable=username).place(x=550, y=125, width=270, height=68)   #輸入學號
 
 
     ############
@@ -388,7 +398,7 @@ class GUI_interface:    # GUI介面
     #######
 
     question = tk.Text(win, font=("微軟正黑體", 16))
-    question.place(x=10, y=200, width=940, height=765)
+    question.place(x=10, y=200, width=940, height=810)   #顯示題目專區
 
     code_input = tk.Text(win, font=("微軟正黑體", 14))
     code_input.place(x=970, y=145, width=940, height=600)
