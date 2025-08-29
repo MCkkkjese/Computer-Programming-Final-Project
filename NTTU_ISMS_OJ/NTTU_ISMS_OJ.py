@@ -10,6 +10,8 @@ import threading
 import time
 import ttkbootstrap as ttk
 
+
+
 start = False
 while(start==False):    # 檢查是否有安裝必要模組
     try:
@@ -27,7 +29,11 @@ while(start==False):    # 檢查是否有安裝必要模組
         os.system("PAUSE")
 
 
-
+# global time_now, username, Commit_History_path_2 , default_screensize  # 宣告全域變數
+# time_now = tk.StringVar()
+# username = tk.StringVar()
+# username.set("學生未輸入學號")
+# default_screensize = ("1920x1080")
 
 ver = str("beta.25.08.26")    # 版本號
 win = ttk.Window(themename="cerculean")    # 建立視窗
@@ -79,7 +85,7 @@ class open_GUI:    # 開機畫面
 global time_now, username, Commit_History_path_2 , default_screensize  # 宣告全域變數
 time_now = tk.StringVar()
 username = tk.StringVar()
-username.set("學生未輸入學號")
+username.set("請輸入學號")
 default_screensize = ("1920x1080")
 
 date_today = str(time.strftime("%Y_%m_%d", time.localtime()))    # 開啟預處理檔案
@@ -341,30 +347,50 @@ class GUI_interface:    # GUI介面
     ttk.Button(win, text=" Exit ", style="Outline.TButton", command=win_close).place(x=10, y=980, width=306, height=40)
     ttk.Button(win, text=" Maximize ", style="Outline.TButton", command=win_maximize).place(x=327, y=980, width=306, height=40)
     ttk.Button(win, text=" Minimize ", style="Outline.TButton", command=win_minimize).place(x=643, y=980, width=306, height=40)
-    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=10, y=148)
-    ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=1835, y=120)
+    tk.Label(win, textvariable=time_now, font=("微軟正黑體", 18)).place(x=1270, y=20)          # 時間顯示
+    ttk.Label(win, text=("Version " + ver), font=("微軟正黑體", 10)).place(x=20, y=1040)       # 版本號顯示
 
-    # ttk.Button(win, text=" Question Database ", style="Outline.TButton", command=question_database).place(x=335, y=145, width=200, height=45)
+    
     CBB_1 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option1, values=options1)
-    CBB_1.place(x=335, y=145, width=180)
+    CBB_1.place(x=10, y=125, width=250)
     CBB_1.bind("<<ComboboxSelected>>", lambda event: CBB_1_func())
     CBB_2 = ttk.Combobox(win, font=("微軟正黑體", 16), textvariable=selected_option2, values=options2)
-    CBB_2.place(x=525, y=145, width=180)  
+    CBB_2.place(x=280, y=125, width=250)  
     CBB_2.bind("<<ComboboxSelected>>", lambda event: CBB_2_func())  
-    # ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=545, y=145, width=200, height=45)
-    # ttk.Button(win, textvariable=user, style="Outline.TButton", command=user_data).place(x=430, y=145, width=200, height=45)
-    ttk.Entry(win, font=("微軟正黑體", 14), textvariable=username).place(x=715, y=145, width=235, height=41)
+    ttk.Entry(win, font=("微軟正黑體", 16), textvariable=username).place(x=550, y=125, width=270, height=68)   #註解回來
+
+
+    ############
+
+#     # 建立輸入框，先不要用 textvariable，改手動控制文字
+#     entry_username = ttk.Entry(win, font=("微軟正黑體", 16), foreground="grey")
+#     entry_username.place(x=550, y=125, width=270, height=68)
+
+# # 預設提示字
+#     placeholder = "請輸入帳號"
+#     entry_username.insert(0, placeholder)
+
+#     def on_entry_click(event):
+#         if  entry_username.get() == placeholder:
+#             entry_username.delete(0, "end")      # 清空文字
+#             entry_username.config(foreground="black")
+
+#     def on_focusout(event):
+#         if entry_username.get() == "":
+#             entry_username.insert(0, placeholder)
+#             entry_username.config(foreground="grey")
+
+# # 綁定事件
+#     entry_username.bind("<FocusIn>", on_entry_click)
+#     entry_username.bind("<FocusOut>", on_focusout)
+
+
+    #######
 
     question = tk.Text(win, font=("微軟正黑體", 16))
     question.place(x=10, y=200, width=940, height=765)
-    # pic_demo_path = fd.path_function("Extension_modules/DEMO.png")
-    # pic_demo = Image.open(pic_demo_path)
-    # pic_2 = ImageTk.PhotoImage(pic_demo)
-    # tk.Label(win, image=pic_2).place(x=15, y=205)
 
     code_input = tk.Text(win, font=("微軟正黑體", 14))
-    # scrollbar.config(command=code_input.yview)
-    # code_input.config(yscrollcommand=scrollbar.set)
     code_input.place(x=970, y=145, width=940, height=600)
     ttk.Button(win, text=" Submit ", style="Outline.TButton", command=submit).place(x=970, y=755, width=470, height=45)
     ttk.Button(win, text=" Commit History ", style="Outline.TButton", command=Commit_History).place(x=1450, y=755, width=460, height=45)
